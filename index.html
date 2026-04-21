@@ -1,0 +1,1375 @@
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Шушаков А.В. — Сводный план 2025</title>
+<link href="./Шушаков А.В. — Сводный план 2025_files/css2" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b0e14;--surf:#111520;--card:#161c2a;--card2:#1a2135;--brd:#1e2840;--brd2:#28345a;
+  --blue:#3b82f6;--green:#22c55e;--amber:#f59e0b;--red:#f87171;--orange:#e85d26;--purple:#a78bfa;--teal:#2dd4bf;
+  --mu:#6b7280;--tx:#e2e8f0;--tx2:#94a3b8;--tx3:#475569;
+  --head:'Bebas Neue',sans-serif;--mono:'JetBrains Mono',monospace;--body:'Geologica',sans-serif;
+}
+body{background:var(--bg);color:var(--tx);font-family:var(--body);font-size:13px;min-height:100vh}
+.hdr{background:var(--surf);border-bottom:1px solid var(--brd);padding:0 28px;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{font-family:var(--head);font-size:22px;letter-spacing:4px;color:#fff}.logo span{color:var(--blue)}
+.badge{font-family:var(--mono);font-size:8px;padding:3px 9px;border-radius:2px;letter-spacing:1px}
+.bdg-bl{background:rgba(59,130,246,.12);color:var(--blue);border:1px solid rgba(59,130,246,.25)}
+.bdg-gr{background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.2)}
+.nav{background:var(--surf);border-bottom:1px solid var(--brd);display:flex;padding:0 28px;gap:2px;flex-wrap:wrap}
+.tab{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--mu);padding:12px 14px;border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s}
+.tab:hover{color:var(--tx2)}.tab.on{color:#fff;border-bottom-color:var(--blue)}
+.main{max-width:1500px;margin:0 auto;padding:22px 28px}
+.page{display:none}.page.on{display:block}
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:9px;margin-bottom:18px}
+.kpi{background:var(--card);border:1px solid var(--brd);border-radius:6px;padding:12px 14px}
+.kpi-lbl{font-family:var(--mono);font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--mu);margin-bottom:5px}
+.kpi-val{font-family:var(--head);font-size:26px;line-height:1;color:var(--kc,#fff)}
+.kpi-sub{font-size:10px;color:var(--tx2);margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--brd);border-radius:6px;padding:16px 18px;margin-bottom:12px}
+.panel-title{font-family:var(--head);font-size:17px;letter-spacing:2px;color:#fff;margin-bottom:12px}
+/* GANTT */
+.gantt-wrap{overflow-x:auto}
+.gantt{min-width:800px}
+.g-hdr{display:flex;margin-bottom:5px}
+.g-lbl{width:210px;flex-shrink:0}
+.g-months{flex:1;display:flex}
+.g-month{font-family:var(--mono);font-size:9px;color:var(--mu);text-align:center;border-left:1px solid var(--brd);padding:2px 0}
+.g-row{display:flex;align-items:center;margin-bottom:3px;min-height:24px}
+.g-name{width:210px;flex-shrink:0;font-family:var(--mono);font-size:11px;color:var(--tx2);padding-right:8px;line-height:1.3}
+.g-name.main{color:var(--tx);font-weight:500}
+.g-name input{background:transparent;border:none;outline:none;color:inherit;font:inherit;width:100%;border-radius:2px;padding:1px 3px;cursor:text}
+.g-name input:focus{background:rgba(59,130,246,.12)}
+.g-track{flex:1;position:relative;height:20px;background:rgba(255,255,255,.02);border-radius:2px;overflow:visible}
+.g-bar{position:absolute;height:16px;top:2px;border-radius:3px;display:flex;align-items:center;padding:0 5px;font-family:var(--mono);font-size:8px;font-weight:500;overflow:hidden;white-space:nowrap}
+.bv{background:var(--blue);color:#fff}.bw1{background:#10b981;color:#fff}
+.bw2{background:#8b5cf6;color:#fff}.bw3{background:var(--amber);color:#1a1400}
+.bskip{background:rgba(59,130,246,.18);color:rgba(255,255,255,.35)}
+.today-line{position:absolute;top:-8px;bottom:-4px;width:2px;background:var(--red);z-index:10;pointer-events:none}
+.today-lbl{position:absolute;top:-19px;font-family:var(--mono);font-size:8px;color:var(--red);transform:translateX(-50%);white-space:nowrap}
+.pay-line{position:absolute;top:0;bottom:0;width:1px;z-index:2}
+.pay-dot{position:absolute;width:5px;height:5px;border-radius:50%;margin-left:-2.5px;top:-2px}
+.pay-legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;font-size:11px;color:var(--tx2)}
+.leg-i{display:flex;align-items:center;gap:5px}
+.leg-d{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+/* VOR */
+.vor-wrap{overflow-x:auto}
+.vor-t{width:100%;border-collapse:collapse;min-width:750px}
+.vor-t th{font-family:var(--mono);font-size:8px;letter-spacing:1.2px;text-transform:uppercase;color:var(--mu);padding:6px 8px;border-bottom:1px solid var(--brd);text-align:left;white-space:nowrap}
+.vor-t td{padding:5px 8px;border-bottom:1px solid rgba(30,40,64,.7);color:var(--tx);font-size:12px;vertical-align:middle}
+.vor-t tr.cat-row td{background:var(--card2);font-family:var(--mono);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mu);padding:5px 8px}
+.vor-t tr.sum-row td{background:rgba(34,197,94,.04);font-weight:500;color:var(--green);font-family:var(--mono);font-size:11px}
+.vor-t tr.grand-row td{background:rgba(245,158,11,.07);color:var(--amber);font-family:var(--head);font-size:15px;letter-spacing:1px}
+.vor-t tr:not(.cat-row):not(.sum-row):not(.grand-row):hover td{background:rgba(59,130,246,.04)}
+.pill{font-family:var(--mono);font-size:8px;padding:2px 6px;border-radius:2px;letter-spacing:.5px;white-space:nowrap;display:inline-block}
+.p1{background:rgba(59,130,246,.12);color:var(--blue);border:1px solid rgba(59,130,246,.2)}
+.p2{background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.2)}
+.ph{background:rgba(245,158,11,.1);color:var(--amber);border:1px solid rgba(245,158,11,.2)}
+.pvk{background:rgba(167,139,250,.1);color:var(--purple);border:1px solid rgba(167,139,250,.2)}
+.pn{background:rgba(107,114,128,.1);color:var(--mu);border:1px solid rgba(107,114,128,.2)}
+.pg{background:rgba(45,212,191,.1);color:var(--teal);border:1px solid rgba(45,212,191,.2)}
+.ptu{background:rgba(232,93,38,.15);color:#fb923c;border:1px solid rgba(232,93,38,.3)}
+.pw{background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.2)}
+.ce{background:transparent;border:none;outline:none;color:inherit;font:inherit;width:100%;border-radius:2px;padding:1px 3px;cursor:text}
+.ce:focus{background:rgba(59,130,246,.1)}
+.ce[type=number]{text-align:right}
+.sm-td{font-family:var(--mono);text-align:right;font-size:11px;color:var(--green)}
+.sm-td.z{color:var(--tx3)}
+.del-btn{background:none;border:none;color:var(--tx3);cursor:pointer;font-size:12px;padding:0 3px;line-height:1;transition:color .15s}
+.del-btn:hover{color:var(--red)}
+/* ADD */
+.ai{background:var(--surf);border:1px solid var(--brd2);color:var(--tx);font-family:var(--mono);font-size:11px;padding:5px 9px;border-radius:3px;outline:none}
+.ai:focus{border-color:var(--blue)}
+.abtn{font-family:var(--mono);font-size:9px;letter-spacing:1px;padding:6px 12px;border-radius:3px;cursor:pointer;transition:all .15s;border:1px solid}
+.abtn-b{color:var(--blue);background:rgba(59,130,246,.07);border-color:rgba(59,130,246,.3)}.abtn-b:hover{background:rgba(59,130,246,.15)}
+.abtn-g{color:var(--green);background:rgba(34,197,94,.07);border-color:rgba(34,197,94,.25)}.abtn-g:hover{background:rgba(34,197,94,.15)}
+.asel{background:var(--surf);border:1px solid var(--brd2);color:var(--tx);font-family:var(--mono);font-size:10px;padding:4px 8px;border-radius:3px;outline:none;cursor:pointer}
+.asel:focus{border-color:var(--blue)}
+/* SALARY */
+.rates-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.rate-item{display:flex;align-items:center;justify-content:space-between;padding:7px 11px;background:var(--card2);border-radius:4px;border:1px solid var(--brd)}
+.rate-lbl{font-size:11px;color:var(--tx2)}
+.rate-vw{display:flex;align-items:center;gap:3px}
+.ri{background:transparent;border:none;outline:none;font-family:var(--mono);font-size:12px;font-weight:500;color:#fff;width:66px;text-align:right;cursor:text;border-radius:2px;padding:1px 3px}
+.ri:focus{background:rgba(59,130,246,.1)}
+.ru{font-family:var(--mono);font-size:9px;color:var(--mu)}
+.vb{margin-bottom:9px;border:1px solid var(--brd);border-radius:6px;overflow:hidden}
+.vb-hdr{background:var(--card2);padding:9px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}
+.vb-title{font-family:var(--mono);font-size:10px;letter-spacing:1px;font-weight:500;color:#fff}
+.vb-dates{font-family:var(--mono);font-size:9px;color:var(--mu)}
+.vb-tot{font-family:var(--head);font-size:19px;color:var(--green)}
+.vb-body{display:none;padding:13px 14px;background:var(--card)}
+.vb.open .vb-body{display:block}
+.chv{font-size:10px;color:var(--mu);transition:transform .2s}.vb.open .chv{transform:rotate(180deg)}
+.pr{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--brd)}
+.pr:last-child{border-bottom:none}
+.pd{font-family:var(--mono);font-size:10px;color:var(--mu);white-space:nowrap}
+.pdesc{font-size:11px;color:var(--tx2);margin-left:7px;flex:1}
+.pa{font-family:var(--mono);font-size:11px;font-weight:500}
+.pa.gn{color:var(--green)}.pa.bl{color:var(--blue)}.pa.or{color:var(--orange)}
+.div{border:none;border-top:1px solid var(--brd);margin:7px 0}
+.note{font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:5px;padding:5px 9px;background:var(--surf);border-radius:3px;border-left:2px solid var(--brd2)}
+.tbar{border-radius:6px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.tbar.gn{background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2)}
+.tbar.am{background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2)}
+.tbar-lbl{font-family:var(--mono);font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--mu)}
+.tbar-val{font-family:var(--head);font-size:32px}
+.tbar.gn .tbar-val{color:var(--green)}.tbar.am .tbar-val{color:var(--amber)}
+.sml{font-family:var(--mono);font-size:8px;color:var(--mu);margin-top:2px}
+/* CF */
+.cfr{display:flex;align-items:center;gap:7px;margin-bottom:4px}
+.cfl{font-family:var(--mono);font-size:9px;color:var(--mu);width:34px;flex-shrink:0}
+.cbs{flex:1}
+.cb{height:9px;border-radius:2px;margin-bottom:1px}
+.cam{font-family:var(--mono);font-size:9px;width:88px;text-align:right;flex-shrink:0}
+.br{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--brd)}
+.br:last-child{border-bottom:none}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div class="logo">ШУШАКОВ<span>.</span>АВ</div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <span class="badge bdg-bl">ВАХТА 2025</span>
+    <span class="badge bdg-gr">ПУ №2 · ТЮМЕНЬ</span>
+  </div>
+</div>
+<div class="nav">
+  <button class="tab" onclick="showTab('gantt',this)">График</button>
+  <button class="tab on" onclick="showTab('vor',this)">ВОР — Смета</button>
+  <button class="tab" onclick="showTab('salary',this)">Зарплата</button>
+  <button class="tab" onclick="showTab('cashflow',this)">Баланс</button>
+  <button class="tab" onclick="saveHTML()" style="color:var(--green);margin-left:auto;border-color:rgba(34,197,94,.3)">💾 СОХРАНИТЬ</button>
+</div>
+<div class="main">
+
+<!-- GANTT -->
+<div class="page" id="pg-gantt">
+  <div class="kpi-row" id="gantt-kpi">
+    <div class="kpi"><div class="kpi-lbl">Вахты В2–В5</div><div class="kpi-val" style="--kc:var(--blue)">4</div></div>
+    <div class="kpi"><div class="kpi-lbl">Заработок</div><div class="kpi-val" style="--kc:var(--green)">1261к</div><div class="kpi-sub">1&nbsp;261&nbsp;180 ₽</div></div>
+    <div class="kpi"><div class="kpi-lbl">Смета ВОР</div><div class="kpi-val" style="--kc:var(--amber)">572к</div><div class="kpi-sub">571&nbsp;769 ₽</div></div>
+    <div class="kpi"><div class="kpi-lbl">Разница</div><div class="kpi-val" style="--kc:var(--green)">+689к</div><div class="kpi-sub">Профицит</div></div></div>
+  <div class="panel">
+    <div class="panel-title">Диаграмма Ганта — 2026 <span style="font-family:var(--mono);font-size:10px;color:var(--red);margin-left:8px;letter-spacing:0">● сегодня</span></div>
+    <div class="gantt-wrap"><div class="gantt">
+      <div class="g-hdr"><div class="g-lbl"></div><div class="g-months" id="gm"><div class="g-month" style="width: 8.19672%;">Янв</div><div class="g-month" style="width: 7.37705%;">Фев</div><div class="g-month" style="width: 8.19672%;">Мар</div><div class="g-month" style="width: 7.9235%;">Апр</div><div class="g-month" style="width: 8.19672%;">Май</div><div class="g-month" style="width: 7.9235%;">Июн</div><div class="g-month" style="width: 8.19672%;">Июл</div><div class="g-month" style="width: 8.19672%;">Авг</div><div class="g-month" style="width: 7.9235%;">Сен</div><div class="g-month" style="width: 8.19672%;">Окт</div><div class="g-month" style="width: 7.9235%;">Ноя</div><div class="g-month" style="width: 8.19672%;">Дек</div></div></div>
+      <div id="gr"><div class="g-row"><div class="g-name"><input title="Редактировать"></div><div class="g-track"><div class="today-line" style="left: 29.708%;"><div class="today-lbl">19 Апр</div></div><div class="g-bar bskip" style="left: 4.91803%; width: 11.4754%; opacity: 0.35;">В1</div></div></div><div class="g-row"><div class="g-name main"><input title="Редактировать"></div><div class="g-track"><div class="today-line" style="left: 29.708%;"><div class="today-lbl">19 Апр</div></div><div class="g-bar bv" style="left: 27.0492%; width: 13.388%;">В2</div><div class="pay-line" title="Аванс 27 апр: 37&nbsp;116 ₽" style="left: 31.694%; background: rgba(59, 130, 246, 0.8);"><div class="pay-dot" style="background: rgb(96, 165, 250);"></div></div><div class="pay-line" title="ЗП 12 мая: 121&nbsp;091 ₽" style="left: 35.7924%; background: rgba(34, 197, 94, 0.8);"><div class="pay-dot" style="background: rgb(34, 197, 94);"></div></div><div class="pay-line" title="Аванс+Пр 27 мая: 185&nbsp;199 ₽" style="left: 39.8907%; background: rgba(59, 130, 246, 0.8);"><div class="pay-dot" style="background: rgb(96, 165, 250);"></div></div><div class="pay-line" title="ЗП 12 июн: 56&nbsp;509 ₽" style="left: 44.2623%; background: rgba(34, 197, 94, 0.8);"><div class="pay-dot" style="background: rgb(34, 197, 94);"></div></div></div></div><div class="g-row"><div class="g-name main"><input title="Редактировать"></div><div class="g-track"><div class="today-line" style="left: 29.708%;"><div class="today-lbl">19 Апр</div></div><div class="g-bar bv" style="left: 49.4536%; width: 8.74317%;">В3</div><div class="pay-line" title="Премия 27 июн: 53&nbsp;280 ₽" style="left: 48.3607%; background: rgba(59, 130, 246, 0.8);"><div class="pay-dot" style="background: rgb(96, 165, 250);"></div></div><div class="pay-line" title="Аванс 27 июл: 139&nbsp;185 ₽" style="left: 56.5574%; background: rgba(59, 130, 246, 0.8);"><div class="pay-dot" style="background: rgb(96, 165, 250);"></div></div><div class="pay-line" title="ЗП 12 авг: 129&nbsp;163 ₽" style="left: 60.929%; background: rgba(34, 197, 94, 0.8);"><div class="pay-dot" style="background: rgb(34, 197, 94);"></div></div><div class="pay-line" title="Аванс+Пр 27 авг: 93&nbsp;634 ₽" style="left: 65.0273%; background: rgba(59, 130, 246, 0.8);"><div class="pay-dot" style="background: rgb(96, 165, 250);"></div></div></div></div><div class="g-row"><div class="g-name main"><input title="Редактировать"></div><div class="g-track"><div class="today-line" style="left: 29.708%;"><div class="today-lbl">19 Апр</div></div><div class="g-bar bv" style="left: 71.3115%; width: 6.55738%;">В4</div><div class="pay-line" title="Аванс 27 сен: 92&nbsp;790 ₽" style="left: 73.4973%; background: rgba(59, 130, 246, 0.8);"><div class="pay-dot" style="background: rgb(96, 165, 250);"></div></div><div class="pay-line" title="ЗП 12 окт: 88&nbsp;800 ₽" style="left: 77.5956%; background: rgba(34, 197, 94, 0.8);"><div class="pay-dot" style="background: rgb(34, 197, 94);"></div></div><div class="pay-line" title="Премия 27 окт: 50&nbsp;858 ₽" style="left: 81.694%; background: rgba(59, 130, 246, 0.8);"><div class="pay-dot" style="background: rgb(96, 165, 250);"></div></div></div></div><div class="g-row"><div class="g-name main"><input title="Редактировать"></div><div class="g-track"><div class="today-line" style="left: 29.708%;"><div class="today-lbl">19 Апр</div></div><div class="g-bar bv" style="left: 89.071%; width: 10.3825%;">В5</div><div class="pay-line" title="Аванс 27 дек: 136&nbsp;065 ₽" style="left: 98.3607%; background: rgba(59, 130, 246, 0.8);"><div class="pay-dot" style="background: rgb(96, 165, 250);"></div></div><div class="pay-line" title="ЗП 12 янв (след.): 32&nbsp;291 ₽" style="left: 3.00546%; background: rgba(34, 197, 94, 0.8);"><div class="pay-dot" style="background: rgb(34, 197, 94);"></div></div><div class="pay-line" title="Пр 27 янв (след.): 45&nbsp;200 ₽" style="left: 7.10383%; background: rgba(59, 130, 246, 0.8);"><div class="pay-dot" style="background: rgb(96, 165, 250);"></div></div></div></div><div class="g-row"><div class="g-name"><input title="Редактировать"></div><div class="g-track"><div class="today-line" style="left: 29.708%;"><div class="today-lbl">19 Апр</div></div><div class="g-bar bw3" style="left: 39.6175%; width: 0.819672%;"></div></div></div><div class="g-row"><div class="g-name"><input title="Редактировать"></div><div class="g-track"><div class="today-line" style="left: 29.708%;"><div class="today-lbl">19 Апр</div></div><div class="g-bar bw1" style="left: 41.2568%; width: 3.82514%;">Отопление</div></div></div><div class="g-row"><div class="g-name"><input title="Редактировать"></div><div class="g-track"><div class="today-line" style="left: 29.708%;"><div class="today-lbl">19 Апр</div></div><div class="g-bar bw2" style="left: 45.3552%; width: 1.63934%;"></div></div></div><div class="g-row"><div class="g-name"><input title="Редактировать"></div><div class="g-track"><div class="today-line" style="left: 29.708%;"><div class="today-lbl">19 Апр</div></div><div class="g-bar bw3" style="left: 47.2678%; width: 2.18579%;"></div></div></div><div class="g-row"><div class="g-name"><input title="Редактировать"></div><div class="g-track"><div class="today-line" style="left: 29.708%;"><div class="today-lbl">19 Апр</div></div><div class="g-bar bw2" style="left: 45.3552%; width: 4.09836%;">Штукатурка</div></div></div><div class="g-row"><div class="g-name"><input title="Редактировать"></div><div class="g-track"><div class="today-line" style="left: 29.708%;"><div class="today-lbl">19 Апр</div></div><div class="g-bar bw2" style="left: 58.4699%; width: 3.27869%;">Штукатурка</div></div></div><div class="g-row"><div class="g-name"><input title="Редактировать"></div><div class="g-track"><div class="today-line" style="left: 29.708%;"><div class="today-lbl">19 Апр</div></div><div class="g-bar bw1" style="left: 59.0164%; width: 2.73224%;"></div></div></div><div class="g-row"><div class="g-name"><input title="Редактировать"></div><div class="g-track"><div class="today-line" style="left: 29.708%;"><div class="today-lbl">19 Апр</div></div><div class="g-bar bw1" style="left: 58.4699%; width: 3.27869%;">Сварка</div></div></div><div class="g-row"><div class="g-name"><input title="Редактировать"></div><div class="g-track"><div class="today-line" style="left: 29.708%;"><div class="today-lbl">19 Апр</div></div><div class="g-bar bw3" style="left: 61.7486%; width: 1.36612%;"></div></div></div><div class="g-row"><div class="g-name"><input title="Редактировать"></div><div class="g-track"><div class="today-line" style="left: 29.708%;"><div class="today-lbl">19 Апр</div></div><div class="g-bar bw3" style="left: 63.388%; width: 4.09836%;">Отмостка</div></div></div></div>
+    </div></div>
+    <div style="height:1px;background:var(--brd);margin:9px 0"></div>
+    <div class="pay-legend">
+      <div class="leg-i"><div class="leg-d" style="background:var(--blue)"></div>Вахта В2–В5</div>
+      <div class="leg-i"><div class="leg-d" style="background:#10b981"></div>Монтаж</div>
+      <div class="leg-i"><div class="leg-d" style="background:#8b5cf6"></div>Отделка</div>
+      <div class="leg-i"><div class="leg-d" style="background:var(--amber)"></div>Прочие</div>
+      <div class="leg-i"><div class="leg-d" style="background:var(--green)"></div>▲ ЗП</div>
+      <div class="leg-i"><div class="leg-d" style="background:rgba(59,130,246,.8)"></div>▲ Аванс</div>
+      <div class="leg-i"><div class="leg-d" style="background:var(--red)"></div>Сегодня</div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-title">Выплаты ↔ ВОР — заработок и разница</div>
+    <div id="pe"><div style="margin-bottom: 9px; border: 1px solid var(--brd); border-radius: 5px; overflow: hidden;"><div style="background:var(--card2);padding:8px 13px;display:grid;grid-template-columns:auto 1fr 1fr;gap:8px;align-items:center">
+      <span style="font-family:var(--mono);font-size:10px;color:#fff;letter-spacing:1px">В2</span>
+      <div><div style="font-family:var(--mono);font-size:8px;color:var(--mu);margin-bottom:2px">ЗАРАБОТОК</div><div style="font-family:var(--head);font-size:17px;color:var(--green)">399&nbsp;915 ₽</div></div>
+      <div style="text-align:right"><div style="font-family:var(--mono);font-size:8px;color:var(--mu);margin-bottom:2px">РАЗНИЦА (−ВОР)</div><div style="font-family:var(--head);font-size:17px;color:var(--green)">+256&nbsp;972 ₽</div></div>
+    </div><div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 13px; border-bottom: 1px solid var(--brd); background: var(--card);"><div style="display:flex;align-items:center;gap:7px"><span style="font-family:var(--mono);font-size:9px;color:var(--mu)">Апр · 27-е</span><span style="font-size:11px;color:var(--tx2)">12–15 апр (4дн×11ч)</span></div>
+        <span style="font-family:var(--mono);font-size:11px;font-weight:500;color:var(--blue)">37&nbsp;116 ₽</span></div><div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 13px; border-bottom: 1px solid var(--brd); background: var(--card);"><div style="display:flex;align-items:center;gap:7px"><span style="font-family:var(--mono);font-size:9px;color:var(--mu)">Май · 12-е</span><span style="font-size:11px;color:var(--tx2)">2-я пол. апр (15дн)</span></div>
+        <span style="font-family:var(--mono);font-size:11px;font-weight:500;color:var(--green)">121&nbsp;091 ₽</span></div><div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 13px; border-bottom: 1px solid var(--brd); background: var(--card);"><div style="display:flex;align-items:center;gap:7px"><span style="font-family:var(--mono);font-size:9px;color:var(--mu)">Май · 27-е</span><span style="font-size:11px;color:var(--tx2)">1–15 мая + премия апр</span></div>
+        <span style="font-family:var(--mono);font-size:11px;font-weight:500;color:var(--blue)">185&nbsp;199 ₽</span></div><div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 13px; border-bottom: 1px solid var(--brd); background: var(--card);"><div style="display:flex;align-items:center;gap:7px"><span style="font-family:var(--mono);font-size:9px;color:var(--mu)">Июн · 12-е</span><span style="font-size:11px;color:var(--tx2)">2-я пол. мая (7дн)</span></div>
+        <span style="font-family:var(--mono);font-size:11px;font-weight:500;color:var(--green)">56&nbsp;509 ₽</span></div><div style="display: flex; justify-content: space-between; padding: 4px 13px; background: rgba(245, 158, 11, 0.04); border-top: 1px solid var(--brd);"><span style="font-size:11px;color:var(--amber)">Расходы ВОР (ориент.)</span><span style="font-family:var(--mono);font-size:11px;color:var(--amber)">−142&nbsp;942 ₽</span></div></div><div style="margin-bottom: 9px; border: 1px solid var(--brd); border-radius: 5px; overflow: hidden;"><div style="background:var(--card2);padding:8px 13px;display:grid;grid-template-columns:auto 1fr 1fr;gap:8px;align-items:center">
+      <span style="font-family:var(--mono);font-size:10px;color:#fff;letter-spacing:1px">В3</span>
+      <div><div style="font-family:var(--mono);font-size:8px;color:var(--mu);margin-bottom:2px">ЗАРАБОТОК</div><div style="font-family:var(--head);font-size:17px;color:var(--green)">415&nbsp;262 ₽</div></div>
+      <div style="text-align:right"><div style="font-family:var(--mono);font-size:8px;color:var(--mu);margin-bottom:2px">РАЗНИЦА (−ВОР)</div><div style="font-family:var(--head);font-size:17px;color:var(--green)">+186&nbsp;554 ₽</div></div>
+    </div><div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 13px; border-bottom: 1px solid var(--brd); background: var(--card);"><div style="display:flex;align-items:center;gap:7px"><span style="font-family:var(--mono);font-size:9px;color:var(--mu)">Июн · 27-е</span><span style="font-size:11px;color:var(--tx2)">Премия за май</span></div>
+        <span style="font-family:var(--mono);font-size:11px;font-weight:500;color:var(--blue)">53&nbsp;280 ₽</span></div><div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 13px; border-bottom: 1px solid var(--brd); background: var(--card);"><div style="display:flex;align-items:center;gap:7px"><span style="font-family:var(--mono);font-size:9px;color:var(--mu)">Июл · 27-е</span><span style="font-size:11px;color:var(--tx2)">1–15 июл (15дн)</span></div>
+        <span style="font-family:var(--mono);font-size:11px;font-weight:500;color:var(--blue)">139&nbsp;185 ₽</span></div><div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 13px; border-bottom: 1px solid var(--brd); background: var(--card);"><div style="display:flex;align-items:center;gap:7px"><span style="font-family:var(--mono);font-size:9px;color:var(--mu)">Авг · 12-е</span><span style="font-size:11px;color:var(--tx2)">2-я пол. июл (16дн)</span></div>
+        <span style="font-family:var(--mono);font-size:11px;font-weight:500;color:var(--green)">129&nbsp;163 ₽</span></div><div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 13px; border-bottom: 1px solid var(--brd); background: var(--card);"><div style="display:flex;align-items:center;gap:7px"><span style="font-family:var(--mono);font-size:9px;color:var(--mu)">Авг · 27-е</span><span style="font-size:11px;color:var(--tx2)">1–2 авг + премия июл</span></div>
+        <span style="font-family:var(--mono);font-size:11px;font-weight:500;color:var(--blue)">93&nbsp;634 ₽</span></div><div style="display: flex; justify-content: space-between; padding: 4px 13px; background: rgba(245, 158, 11, 0.04); border-top: 1px solid var(--brd);"><span style="font-size:11px;color:var(--amber)">Расходы ВОР (ориент.)</span><span style="font-family:var(--mono);font-size:11px;color:var(--amber)">−228&nbsp;708 ₽</span></div></div><div style="margin-bottom: 9px; border: 1px solid var(--brd); border-radius: 5px; overflow: hidden;"><div style="background:var(--card2);padding:8px 13px;display:grid;grid-template-columns:auto 1fr 1fr;gap:8px;align-items:center">
+      <span style="font-family:var(--mono);font-size:10px;color:#fff;letter-spacing:1px">В4</span>
+      <div><div style="font-family:var(--mono);font-size:8px;color:var(--mu);margin-bottom:2px">ЗАРАБОТОК</div><div style="font-family:var(--head);font-size:17px;color:var(--green)">232&nbsp;448 ₽</div></div>
+      <div style="text-align:right"><div style="font-family:var(--mono);font-size:8px;color:var(--mu);margin-bottom:2px">РАЗНИЦА (−ВОР)</div><div style="font-family:var(--head);font-size:17px;color:var(--green)">+118&nbsp;094 ₽</div></div>
+    </div><div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 13px; border-bottom: 1px solid var(--brd); background: var(--card);"><div style="display:flex;align-items:center;gap:7px"><span style="font-family:var(--mono);font-size:9px;color:var(--mu)">Сен · 27-е</span><span style="font-size:11px;color:var(--tx2)">21–30 сен (10дн)</span></div>
+        <span style="font-family:var(--mono);font-size:11px;font-weight:500;color:var(--blue)">92&nbsp;790 ₽</span></div><div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 13px; border-bottom: 1px solid var(--brd); background: var(--card);"><div style="display:flex;align-items:center;gap:7px"><span style="font-family:var(--mono);font-size:9px;color:var(--mu)">Окт · 12-е</span><span style="font-size:11px;color:var(--tx2)">1–11 окт (11дн)</span></div>
+        <span style="font-family:var(--mono);font-size:11px;font-weight:500;color:var(--green)">88&nbsp;800 ₽</span></div><div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 13px; border-bottom: 1px solid var(--brd); background: var(--card);"><div style="display:flex;align-items:center;gap:7px"><span style="font-family:var(--mono);font-size:9px;color:var(--mu)">Окт · 27-е</span><span style="font-size:11px;color:var(--tx2)">Премия за В4</span></div>
+        <span style="font-family:var(--mono);font-size:11px;font-weight:500;color:var(--blue)">50&nbsp;858 ₽</span></div><div style="display: flex; justify-content: space-between; padding: 4px 13px; background: rgba(245, 158, 11, 0.04); border-top: 1px solid var(--brd);"><span style="font-size:11px;color:var(--amber)">Расходы ВОР (ориент.)</span><span style="font-family:var(--mono);font-size:11px;color:var(--amber)">−114&nbsp;354 ₽</span></div></div><div style="margin-bottom: 9px; border: 1px solid var(--brd); border-radius: 5px; overflow: hidden;"><div style="background:var(--card2);padding:8px 13px;display:grid;grid-template-columns:auto 1fr 1fr;gap:8px;align-items:center">
+      <span style="font-family:var(--mono);font-size:10px;color:#fff;letter-spacing:1px">В5</span>
+      <div><div style="font-family:var(--mono);font-size:8px;color:var(--mu);margin-bottom:2px">ЗАРАБОТОК</div><div style="font-family:var(--head);font-size:17px;color:var(--green)">213&nbsp;556 ₽</div></div>
+      <div style="text-align:right"><div style="font-family:var(--mono);font-size:8px;color:var(--mu);margin-bottom:2px">РАЗНИЦА (−ВОР)</div><div style="font-family:var(--head);font-size:17px;color:var(--green)">+127&nbsp;791 ₽</div></div>
+    </div><div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 13px; border-bottom: 1px solid var(--brd); background: var(--card);"><div style="display:flex;align-items:center;gap:7px"><span style="font-family:var(--mono);font-size:9px;color:var(--mu)">Дек · 27-е</span><span style="font-size:11px;color:var(--tx2)">1–15 дек (15дн)</span></div>
+        <span style="font-family:var(--mono);font-size:11px;font-weight:500;color:var(--blue)">136&nbsp;065 ₽</span></div><div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 13px; border-bottom: 1px solid var(--brd); background: var(--card);"><div style="display:flex;align-items:center;gap:7px"><span style="font-family:var(--mono);font-size:9px;color:var(--mu)">Янв · 12-е</span><span style="font-size:11px;color:var(--tx2)">2-я пол. дек (4дн)</span></div>
+        <span style="font-family:var(--mono);font-size:11px;font-weight:500;color:var(--green)">32&nbsp;291 ₽</span></div><div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 13px; border-bottom: 1px solid var(--brd); background: var(--card);"><div style="display:flex;align-items:center;gap:7px"><span style="font-family:var(--mono);font-size:9px;color:var(--mu)">Янв · 27-е</span><span style="font-size:11px;color:var(--tx2)">Премия за дек</span></div>
+        <span style="font-family:var(--mono);font-size:11px;font-weight:500;color:var(--blue)">45&nbsp;200 ₽</span></div><div style="display: flex; justify-content: space-between; padding: 4px 13px; background: rgba(245, 158, 11, 0.04); border-top: 1px solid var(--brd);"><span style="font-size:11px;color:var(--amber)">Расходы ВОР (ориент.)</span><span style="font-family:var(--mono);font-size:11px;color:var(--amber)">−85&nbsp;765 ₽</span></div></div><div style="border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 5px; padding: 11px 13px; background: rgba(34, 197, 94, 0.04); display: flex; justify-content: space-between; align-items: center;"><div><div style="font-family:var(--mono);font-size:8px;color:var(--mu);margin-bottom:3px">ИТОГОВЫЙ БАЛАНС</div><div style="font-size:11px;color:var(--tx2)">Заработок 1&nbsp;261&nbsp;180 ₽ − ВОР 571&nbsp;769 ₽</div></div>
+    <div style="font-family:var(--head);font-size:26px;color:var(--green)">+689&nbsp;411 ₽</div></div></div>
+  </div>
+</div>
+
+<!-- VOR -->
+<div class="page on" id="pg-vor">
+  <div class="tbar am">
+    <div><div class="tbar-lbl">Итого ВОР</div><div class="sml">Все ячейки редактируемые · кликните для изменения</div></div>
+    <div class="tbar-val" id="vgt">571&nbsp;769 ₽</div>
+  </div>
+  <div class="panel">
+    <div class="panel-title">Ведомость объёмов работ</div>
+    <div class="vor-wrap">
+      <table class="vor-t">
+        <thead><tr>
+          <th style="width:26px">#</th><th>Наименование</th><th style="width:66px">Раздел</th>
+          <th style="width:68px;text-align:right">Кол-во</th><th style="width:42px">Ед.</th>
+          <th style="width:100px;text-align:right">Цена ₽</th><th style="width:108px;text-align:right">Сумма ₽</th>
+          <th style="width:22px"></th>
+        </tr></thead>
+        <tbody id="vtb"><tr class="cat-row"><td colspan="8">1-й этаж</td></tr><tr id="vr0"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">1</td>
+      <td><input class="ce" value="Утеплитель минвата перекрытие" oninput="VOR[0].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p1">1 эт</span></td>
+      <td><input class="ce" type="number" value="50" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[0].qty=parseFloat(this.value)||0;rrw(0)"></td>
+      <td><input class="ce" value="м²" oninput="VOR[0].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="1300" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[0].price=parseFloat(this.value)||0;rrw(0)"></td>
+      <td class="sm-td" id="vs0">60&nbsp;000 ₽</td>
+      <td><button class="del-btn" onclick="delRow(0)" title="Удалить">✕</button></td></tr><tr id="vr1"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">2</td>
+      <td><input class="ce" value="Пароизоляция перекрытие" oninput="VOR[1].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p1">1 эт</span></td>
+      <td><input class="ce" type="number" value="100" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[1].qty=parseFloat(this.value)||0;rrw(1)"></td>
+      <td><input class="ce" value="м²" oninput="VOR[1].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="10000" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[1].price=parseFloat(this.value)||0;rrw(1)"></td>
+      <td class="sm-td" id="vs1">10&nbsp;000 ₽</td>
+      <td><button class="del-btn" onclick="delRow(1)" title="Удалить">✕</button></td></tr><tr id="vr2"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">3</td>
+      <td><input class="ce" value="Пеноплекс 50мм на пол" oninput="VOR[2].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p1">1 эт</span></td>
+      <td><input class="ce" type="number" value="84" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[2].qty=parseFloat(this.value)||0;rrw(2)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[2].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="400" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[2].price=parseFloat(this.value)||0;rrw(2)"></td>
+      <td class="sm-td" id="vs2">28&nbsp;000 ₽</td>
+      <td><button class="del-btn" onclick="delRow(2)" title="Удалить">✕</button></td></tr><tr id="vr3"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">4</td>
+      <td><input class="ce" value="Стяжка пола" oninput="VOR[3].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p1">1 эт</span></td>
+      <td><input class="ce" type="number" value="60" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[3].qty=parseFloat(this.value)||0;rrw(3)"></td>
+      <td><input class="ce" value="м²" oninput="VOR[3].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="750" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[3].price=parseFloat(this.value)||0;rrw(3)"></td>
+      <td class="sm-td " id="vs3">45&nbsp;000 ₽</td>
+      <td><button class="del-btn" onclick="delRow(3)" title="Удалить">✕</button></td></tr><tr id="vr4"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">5</td>
+      <td><input class="ce" value="Плитка керамогранит пол" oninput="VOR[4].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p1">1 эт</span></td>
+      <td><input class="ce" type="number" value="60" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[4].qty=parseFloat(this.value)||0;rrw(4)"></td>
+      <td><input class="ce" value="м²" oninput="VOR[4].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="1000" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[4].price=parseFloat(this.value)||0;rrw(4)"></td>
+      <td class="sm-td z" id="vs4">—</td>
+      <td><button class="del-btn" onclick="delRow(4)" title="Удалить">✕</button></td></tr><tr id="vr5"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">6</td>
+      <td><input class="ce" value="Плитка стены туалет/котельная" oninput="VOR[5].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p1">1 эт</span></td>
+      <td><input class="ce" type="number" value="15.6" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[5].qty=parseFloat(this.value)||0;rrw(5)"></td>
+      <td><input class="ce" value="м²" oninput="VOR[5].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="1000" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[5].price=parseFloat(this.value)||0;rrw(5)"></td>
+      <td class="sm-td " id="vs5">15&nbsp;600 ₽</td>
+      <td><button class="del-btn" onclick="delRow(5)" title="Удалить">✕</button></td></tr><tr id="vr6"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">7</td>
+      <td><input class="ce" value="Плинтусы" oninput="VOR[6].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p1">1 эт</span></td>
+      <td><input class="ce" type="number" value="50" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[6].qty=parseFloat(this.value)||0;rrw(6)"></td>
+      <td><input class="ce" value="мп" oninput="VOR[6].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="100" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[6].price=parseFloat(this.value)||0;rrw(6)"></td>
+      <td class="sm-td z" id="vs6">—</td>
+      <td><button class="del-btn" onclick="delRow(6)" title="Удалить">✕</button></td></tr><tr id="vr7"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">8</td>
+      <td><input class="ce" value="Плиточный клей" oninput="VOR[7].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p1">1 эт</span></td>
+      <td><input class="ce" type="number" value="16" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[7].qty=parseFloat(this.value)||0;rrw(7)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[7].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="350" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[7].price=parseFloat(this.value)||0;rrw(7)"></td>
+      <td class="sm-td" id="vs7">2&nbsp;100 ₽</td>
+      <td><button class="del-btn" onclick="delRow(7)" title="Удалить">✕</button></td></tr><tr id="vr8"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">9</td>
+      <td><input class="ce" value="Натяжной потолок" oninput="VOR[8].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p1">1 эт</span></td>
+      <td><input class="ce" type="number" value="60" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[8].qty=parseFloat(this.value)||0;rrw(8)"></td>
+      <td><input class="ce" value="м²" oninput="VOR[8].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="600" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[8].price=parseFloat(this.value)||0;rrw(8)"></td>
+      <td class="sm-td z" id="vs8">—</td>
+      <td><button class="del-btn" onclick="delRow(8)" title="Удалить">✕</button></td></tr><tr id="vr9"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">10</td>
+      <td><input class="ce" value="Раковина" oninput="VOR[9].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p1">1 эт</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[9].qty=parseFloat(this.value)||0;rrw(9)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[9].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="4000" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[9].price=parseFloat(this.value)||0;rrw(9)"></td>
+      <td class="sm-td z" id="vs9">—</td>
+      <td><button class="del-btn" onclick="delRow(9)" title="Удалить">✕</button></td></tr><tr id="vr10"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">11</td>
+      <td><input class="ce" value="Унитаз" oninput="VOR[10].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p1">1 эт</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[10].qty=parseFloat(this.value)||0;rrw(10)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[10].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="8000" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[10].price=parseFloat(this.value)||0;rrw(10)"></td>
+      <td class="sm-td z" id="vs10">—</td>
+      <td><button class="del-btn" onclick="delRow(10)" title="Удалить">✕</button></td></tr><tr id="vr11"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">12</td>
+      <td><input class="ce" value="Смеситель" oninput="VOR[11].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p1">1 эт</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[11].qty=parseFloat(this.value)||0;rrw(11)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[11].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="5000" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[11].price=parseFloat(this.value)||0;rrw(11)"></td>
+      <td class="sm-td z" id="vs11">—</td>
+      <td><button class="del-btn" onclick="delRow(11)" title="Удалить">✕</button></td></tr><tr id="vr12"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">13</td>
+      <td><input class="ce" value="Светильники" oninput="VOR[12].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p1">1 эт</span></td>
+      <td><input class="ce" type="number" value="9" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[12].qty=parseFloat(this.value)||0;rrw(12)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[12].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="500" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[12].price=parseFloat(this.value)||0;rrw(12)"></td>
+      <td class="sm-td z" id="vs12">—</td>
+      <td><button class="del-btn" onclick="delRow(12)" title="Удалить">✕</button></td></tr><tr id="vr13"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">14</td>
+      <td><input class="ce" value="Выключатели 1-кл" oninput="VOR[13].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p1">1 эт</span></td>
+      <td><input class="ce" type="number" value="4" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[13].qty=parseFloat(this.value)||0;rrw(13)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[13].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="230" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[13].price=parseFloat(this.value)||0;rrw(13)"></td>
+      <td class="sm-td " id="vs13">920 ₽</td>
+      <td><button class="del-btn" onclick="delRow(13)" title="Удалить">✕</button></td></tr><tr id="vr14"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">15</td>
+      <td><input class="ce" value="Розетки" oninput="VOR[14].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p1">1 эт</span></td>
+      <td><input class="ce" type="number" value="9" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[14].qty=parseFloat(this.value)||0;rrw(14)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[14].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="230" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[14].price=parseFloat(this.value)||0;rrw(14)"></td>
+      <td class="sm-td " id="vs14">2&nbsp;070 ₽</td>
+      <td><button class="del-btn" onclick="delRow(14)" title="Удалить">✕</button></td></tr><tr class="sum-row"><td colspan="7" style="text-align:right;font-size:10px">Итого 1-й этаж</td><td style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--green)">1&nbsp;290&nbsp;290 ₽</td></tr><tr class="cat-row"><td colspan="8">2-й этаж</td></tr><tr id="vr15"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">16</td>
+      <td><input class="ce" value="Стяжка пола" oninput="VOR[15].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p2">2 эт</span></td>
+      <td><input class="ce" type="number" value="55" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[15].qty=parseFloat(this.value)||0;rrw(15)"></td>
+      <td><input class="ce" value="м²" oninput="VOR[15].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="750" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[15].price=parseFloat(this.value)||0;rrw(15)"></td>
+      <td class="sm-td " id="vs15">41&nbsp;250 ₽</td>
+      <td><button class="del-btn" onclick="delRow(15)" title="Удалить">✕</button></td></tr><tr id="vr16"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">17</td>
+      <td><input class="ce" value="Ламинат комнаты" oninput="VOR[16].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p2">2 эт</span></td>
+      <td><input class="ce" type="number" value="49" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[16].qty=parseFloat(this.value)||0;rrw(16)"></td>
+      <td><input class="ce" value="м²" oninput="VOR[16].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="750" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[16].price=parseFloat(this.value)||0;rrw(16)"></td>
+      <td class="sm-td z" id="vs16">—</td>
+      <td><button class="del-btn" onclick="delRow(16)" title="Удалить">✕</button></td></tr><tr id="vr17"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">18</td>
+      <td><input class="ce" value="Плитка пол ванная" oninput="VOR[17].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p2">2 эт</span></td>
+      <td><input class="ce" type="number" value="5.9" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[17].qty=parseFloat(this.value)||0;rrw(17)"></td>
+      <td><input class="ce" value="м²" oninput="VOR[17].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="1000" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[17].price=parseFloat(this.value)||0;rrw(17)"></td>
+      <td class="sm-td z" id="vs17">—</td>
+      <td><button class="del-btn" onclick="delRow(17)" title="Удалить">✕</button></td></tr><tr id="vr18"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">19</td>
+      <td><input class="ce" value="Плитка стены ванная" oninput="VOR[18].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p2">2 эт</span></td>
+      <td><input class="ce" type="number" value="20" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[18].qty=parseFloat(this.value)||0;rrw(18)"></td>
+      <td><input class="ce" value="м²" oninput="VOR[18].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="1000" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[18].price=parseFloat(this.value)||0;rrw(18)"></td>
+      <td class="sm-td z" id="vs18">—</td>
+      <td><button class="del-btn" onclick="delRow(18)" title="Удалить">✕</button></td></tr><tr id="vr19"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">20</td>
+      <td><input class="ce" value="Плинтусы" oninput="VOR[19].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p2">2 эт</span></td>
+      <td><input class="ce" type="number" value="56" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[19].qty=parseFloat(this.value)||0;rrw(19)"></td>
+      <td><input class="ce" value="мп" oninput="VOR[19].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="100" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[19].price=parseFloat(this.value)||0;rrw(19)"></td>
+      <td class="sm-td z" id="vs19">—</td>
+      <td><button class="del-btn" onclick="delRow(19)" title="Удалить">✕</button></td></tr><tr id="vr20"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">21</td>
+      <td><input class="ce" value="Плиточный клей" oninput="VOR[20].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p2">2 эт</span></td>
+      <td><input class="ce" type="number" value="6" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[20].qty=parseFloat(this.value)||0;rrw(20)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[20].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="350" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[20].price=parseFloat(this.value)||0;rrw(20)"></td>
+      <td class="sm-td z" id="vs20">—</td>
+      <td><button class="del-btn" onclick="delRow(20)" title="Удалить">✕</button></td></tr><tr id="vr21"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">22</td>
+      <td><input class="ce" value="Натяжной потолок" oninput="VOR[21].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p2">2 эт</span></td>
+      <td><input class="ce" type="number" value="55" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[21].qty=parseFloat(this.value)||0;rrw(21)"></td>
+      <td><input class="ce" value="м²" oninput="VOR[21].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="600" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[21].price=parseFloat(this.value)||0;rrw(21)"></td>
+      <td class="sm-td z" id="vs21">—</td>
+      <td><button class="del-btn" onclick="delRow(21)" title="Удалить">✕</button></td></tr><tr id="vr22"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">23</td>
+      <td><input class="ce" value="Раковина" oninput="VOR[22].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p2">2 эт</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[22].qty=parseFloat(this.value)||0;rrw(22)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[22].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="5000" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[22].price=parseFloat(this.value)||0;rrw(22)"></td>
+      <td class="sm-td z" id="vs22">—</td>
+      <td><button class="del-btn" onclick="delRow(22)" title="Удалить">✕</button></td></tr><tr id="vr23"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">24</td>
+      <td><input class="ce" value="Унитаз" oninput="VOR[23].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p2">2 эт</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[23].qty=parseFloat(this.value)||0;rrw(23)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[23].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="8000" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[23].price=parseFloat(this.value)||0;rrw(23)"></td>
+      <td class="sm-td z" id="vs23">—</td>
+      <td><button class="del-btn" onclick="delRow(23)" title="Удалить">✕</button></td></tr><tr id="vr24"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">25</td>
+      <td><input class="ce" value="Ванна стальная эмалир. 1700×750" oninput="VOR[24].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p2">2 эт</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[24].qty=parseFloat(this.value)||0;rrw(24)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[24].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="15000" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[24].price=parseFloat(this.value)||0;rrw(24)"></td>
+      <td class="sm-td z" id="vs24">—</td>
+      <td><button class="del-btn" onclick="delRow(24)" title="Удалить">✕</button></td></tr><tr id="vr25"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">26</td>
+      <td><input class="ce" value="Смеситель душ + умывальник" oninput="VOR[25].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p2">2 эт</span></td>
+      <td><input class="ce" type="number" value="2" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[25].qty=parseFloat(this.value)||0;rrw(25)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[25].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="5000" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[25].price=parseFloat(this.value)||0;rrw(25)"></td>
+      <td class="sm-td z" id="vs25">—</td>
+      <td><button class="del-btn" onclick="delRow(25)" title="Удалить">✕</button></td></tr><tr id="vr26"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">27</td>
+      <td><input class="ce" value="Светильники" oninput="VOR[26].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p2">2 эт</span></td>
+      <td><input class="ce" type="number" value="6" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[26].qty=parseFloat(this.value)||0;rrw(26)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[26].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="500" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[26].price=parseFloat(this.value)||0;rrw(26)"></td>
+      <td class="sm-td z" id="vs26">—</td>
+      <td><button class="del-btn" onclick="delRow(26)" title="Удалить">✕</button></td></tr><tr id="vr27"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">28</td>
+      <td><input class="ce" value="Выключатели" oninput="VOR[27].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p2">2 эт</span></td>
+      <td><input class="ce" type="number" value="6" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[27].qty=parseFloat(this.value)||0;rrw(27)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[27].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="230" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[27].price=parseFloat(this.value)||0;rrw(27)"></td>
+      <td class="sm-td z" id="vs27">—</td>
+      <td><button class="del-btn" onclick="delRow(27)" title="Удалить">✕</button></td></tr><tr id="vr28"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">29</td>
+      <td><input class="ce" value="Розетки" oninput="VOR[28].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill p2">2 эт</span></td>
+      <td><input class="ce" type="number" value="8" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[28].qty=parseFloat(this.value)||0;rrw(28)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[28].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="230" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[28].price=parseFloat(this.value)||0;rrw(28)"></td>
+      <td class="sm-td z" id="vs28">—</td>
+      <td><button class="del-btn" onclick="delRow(28)" title="Удалить">✕</button></td></tr><tr class="sum-row"><td colspan="7" style="text-align:right;font-size:10px">Итого 2-й этаж</td><td style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--green)">188&nbsp;820 ₽</td></tr><tr class="cat-row"><td colspan="8">Тепловой узел (видеообзор Сантехник Белгород)</td></tr><tr id="vr29"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">30</td>
+      <td><input class="ce" value="Котёл De Dietrich FFMSL 24 кВт одноконтурный турбированный (имеется)" oninput="VOR[29].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[29].qty=parseFloat(this.value)||0;rrw(29)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[29].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="0" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[29].price=parseFloat(this.value)||0;rrw(29)"></td>
+      <td class="sm-td z" id="vs29">—</td>
+      <td><button class="del-btn" onclick="delRow(29)" title="Удалить">✕</button></td></tr><tr id="vr30"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">31</td>
+      <td><input class="ce" value="Бойлер косвенного нагрева Royal Thermo" oninput="VOR[30].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[30].qty=parseFloat(this.value)||0;rrw(30)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[30].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="28000" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[30].price=parseFloat(this.value)||0;rrw(30)"></td>
+      <td class="sm-td " id="vs30">28&nbsp;000 ₽</td>
+      <td><button class="del-btn" onclick="delRow(30)" title="Удалить">✕</button></td></tr><tr id="vr31"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">32</td>
+      <td><input class="ce" value="Стабилизатор инверторный для котла" oninput="VOR[31].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[31].qty=parseFloat(this.value)||0;rrw(31)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[31].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="8500" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[31].price=parseFloat(this.value)||0;rrw(31)"></td>
+      <td class="sm-td" id="vs31">6&nbsp;000 ₽</td>
+      <td><button class="del-btn" onclick="delRow(31)" title="Удалить">✕</button></td></tr><tr id="vr32"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">33</td>
+      <td><input class="ce" value="Насос Valtek 25×6 радиаторы (пропорц. режим)" oninput="VOR[32].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[32].qty=parseFloat(this.value)||0;rrw(32)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[32].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="9500" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[32].price=parseFloat(this.value)||0;rrw(32)"></td>
+      <td class="sm-td " id="vs32">9&nbsp;500 ₽</td>
+      <td><button class="del-btn" onclick="delRow(32)" title="Удалить">✕</button></td></tr><tr id="vr33"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">34</td>
+      <td><input class="ce" value="Насос Valtek 25×6 тёплые полы (пост. режим)" oninput="VOR[33].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[33].qty=parseFloat(this.value)||0;rrw(33)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[33].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="9500" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[33].price=parseFloat(this.value)||0;rrw(33)"></td>
+      <td class="sm-td z" id="vs33">—</td>
+      <td><button class="del-btn" onclick="delRow(33)" title="Удалить">✕</button></td></tr><tr id="vr34"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">35</td>
+      <td><input class="ce" value="Двухходовой клапан Valtec большой КВС (смеш. узел ТП)" oninput="VOR[34].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[34].qty=parseFloat(this.value)||0;rrw(34)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[34].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="5200" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[34].price=parseFloat(this.value)||0;rrw(34)"></td>
+      <td class="sm-td " id="vs34">5&nbsp;200 ₽</td>
+      <td><button class="del-btn" onclick="delRow(34)" title="Удалить">✕</button></td></tr><tr id="vr35"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">36</td>
+      <td><input class="ce" value="Термоголовка с выносным капиллярным датчиком" oninput="VOR[35].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[35].qty=parseFloat(this.value)||0;rrw(35)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[35].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="2800" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[35].price=parseFloat(this.value)||0;rrw(35)"></td>
+      <td class="sm-td " id="vs35">2&nbsp;800 ₽</td>
+      <td><button class="del-btn" onclick="delRow(35)" title="Удалить">✕</button></td></tr><tr id="vr36"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">37</td>
+      <td><input class="ce" value="Коллектор Heizen сварной Ду32 на 5 выходов" oninput="VOR[36].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="4" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[36].qty=parseFloat(this.value)||0;rrw(36)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[36].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="6500" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[36].price=parseFloat(this.value)||0;rrw(36)"></td>
+      <td class="sm-td" id="vs36">10&nbsp;000 ₽</td>
+      <td><button class="del-btn" onclick="delRow(36)" title="Удалить">✕</button></td></tr><tr id="vr37"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">38</td>
+      <td><input class="ce" value="Коллектор Heizen сварной Ду32 на 6 выходов" oninput="VOR[37].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="2" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[37].qty=parseFloat(this.value)||0;rrw(37)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[37].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="7500" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[37].price=parseFloat(this.value)||0;rrw(37)"></td>
+      <td class="sm-td" id="vs37">10&nbsp;000 ₽</td>
+      <td><button class="del-btn" onclick="delRow(37)" title="Удалить">✕</button></td></tr><tr id="vr38"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">39</td>
+      <td><input class="ce" value="Коллекторная группа напольного отопления Ду32 на 6 вых." oninput="VOR[38].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[38].qty=parseFloat(this.value)||0;rrw(38)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[38].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="12000" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[38].price=parseFloat(this.value)||0;rrw(38)"></td>
+      <td class="sm-td" id="vs38">15&nbsp;000 ₽</td>
+      <td><button class="del-btn" onclick="delRow(38)" title="Удалить">✕</button></td></tr><tr id="vr39"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">40</td>
+      <td><input class="ce" value="Радиатор Royal Thermo Biliner биметалл 8 секц. нижн. подкл." oninput="VOR[39].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="2" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[39].qty=parseFloat(this.value)||0;rrw(39)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[39].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="7500" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[39].price=parseFloat(this.value)||0;rrw(39)"></td>
+      <td class="sm-td" id="vs39">30&nbsp;000 ₽</td>
+      <td><button class="del-btn" onclick="delRow(39)" title="Удалить">✕</button></td></tr><tr id="vr40"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">41</td>
+      <td><input class="ce" value="Конвектор внутрипольный Vitron 6 кВт с вентилятором" oninput="VOR[40].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="2" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[40].qty=parseFloat(this.value)||0;rrw(40)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[40].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="18000" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[40].price=parseFloat(this.value)||0;rrw(40)"></td>
+      <td class="sm-td z" id="vs40">—</td>
+      <td><button class="del-btn" onclick="delRow(40)" title="Удалить">✕</button></td></tr><tr id="vr41"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">42</td>
+      <td><input class="ce" value="Расширительный бак 12 л (ГВС)" oninput="VOR[41].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[41].qty=parseFloat(this.value)||0;rrw(41)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[41].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="2500" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[41].price=parseFloat(this.value)||0;rrw(41)"></td>
+      <td class="sm-td " id="vs41">2&nbsp;500 ₽</td>
+      <td><button class="del-btn" onclick="delRow(41)" title="Удалить">✕</button></td></tr><tr id="vr42"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">43</td>
+      <td><input class="ce" value="Расширительный бак 18 л (отопление доп.)" oninput="VOR[42].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[42].qty=parseFloat(this.value)||0;rrw(42)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[42].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="3200" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[42].price=parseFloat(this.value)||0;rrw(42)"></td>
+      <td class="sm-td " id="vs42">3&nbsp;200 ₽</td>
+      <td><button class="del-btn" onclick="delRow(42)" title="Удалить">✕</button></td></tr><tr id="vr43"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">44</td>
+      <td><input class="ce" value="Манометр для тёплых полов (индикатор)" oninput="VOR[43].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[43].qty=parseFloat(this.value)||0;rrw(43)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[43].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="900" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[43].price=parseFloat(this.value)||0;rrw(43)"></td>
+      <td class="sm-td " id="vs43">900 ₽</td>
+      <td><button class="del-btn" onclick="delRow(43)" title="Удалить">✕</button></td></tr><tr id="vr44"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">45</td>
+      <td><input class="ce" value="Термометр-заглушка контроль подачи/обратки" oninput="VOR[44].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="4" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[44].qty=parseFloat(this.value)||0;rrw(44)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[44].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="650" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[44].price=parseFloat(this.value)||0;rrw(44)"></td>
+      <td class="sm-td " id="vs44">2&nbsp;600 ₽</td>
+      <td><button class="del-btn" onclick="delRow(44)" title="Удалить">✕</button></td></tr><tr id="vr45"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">46</td>
+      <td><input class="ce" value="Грязефильтр" oninput="VOR[45].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="2" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[45].qty=parseFloat(this.value)||0;rrw(45)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[45].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="1200" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[45].price=parseFloat(this.value)||0;rrw(45)"></td>
+      <td class="sm-td " id="vs45">2&nbsp;400 ₽</td>
+      <td><button class="del-btn" onclick="delRow(45)" title="Удалить">✕</button></td></tr><tr id="vr46"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">47</td>
+      <td><input class="ce" value="Обратный клапан" oninput="VOR[46].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="3" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[46].qty=parseFloat(this.value)||0;rrw(46)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[46].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="800" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[46].price=parseFloat(this.value)||0;rrw(46)"></td>
+      <td class="sm-td " id="vs46">2&nbsp;400 ₽</td>
+      <td><button class="del-btn" onclick="delRow(46)" title="Удалить">✕</button></td></tr><tr id="vr47"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">48</td>
+      <td><input class="ce" value="Нептун кран антипротечки" oninput="VOR[47].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="2" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[47].qty=parseFloat(this.value)||0;rrw(47)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[47].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="4500" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[47].price=parseFloat(this.value)||0;rrw(47)"></td>
+      <td class="sm-td z" id="vs47">—</td>
+      <td><button class="del-btn" onclick="delRow(47)" title="Удалить">✕</button></td></tr><tr id="vr48"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">49</td>
+      <td><input class="ce" value="Редуктор давления Этапов" oninput="VOR[48].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="2" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[48].qty=parseFloat(this.value)||0;rrw(48)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[48].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="2200" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[48].price=parseFloat(this.value)||0;rrw(48)"></td>
+      <td class="sm-td " id="vs48">4&nbsp;400 ₽</td>
+      <td><button class="del-btn" onclick="delRow(48)" title="Удалить">✕</button></td></tr><tr id="vr49"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">50</td>
+      <td><input class="ce" value="Колба Gilex фильтр нитный 10 мкм" oninput="VOR[49].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="2" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[49].qty=parseFloat(this.value)||0;rrw(49)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[49].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="1800" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[49].price=parseFloat(this.value)||0;rrw(49)"></td>
+      <td class="sm-td z" id="vs49">—</td>
+      <td><button class="del-btn" onclick="delRow(49)" title="Удалить">✕</button></td></tr><tr id="vr50"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">51</td>
+      <td><input class="ce" value="Группа безопасности 6 бар на бойлер" oninput="VOR[50].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[50].qty=parseFloat(this.value)||0;rrw(50)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[50].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="1800" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[50].price=parseFloat(this.value)||0;rrw(50)"></td>
+      <td class="sm-td " id="vs50">1&nbsp;800 ₽</td>
+      <td><button class="del-btn" onclick="delRow(50)" title="Удалить">✕</button></td></tr><tr id="vr51"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">52</td>
+      <td><input class="ce" value="Байпас с кранами для хим-водоочистки (будущее)" oninput="VOR[51].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[51].qty=parseFloat(this.value)||0;rrw(51)"></td>
+      <td><input class="ce" value="компл" oninput="VOR[51].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="2500" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[51].price=parseFloat(this.value)||0;rrw(51)"></td>
+      <td class="sm-td z" id="vs51">—</td>
+      <td><button class="del-btn" onclick="delRow(51)" title="Удалить">✕</button></td></tr><tr id="vr52"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">53</td>
+      <td><input class="ce" value="Переход ПНД → полипропилен Unidelta" oninput="VOR[52].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[52].qty=parseFloat(this.value)||0;rrw(52)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[52].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="600" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[52].price=parseFloat(this.value)||0;rrw(52)"></td>
+      <td class="sm-td " id="vs52">600 ₽</td>
+      <td><button class="del-btn" onclick="delRow(52)" title="Удалить">✕</button></td></tr><tr id="vr53"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">54</td>
+      <td><input class="ce" value="Счётчик воды Valtec" oninput="VOR[53].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="2" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[53].qty=parseFloat(this.value)||0;rrw(53)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[53].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="1500" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[53].price=parseFloat(this.value)||0;rrw(53)"></td>
+      <td class="sm-td z" id="vs53">—</td>
+      <td><button class="del-btn" onclick="delRow(53)" title="Удалить">✕</button></td></tr><tr id="vr54"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">55</td>
+      <td><input class="ce" value="Кран шаровой 3/4&quot; отсечные" oninput="VOR[54].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="12" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[54].qty=parseFloat(this.value)||0;rrw(54)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[54].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="380" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[54].price=parseFloat(this.value)||0;rrw(54)"></td>
+      <td class="sm-td " id="vs54">4&nbsp;560 ₽</td>
+      <td><button class="del-btn" onclick="delRow(54)" title="Удалить">✕</button></td></tr><tr id="vr55"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">56</td>
+      <td><input class="ce" value="Кран LD/Sprite трехчетвертной плоская прокладка" oninput="VOR[55].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="6" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[55].qty=parseFloat(this.value)||0;rrw(55)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[55].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="350" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[55].price=parseFloat(this.value)||0;rrw(55)"></td>
+      <td class="sm-td " id="vs55">2&nbsp;100 ₽</td>
+      <td><button class="del-btn" onclick="delRow(55)" title="Удалить">✕</button></td></tr><tr id="vr56"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">57</td>
+      <td><input class="ce" value="Сливной кран (опорожнение системы)" oninput="VOR[56].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="2" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[56].qty=parseFloat(this.value)||0;rrw(56)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[56].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="280" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[56].price=parseFloat(this.value)||0;rrw(56)"></td>
+      <td class="sm-td " id="vs56">560 ₽</td>
+      <td><button class="del-btn" onclick="delRow(56)" title="Удалить">✕</button></td></tr><tr id="vr57"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">58</td>
+      <td><input class="ce" value="Труба РОСТерм PEX-b 16×2 контуры К1–К5 тёплые полы" oninput="VOR[57].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="275" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[57].qty=parseFloat(this.value)||0;rrw(57)"></td>
+      <td><input class="ce" value="м" oninput="VOR[57].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="95" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[57].price=parseFloat(this.value)||0;rrw(57)"></td>
+      <td class="sm-td" id="vs57">19&nbsp;250 ₽</td>
+      <td><button class="del-btn" onclick="delRow(57)" title="Удалить">✕</button></td></tr><tr id="vr58"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">59</td>
+      <td><input class="ce" value="Труба РОСТерм PEX-a 16×2,2 контуры Т1–Т2" oninput="VOR[58].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="230" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[58].qty=parseFloat(this.value)||0;rrw(58)"></td>
+      <td><input class="ce" value="м" oninput="VOR[58].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="110" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[58].price=parseFloat(this.value)||0;rrw(58)"></td>
+      <td class="sm-td" id="vs58">20&nbsp;700 ₽</td>
+      <td><button class="del-btn" onclick="delRow(58)" title="Удалить">✕</button></td></tr><tr id="vr59"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">60</td>
+      <td><input class="ce" value="Труба РОСТерм PEX-a 22×2 В1–В4 ВС" oninput="VOR[59].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="26.1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[59].qty=parseFloat(this.value)||0;rrw(59)"></td>
+      <td><input class="ce" value="м" oninput="VOR[59].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="140" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[59].price=parseFloat(this.value)||0;rrw(59)"></td>
+      <td class="sm-td " id="vs59">3&nbsp;654 ₽</td>
+      <td><button class="del-btn" onclick="delRow(59)" title="Удалить">✕</button></td></tr><tr id="vr60"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">61</td>
+      <td><input class="ce" value="Труба полипропилен 32 первичное кольцо" oninput="VOR[60].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="30" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[60].qty=parseFloat(this.value)||0;rrw(60)"></td>
+      <td><input class="ce" value="м" oninput="VOR[60].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="180" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[60].price=parseFloat(this.value)||0;rrw(60)"></td>
+      <td class="sm-td " id="vs60">5&nbsp;400 ₽</td>
+      <td><button class="del-btn" onclick="delRow(60)" title="Удалить">✕</button></td></tr><tr id="vr61"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">62</td>
+      <td><input class="ce" value="Муфта переходная 16×20 PPSU РОСТерм" oninput="VOR[61].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="10" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[61].qty=parseFloat(this.value)||0;rrw(61)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[61].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="120" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[61].price=parseFloat(this.value)||0;rrw(61)"></td>
+      <td class="sm-td " id="vs61">1&nbsp;200 ₽</td>
+      <td><button class="del-btn" onclick="delRow(61)" title="Удалить">✕</button></td></tr><tr id="vr62"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">63</td>
+      <td><input class="ce" value="Муфта переходная ВН d32×20" oninput="VOR[62].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="2" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[62].qty=parseFloat(this.value)||0;rrw(62)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[62].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="250" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[62].price=parseFloat(this.value)||0;rrw(62)"></td>
+      <td class="sm-td " id="vs62">500 ₽</td>
+      <td><button class="del-btn" onclick="delRow(62)" title="Удалить">✕</button></td></tr><tr id="vr63"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">64</td>
+      <td><input class="ce" value="Отвод 20×90" oninput="VOR[63].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="8" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[63].qty=parseFloat(this.value)||0;rrw(63)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[63].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="90" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[63].price=parseFloat(this.value)||0;rrw(63)"></td>
+      <td class="sm-td " id="vs63">720 ₽</td>
+      <td><button class="del-btn" onclick="delRow(63)" title="Удалить">✕</button></td></tr><tr id="vr64"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">65</td>
+      <td><input class="ce" value="Отвод 32×45" oninput="VOR[64].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="2" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[64].qty=parseFloat(this.value)||0;rrw(64)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[64].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="150" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[64].price=parseFloat(this.value)||0;rrw(64)"></td>
+      <td class="sm-td " id="vs64">300 ₽</td>
+      <td><button class="del-btn" onclick="delRow(64)" title="Удалить">✕</button></td></tr><tr id="vr65"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">66</td>
+      <td><input class="ce" value="Отвод 32×90" oninput="VOR[65].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="9" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[65].qty=parseFloat(this.value)||0;rrw(65)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[65].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="150" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[65].price=parseFloat(this.value)||0;rrw(65)"></td>
+      <td class="sm-td " id="vs65">1&nbsp;350 ₽</td>
+      <td><button class="del-btn" onclick="delRow(65)" title="Удалить">✕</button></td></tr><tr id="vr66"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">67</td>
+      <td><input class="ce" value="Пробка радиаторная переходная 1×3/4&quot;" oninput="VOR[66].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="36" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[66].qty=parseFloat(this.value)||0;rrw(66)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[66].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="40" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[66].price=parseFloat(this.value)||0;rrw(66)"></td>
+      <td class="sm-td " id="vs66">1&nbsp;440 ₽</td>
+      <td><button class="del-btn" onclick="delRow(66)" title="Удалить">✕</button></td></tr><tr id="vr67"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">68</td>
+      <td><input class="ce" value="Тройник ПП равнопроходной 20" oninput="VOR[67].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="20" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[67].qty=parseFloat(this.value)||0;rrw(67)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[67].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="25" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[67].price=parseFloat(this.value)||0;rrw(67)"></td>
+      <td class="sm-td " id="vs67">500 ₽</td>
+      <td><button class="del-btn" onclick="delRow(67)" title="Удалить">✕</button></td></tr><tr id="vr68"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">69</td>
+      <td><input class="ce" value="Угольник 90° ПП 20" oninput="VOR[68].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="45" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[68].qty=parseFloat(this.value)||0;rrw(68)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[68].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="7" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[68].price=parseFloat(this.value)||0;rrw(68)"></td>
+      <td class="sm-td " id="vs68">315 ₽</td>
+      <td><button class="del-btn" onclick="delRow(68)" title="Удалить">✕</button></td></tr><tr id="vr69"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">70</td>
+      <td><input class="ce" value="Дверь стальная котельная" oninput="VOR[69].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill ptu">ТУ</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[69].qty=parseFloat(this.value)||0;rrw(69)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[69].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="25000" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[69].price=parseFloat(this.value)||0;rrw(69)"></td>
+      <td class="sm-td" id="vs69">10&nbsp;000 ₽</td>
+      <td><button class="del-btn" onclick="delRow(69)" title="Удалить">✕</button></td></tr><tr class="sum-row"><td colspan="7" style="text-align:right;font-size:10px">Итого Тепловой узел (видеообзор Сантехник Белгород)</td><td style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--green)">305&nbsp;424 ₽</td></tr><tr class="cat-row"><td colspan="8">ВК — Водоснабжение и канализация</td></tr><tr id="vr70"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">71</td>
+      <td><input class="ce" value="Унитаз с косым выпуском фарфоровый" oninput="VOR[70].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="2" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[70].qty=parseFloat(this.value)||0;rrw(70)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[70].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="6500" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[70].price=parseFloat(this.value)||0;rrw(70)"></td>
+      <td class="sm-td z" id="vs70">—</td>
+      <td><button class="del-btn" onclick="delRow(70)" title="Удалить">✕</button></td></tr><tr id="vr71"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">72</td>
+      <td><input class="ce" value="Мойка кухонная стальная" oninput="VOR[71].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[71].qty=parseFloat(this.value)||0;rrw(71)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[71].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="3500" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[71].price=parseFloat(this.value)||0;rrw(71)"></td>
+      <td class="sm-td z" id="vs71">—</td>
+      <td><button class="del-btn" onclick="delRow(71)" title="Удалить">✕</button></td></tr><tr id="vr72"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">73</td>
+      <td><input class="ce" value="Умывальник" oninput="VOR[72].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="2" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[72].qty=parseFloat(this.value)||0;rrw(72)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[72].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="4000" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[72].price=parseFloat(this.value)||0;rrw(72)"></td>
+      <td class="sm-td z" id="vs72">—</td>
+      <td><button class="del-btn" onclick="delRow(72)" title="Удалить">✕</button></td></tr><tr id="vr73"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">74</td>
+      <td><input class="ce" value="Инсталляция Alcaplast" oninput="VOR[73].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="2" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[73].qty=parseFloat(this.value)||0;rrw(73)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[73].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="8500" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[73].price=parseFloat(this.value)||0;rrw(73)"></td>
+      <td class="sm-td z" id="vs73">—</td>
+      <td><button class="del-btn" onclick="delRow(73)" title="Удалить">✕</button></td></tr><tr id="vr74"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">75</td>
+      <td><input class="ce" value="Сифон бутылочный" oninput="VOR[74].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="3" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[74].qty=parseFloat(this.value)||0;rrw(74)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[74].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="500" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[74].price=parseFloat(this.value)||0;rrw(74)"></td>
+      <td class="sm-td z" id="vs74">—</td>
+      <td><button class="del-btn" onclick="delRow(74)" title="Удалить">✕</button></td></tr><tr id="vr75"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">76</td>
+      <td><input class="ce" value="Сифон для ванной" oninput="VOR[75].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[75].qty=parseFloat(this.value)||0;rrw(75)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[75].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="700" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[75].price=parseFloat(this.value)||0;rrw(75)"></td>
+      <td class="sm-td z" id="vs75">—</td>
+      <td><button class="del-btn" onclick="delRow(75)" title="Удалить">✕</button></td></tr><tr id="vr76"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">77</td>
+      <td><input class="ce" value="Трап душевой встроенный" oninput="VOR[76].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[76].qty=parseFloat(this.value)||0;rrw(76)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[76].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="4500" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[76].price=parseFloat(this.value)||0;rrw(76)"></td>
+      <td class="sm-td z" id="vs76">—</td>
+      <td><button class="del-btn" onclick="delRow(76)" title="Удалить">✕</button></td></tr><tr id="vr77"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">78</td>
+      <td><input class="ce" value="Смеситель душ с тропическим настенный" oninput="VOR[77].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[77].qty=parseFloat(this.value)||0;rrw(77)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[77].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="7500" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[77].price=parseFloat(this.value)||0;rrw(77)"></td>
+      <td class="sm-td z" id="vs77">—</td>
+      <td><button class="del-btn" onclick="delRow(77)" title="Удалить">✕</button></td></tr><tr id="vr78"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">79</td>
+      <td><input class="ce" value="Смеситель для мойки" oninput="VOR[78].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[78].qty=parseFloat(this.value)||0;rrw(78)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[78].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="3000" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[78].price=parseFloat(this.value)||0;rrw(78)"></td>
+      <td class="sm-td z" id="vs78">—</td>
+      <td><button class="del-btn" onclick="delRow(78)" title="Удалить">✕</button></td></tr><tr id="vr79"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">80</td>
+      <td><input class="ce" value="Смеситель для умывальника" oninput="VOR[79].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="2" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[79].qty=parseFloat(this.value)||0;rrw(79)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[79].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="2500" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[79].price=parseFloat(this.value)||0;rrw(79)"></td>
+      <td class="sm-td z" id="vs79">—</td>
+      <td><button class="del-btn" onclick="delRow(79)" title="Удалить">✕</button></td></tr><tr id="vr80"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">81</td>
+      <td><input class="ce" value="Смеситель отдельностоящий для ванны" oninput="VOR[80].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[80].qty=parseFloat(this.value)||0;rrw(80)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[80].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="12000" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[80].price=parseFloat(this.value)||0;rrw(80)"></td>
+      <td class="sm-td z" id="vs80">—</td>
+      <td><button class="del-btn" onclick="delRow(80)" title="Удалить">✕</button></td></tr><tr id="vr81"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">82</td>
+      <td><input class="ce" value="Гигиенический душ" oninput="VOR[81].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[81].qty=parseFloat(this.value)||0;rrw(81)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[81].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="2200" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[81].price=parseFloat(this.value)||0;rrw(81)"></td>
+      <td class="sm-td z" id="vs81">—</td>
+      <td><button class="del-btn" onclick="delRow(81)" title="Удалить">✕</button></td></tr><tr id="vr82"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">83</td>
+      <td><input class="ce" value="Водорозетка 777 планка" oninput="VOR[82].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="4" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[82].qty=parseFloat(this.value)||0;rrw(82)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[82].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="450" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[82].price=parseFloat(this.value)||0;rrw(82)"></td>
+      <td class="sm-td z" id="vs82">—</td>
+      <td><button class="del-btn" onclick="delRow(82)" title="Удалить">✕</button></td></tr><tr id="vr83"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">84</td>
+      <td><input class="ce" value="Труба ПП ø110 канализация" oninput="VOR[83].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="9" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[83].qty=parseFloat(this.value)||0;rrw(83)"></td>
+      <td><input class="ce" value="м" oninput="VOR[83].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="350" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[83].price=parseFloat(this.value)||0;rrw(83)"></td>
+      <td class="sm-td " id="vs83">3&nbsp;150 ₽</td>
+      <td><button class="del-btn" onclick="delRow(83)" title="Удалить">✕</button></td></tr><tr id="vr84"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">85</td>
+      <td><input class="ce" value="Труба ПП ø50 канализация" oninput="VOR[84].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="3" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[84].qty=parseFloat(this.value)||0;rrw(84)"></td>
+      <td><input class="ce" value="м" oninput="VOR[84].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="150" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[84].price=parseFloat(this.value)||0;rrw(84)"></td>
+      <td class="sm-td " id="vs84">450 ₽</td>
+      <td><button class="del-btn" onclick="delRow(84)" title="Удалить">✕</button></td></tr><tr id="vr85"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">86</td>
+      <td><input class="ce" value="Труба ПНД 25 ввод от водомерного узла" oninput="VOR[85].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="20" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[85].qty=parseFloat(this.value)||0;rrw(85)"></td>
+      <td><input class="ce" value="м" oninput="VOR[85].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="95" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[85].price=parseFloat(this.value)||0;rrw(85)"></td>
+      <td class="sm-td " id="vs85">1&nbsp;900 ₽</td>
+      <td><button class="del-btn" onclick="delRow(85)" title="Удалить">✕</button></td></tr><tr id="vr86"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">87</td>
+      <td><input class="ce" value="Отвод канализац. 45° ø50" oninput="VOR[86].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="6" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[86].qty=parseFloat(this.value)||0;rrw(86)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[86].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="80" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[86].price=parseFloat(this.value)||0;rrw(86)"></td>
+      <td class="sm-td " id="vs86">480 ₽</td>
+      <td><button class="del-btn" onclick="delRow(86)" title="Удалить">✕</button></td></tr><tr id="vr87"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">88</td>
+      <td><input class="ce" value="Отвод канализац. 45° ø110" oninput="VOR[87].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="2" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[87].qty=parseFloat(this.value)||0;rrw(87)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[87].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="180" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[87].price=parseFloat(this.value)||0;rrw(87)"></td>
+      <td class="sm-td " id="vs87">360 ₽</td>
+      <td><button class="del-btn" onclick="delRow(87)" title="Удалить">✕</button></td></tr><tr id="vr88"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">89</td>
+      <td><input class="ce" value="Отвод канализац. 67° ø50" oninput="VOR[88].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[88].qty=parseFloat(this.value)||0;rrw(88)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[88].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="80" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[88].price=parseFloat(this.value)||0;rrw(88)"></td>
+      <td class="sm-td " id="vs88">80 ₽</td>
+      <td><button class="del-btn" onclick="delRow(88)" title="Удалить">✕</button></td></tr><tr id="vr89"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">90</td>
+      <td><input class="ce" value="Переход 110×50" oninput="VOR[89].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="2" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[89].qty=parseFloat(this.value)||0;rrw(89)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[89].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="120" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[89].price=parseFloat(this.value)||0;rrw(89)"></td>
+      <td class="sm-td " id="vs89">240 ₽</td>
+      <td><button class="del-btn" onclick="delRow(89)" title="Удалить">✕</button></td></tr><tr id="vr90"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">91</td>
+      <td><input class="ce" value="Тройник 45° 50×50" oninput="VOR[90].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="2" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[90].qty=parseFloat(this.value)||0;rrw(90)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[90].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="130" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[90].price=parseFloat(this.value)||0;rrw(90)"></td>
+      <td class="sm-td " id="vs90">260 ₽</td>
+      <td><button class="del-btn" onclick="delRow(90)" title="Удалить">✕</button></td></tr><tr id="vr91"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">92</td>
+      <td><input class="ce" value="Тройник 90° 110×50" oninput="VOR[91].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="1" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[91].qty=parseFloat(this.value)||0;rrw(91)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[91].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="200" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[91].price=parseFloat(this.value)||0;rrw(91)"></td>
+      <td class="sm-td " id="vs91">200 ₽</td>
+      <td><button class="del-btn" onclick="delRow(91)" title="Удалить">✕</button></td></tr><tr id="vr92"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">93</td>
+      <td><input class="ce" value="Тройник 90° 110×110" oninput="VOR[92].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pvk">ВК</span></td>
+      <td><input class="ce" type="number" value="6" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[92].qty=parseFloat(this.value)||0;rrw(92)"></td>
+      <td><input class="ce" value="шт" oninput="VOR[92].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="260" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[92].price=parseFloat(this.value)||0;rrw(92)"></td>
+      <td class="sm-td " id="vs92">1&nbsp;560 ₽</td>
+      <td><button class="del-btn" onclick="delRow(92)" title="Удалить">✕</button></td></tr><tr class="sum-row"><td colspan="7" style="text-align:right;font-size:10px">Итого ВК — Водоснабжение и канализация</td><td style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--green)">88&nbsp;380 ₽</td></tr><tr class="cat-row"><td colspan="8">Наружные работы</td></tr><tr id="vr93"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">94</td>
+      <td><input class="ce" value="Отмостка и площадка" oninput="VOR[93].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pn">Нар</span></td>
+      <td><input class="ce" type="number" value="7" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[93].qty=parseFloat(this.value)||0;rrw(93)"></td>
+      <td><input class="ce" value="м³" oninput="VOR[93].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="7000" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[93].price=parseFloat(this.value)||0;rrw(93)"></td>
+      <td class="sm-td " id="vs93">49&nbsp;000 ₽</td>
+      <td><button class="del-btn" onclick="delRow(93)" title="Удалить">✕</button></td></tr><tr id="vr94"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">95</td>
+      <td><input class="ce" value="Арматура А500" oninput="VOR[94].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pn">Нар</span></td>
+      <td><input class="ce" type="number" value="0.3" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[94].qty=parseFloat(this.value)||0;rrw(94)"></td>
+      <td><input class="ce" value="тн" oninput="VOR[94].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="76000" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[94].price=parseFloat(this.value)||0;rrw(94)"></td>
+      <td class="sm-td " id="vs94">22&nbsp;800 ₽</td>
+      <td><button class="del-btn" onclick="delRow(94)" title="Удалить">✕</button></td></tr><tr class="sum-row"><td colspan="7" style="text-align:right;font-size:10px">Итого Наружные работы</td><td style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--green)">71&nbsp;800 ₽</td></tr><tr class="cat-row"><td colspan="8">Грунт / Отсыпка</td></tr><tr id="vr95"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">96</td>
+      <td><input class="ce" value="Грунт для отсыпки 5 машин 15 м³" oninput="VOR[95].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pg">Грунт</span></td>
+      <td><input class="ce" type="number" value="80" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[95].qty=parseFloat(this.value)||0;rrw(95)"></td>
+      <td><input class="ce" value="м³" oninput="VOR[95].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="531.25" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[95].price=parseFloat(this.value)||0;rrw(95)"></td>
+      <td class="sm-td " id="vs95">42&nbsp;500 ₽</td>
+      <td><button class="del-btn" onclick="delRow(95)" title="Удалить">✕</button></td></tr><tr id="vr96"><td style="color:var(--tx3);font-family:var(--mono);font-size:10px">97</td>
+      <td><input class="ce" value="Плодородная земля 2 сотки слой 30 см" oninput="VOR[96].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td><span class="pill pg">Грунт</span></td>
+      <td><input class="ce" type="number" value="60" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[96].qty=parseFloat(this.value)||0;rrw(96)"></td>
+      <td><input class="ce" value="м³" oninput="VOR[96].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="566.67" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[96].price=parseFloat(this.value)||0;rrw(96)"></td>
+      <td class="sm-td " id="vs96">34&nbsp;000 ₽</td>
+      <td><button class="del-btn" onclick="delRow(96)" title="Удалить">✕</button></td></tr><tr class="sum-row"><td colspan="7" style="text-align:right;font-size:10px">Итого Грунт / Отсыпка</td><td style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--green)">76&nbsp;500 ₽</td></tr><tr class="grand-row"><td colspan="7">ИТОГО ВОР</td><td style="text-align:right;font-family:var(--mono)" id="vg">571&nbsp;769 ₽</td></tr></tbody>
+      </table>
+    </div>
+    <!-- ADD CONTROLS -->
+    <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--brd)">
+      <div style="font-family:var(--mono);font-size:8px;color:var(--mu);letter-spacing:1.5px;margin-bottom:8px">ДОБАВИТЬ СТРОКУ</div>
+      <div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-bottom:10px">
+        <input id="nn" class="ai" style="width:280px" placeholder="Наименование материала / работы">
+        <select id="ns" class="asel">
+          <option value="1эт">1-й этаж</option><option value="2эт">2-й этаж</option>
+          <option value="ОВ">ОВ</option><option value="ТУ" selected="">Тепловой узел</option>
+          <option value="ВК">ВК</option><option value="Нар">Наружные</option>
+          <option value="Грунт">Грунт</option><option value="Работа">Работы</option><option value="Прочее">Прочее</option>
+        </select>
+        <input id="nq" class="ai" type="number" style="width:68px" placeholder="Кол-во" value="1" min="0" step="any">
+        <input id="nu" class="ai" style="width:48px" placeholder="шт" value="шт">
+        <input id="np" class="ai" type="number" style="width:90px" placeholder="Цена" value="0" min="0" step="any">
+        <button class="abtn abtn-b" onclick="addRow()">+ ДОБАВИТЬ</button>
+      </div>
+      <div style="font-family:var(--mono);font-size:8px;color:var(--mu);letter-spacing:1.5px;margin-bottom:7px">ДОБАВИТЬ РАЗДЕЛ</div>
+      <div style="display:flex;gap:7px;align-items:center;flex-wrap:wrap">
+        <input id="nc" class="ai" style="width:220px" placeholder="Название нового раздела">
+        <button class="abtn abtn-g" onclick="addCat()">+ РАЗДЕЛ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SALARY -->
+<div class="page" id="pg-salary">
+  <div class="note" style="margin-bottom:12px">⚠ Вахта-1 (янв–мар) исключена из расчёта</div>
+  <div class="panel">
+    <div class="panel-title">Ставки</div>
+    <div class="rates-grid">
+      <div class="rate-item"><span class="rate-lbl">Часовая ставка</span><div class="rate-vw"><input class="ri" id="r-rH" value="339.09" oninput="rca()"><span class="ru">₽/ч</span></div></div>
+      <div class="rate-item"><span class="rate-lbl">Район. коэф.</span><div class="rate-vw"><input class="ri" id="r-rk" value="50" oninput="rca()"><span class="ru">%</span></div></div>
+      <div class="rate-item"><span class="rate-lbl">Проц. надбавка</span><div class="rate-vw"><input class="ri" id="r-pn" value="80" oninput="rca()"><span class="ru">%</span></div></div>
+      <div class="rate-item"><span class="rate-lbl">Вахтовая надб.</span><div class="rate-vw"><input class="ri" id="r-rv" value="700" oninput="rca()"><span class="ru">₽/дн</span></div></div>
+      <div class="rate-item"><span class="rate-lbl">Премия</span><div class="rate-vw"><input class="ri" id="r-bp" value="30" oninput="rca()"><span class="ru">%</span></div></div>
+      <div class="rate-item"><span class="rate-lbl">НДФЛ</span><div class="rate-vw"><input class="ri" id="r-nd" value="13" oninput="rca()"><span class="ru">%</span></div></div>
+    </div>
+  </div>
+  <div id="vb-blocks"><div class="vb open" id="vb-В2"><div class="vb-hdr" onclick="document.getElementById('vb-В2').classList.toggle('open')">
+        <div><div class="vb-title">Вахта-2</div><div class="vb-dates">10 апр – 29 мая 2026</div></div>
+        <div style="display:flex;align-items:center;gap:10px"><div class="vb-tot">430&nbsp;275 ₽</div><span class="chv">▼</span></div>
+      </div>
+      <div class="vb-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:9px">
+          <div class="kpi" style="padding:9px 11px"><div class="kpi-lbl">Часов</div><div class="kpi-val" style="font-size:20px;--kc:var(--tx2)">451</div></div>
+          <div class="kpi" style="padding:9px 11px"><div class="kpi-lbl">Дней</div><div class="kpi-val" style="font-size:20px;--kc:var(--tx2)">41</div></div>
+          <div class="kpi" style="padding:9px 11px"><div class="kpi-lbl">Gross</div><div class="kpi-val" style="font-size:20px;--kc:var(--amber)">380к</div></div>
+        </div>
+        <div class="pr"><span class="pd">12-е</span><span class="pdesc">Зарплата −НДФЛ 13%</span><span class="pa gn">330&nbsp;981 ₽</span></div>
+        <div class="pr"><span class="pd">27-е</span><span class="pdesc">Премия 30% −НДФЛ</span><span class="pa or">99&nbsp;294 ₽</span></div>
+        <div class="div"></div>
+        <div class="pr" style="border:none"><span class="pdesc" style="font-weight:500;color:var(--tx)">Итого на руки</span><span class="pa gn" style="font-size:14px">430&nbsp;275 ₽</span></div>
+      </div></div><div class="vb open" id="vb-В3"><div class="vb-hdr" onclick="document.getElementById('vb-В3').classList.toggle('open')">
+        <div><div class="vb-title">Вахта-3</div><div class="vb-dates">1 июл – 2 авг 2026</div></div>
+        <div style="display:flex;align-items:center;gap:10px"><div class="vb-tot">346&nbsp;319 ₽</div><span class="chv">▼</span></div>
+      </div>
+      <div class="vb-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:9px">
+          <div class="kpi" style="padding:9px 11px"><div class="kpi-lbl">Часов</div><div class="kpi-val" style="font-size:20px;--kc:var(--tx2)">363</div></div>
+          <div class="kpi" style="padding:9px 11px"><div class="kpi-lbl">Дней</div><div class="kpi-val" style="font-size:20px;--kc:var(--tx2)">33</div></div>
+          <div class="kpi" style="padding:9px 11px"><div class="kpi-lbl">Gross</div><div class="kpi-val" style="font-size:20px;--kc:var(--amber)">306к</div></div>
+        </div>
+        <div class="pr"><span class="pd">12-е</span><span class="pdesc">Зарплата −НДФЛ 13%</span><span class="pa gn">266&nbsp;399 ₽</span></div>
+        <div class="pr"><span class="pd">27-е</span><span class="pdesc">Премия 30% −НДФЛ</span><span class="pa or">79&nbsp;920 ₽</span></div>
+        <div class="div"></div>
+        <div class="pr" style="border:none"><span class="pdesc" style="font-weight:500;color:var(--tx)">Итого на руки</span><span class="pa gn" style="font-size:14px">346&nbsp;319 ₽</span></div>
+      </div></div><div class="vb open" id="vb-В4"><div class="vb-hdr" onclick="document.getElementById('vb-В4').classList.toggle('open')">
+        <div><div class="vb-title">Вахта-4</div><div class="vb-dates">19 сен – 13 окт 2026</div></div>
+        <div style="display:flex;align-items:center;gap:10px"><div class="vb-tot">220&nbsp;385 ₽</div><span class="chv">▼</span></div>
+      </div>
+      <div class="vb-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:9px">
+          <div class="kpi" style="padding:9px 11px"><div class="kpi-lbl">Часов</div><div class="kpi-val" style="font-size:20px;--kc:var(--tx2)">231</div></div>
+          <div class="kpi" style="padding:9px 11px"><div class="kpi-lbl">Дней</div><div class="kpi-val" style="font-size:20px;--kc:var(--tx2)">21</div></div>
+          <div class="kpi" style="padding:9px 11px"><div class="kpi-lbl">Gross</div><div class="kpi-val" style="font-size:20px;--kc:var(--amber)">195к</div></div>
+        </div>
+        <div class="pr"><span class="pd">12-е</span><span class="pdesc">Зарплата −НДФЛ 13%</span><span class="pa gn">169&nbsp;527 ₽</span></div>
+        <div class="pr"><span class="pd">27-е</span><span class="pdesc">Премия 30% −НДФЛ</span><span class="pa or">50&nbsp;858 ₽</span></div>
+        <div class="div"></div>
+        <div class="pr" style="border:none"><span class="pdesc" style="font-weight:500;color:var(--tx)">Итого на руки</span><span class="pa gn" style="font-size:14px">220&nbsp;385 ₽</span></div>
+      </div></div><div class="vb open" id="vb-В5"><div class="vb-hdr" onclick="document.getElementById('vb-В5').classList.toggle('open')">
+        <div><div class="vb-title">Вахта-5</div><div class="vb-dates">23 ноя – 31 дек 2026</div></div>
+        <div style="display:flex;align-items:center;gap:10px"><div class="vb-tot">195&nbsp;868 ₽</div><span class="chv">▼</span></div>
+      </div>
+      <div class="vb-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:9px">
+          <div class="kpi" style="padding:9px 11px"><div class="kpi-lbl">Часов</div><div class="kpi-val" style="font-size:20px;--kc:var(--tx2)">205</div></div>
+          <div class="kpi" style="padding:9px 11px"><div class="kpi-lbl">Дней</div><div class="kpi-val" style="font-size:20px;--kc:var(--tx2)">19</div></div>
+          <div class="kpi" style="padding:9px 11px"><div class="kpi-lbl">Gross</div><div class="kpi-val" style="font-size:20px;--kc:var(--amber)">173к</div></div>
+        </div>
+        <div class="pr"><span class="pd">12-е</span><span class="pdesc">Зарплата −НДФЛ 13%</span><span class="pa gn">150&nbsp;667 ₽</span></div>
+        <div class="pr"><span class="pd">27-е</span><span class="pdesc">Премия 30% −НДФЛ</span><span class="pa or">45&nbsp;200 ₽</span></div>
+        <div class="div"></div>
+        <div class="pr" style="border:none"><span class="pdesc" style="font-weight:500;color:var(--tx)">Итого на руки</span><span class="pa gn" style="font-size:14px">195&nbsp;868 ₽</span></div>
+      </div></div></div>
+  <div class="tbar gn" style="margin-top:4px">
+    <div><div class="tbar-lbl">Итого на руки В2–В5</div><div class="sml">ЗП + авансы + премии</div></div>
+    <div class="tbar-val" id="sg">1&nbsp;192&nbsp;847 ₽</div>
+  </div>
+</div>
+
+<!-- CASHFLOW -->
+<div class="page" id="pg-cashflow">
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-lbl">Заработок В2–В5</div><div class="kpi-val" style="--kc:var(--green)" id="ci">1261к</div></div>
+    <div class="kpi"><div class="kpi-lbl">Смета ВОР</div><div class="kpi-val" style="--kc:var(--amber)" id="cv">572к</div></div>
+    <div class="kpi"><div class="kpi-lbl">Разница</div><div class="kpi-val" id="cd" style="--kc: var(--green);">+689к</div></div>
+  </div>
+  <div class="panel"><div class="panel-title">Cash Flow по месяцам</div><div id="cb"><div class="cfr"><span class="cfl">Янв</span><div class="cbs">
+      <div class="cb" style="background:var(--green);opacity:.65;width:25.299920595244345%"></div>
+      <div class="cb" style="background:var(--red);opacity:.55;width:0%"></div>
+    </div><div class="cam"><div style="color:var(--green)">+77к</div></div></div><div class="cfr"><span class="cfl">Фев</span><div class="cbs">
+      <div class="cb" style="background:var(--green);opacity:.65;width:0%"></div>
+      <div class="cb" style="background:var(--red);opacity:.55;width:0%"></div>
+    </div><div class="cam"></div></div><div class="cfr"><span class="cfl">Мар</span><div class="cbs">
+      <div class="cb" style="background:var(--green);opacity:.65;width:0%"></div>
+      <div class="cb" style="background:var(--red);opacity:.55;width:0%"></div>
+    </div><div class="cam"></div></div><div class="cfr"><span class="cfl">Апр</span><div class="cbs">
+      <div class="cb" style="background:var(--green);opacity:.65;width:12.117907237420098%"></div>
+      <div class="cb" style="background:var(--red);opacity:.55;width:9.333795803694066%"></div>
+    </div><div class="cam"><div style="color:var(--green)">+37к</div><div style="color:var(--red)">−29к</div></div></div><div class="cfr"><span class="cfl">Май</span><div class="cbs">
+      <div class="cb" style="background:var(--green);opacity:.65;width:100%"></div>
+      <div class="cb" style="background:var(--red);opacity:.55;width:18.667591607388133%"></div>
+    </div><div class="cam"><div style="color:var(--green)">+306к</div><div style="color:var(--red)">−57к</div></div></div><div class="cfr"><span class="cfl">Июн</span><div class="cbs">
+      <div class="cb" style="background:var(--green);opacity:.65;width:35.84476960828865%"></div>
+      <div class="cb" style="background:var(--red);opacity:.55;width:52.26925650068678%"></div>
+    </div><div class="cam"><div style="color:var(--green)">+110к</div><div style="color:var(--red)">−160к</div></div></div><div class="cfr"><span class="cfl">Июл</span><div class="cbs">
+      <div class="cb" style="background:var(--green);opacity:.65;width:45.44215214032537%"></div>
+      <div class="cb" style="background:var(--red);opacity:.55;width:41.06870153625389%"></div>
+    </div><div class="cam"><div style="color:var(--green)">+139к</div><div style="color:var(--red)">−126к</div></div></div><div class="cfr"><span class="cfl">Авг</span><div class="cbs">
+      <div class="cb" style="background:var(--green);opacity:.65;width:72.7407676694235%"></div>
+      <div class="cb" style="background:var(--red);opacity:.55;width:28.001387411082195%"></div>
+    </div><div class="cam"><div style="color:var(--green)">+223к</div><div style="color:var(--red)">−86к</div></div></div><div class="cfr"><span class="cfl">Сен</span><div class="cbs">
+      <div class="cb" style="background:var(--green);opacity:.65;width:30.294768093550246%"></div>
+      <div class="cb" style="background:var(--red);opacity:.55;width:18.667591607388133%"></div>
+    </div><div class="cam"><div style="color:var(--green)">+93к</div><div style="color:var(--red)">−57к</div></div></div><div class="cfr"><span class="cfl">Окт</span><div class="cbs">
+      <div class="cb" style="background:var(--green);opacity:.65;width:45.59665545760248%"></div>
+      <div class="cb" style="background:var(--red);opacity:.55;width:18.667591607388133%"></div>
+    </div><div class="cam"><div style="color:var(--green)">+140к</div><div style="color:var(--red)">−57к</div></div></div><div class="cfr"><span class="cfl">Ноя</span><div class="cbs">
+      <div class="cb" style="background:var(--green);opacity:.65;width:0%"></div>
+      <div class="cb" style="background:var(--red);opacity:.55;width:0%"></div>
+    </div><div class="cam"></div></div><div class="cfr"><span class="cfl">Дек</span><div class="cbs">
+      <div class="cb" style="background:var(--green);opacity:.65;width:44.423630305449116%"></div>
+      <div class="cb" style="background:var(--red);opacity:.55;width:0%"></div>
+    </div><div class="cam"><div style="color:var(--green)">+136к</div></div></div><div style="display: flex; gap: 14px; margin-top: 8px; font-size: 11px; color: var(--tx2);"><span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;background:var(--green);border-radius:2px;opacity:.7"></span>Доход ЗП</span><span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;background:var(--red);border-radius:2px;opacity:.6"></span>Расход ВОР</span></div></div></div>
+  <div class="panel"><div class="panel-title">Итоговый баланс</div><div id="cs"><div class="br"><span style="font-size:12px;color:var(--tx2)">Заработок на руки В2–В5</span><span style="font-family:var(--mono);font-size:13px;color:var(--green)">1&nbsp;261&nbsp;180 ₽</span></div>
+    <div class="br"><span style="font-size:12px;color:var(--tx2)">Смета ВОР полная</span><span style="font-family:var(--mono);font-size:13px;color:var(--amber)">571&nbsp;769 ₽</span></div>
+    <div class="div"></div>
+    <div class="br" style="border:none"><span style="font-size:13px;font-weight:500;color:var(--tx)">Итоговый баланс</span>
+      <span style="font-family:var(--head);font-size:26px;color:var(--green)">+689&nbsp;411 ₽</span></div>
+    <div class="note">Распределение ВОР по месяцам ориентировочное. Корректируйте цены в таблице ВОР.</div></div></div>
+</div>
+</div>
+
+<script>
+const RAW={"2025-01":{"01":{"code":"В","hrs":0},"02":{"code":"В","hrs":0},"03":{"code":"В","hrs":0},"04":{"code":"В","hrs":0},"05":{"code":"В","hrs":0},"06":{"code":"В","hrs":0},"07":{"code":"В","hrs":0},"08":{"code":"В","hrs":0},"09":{"code":"В","hrs":0},"10":{"code":"В","hrs":0},"11":{"code":"В","hrs":0},"12":{"code":"В","hrs":0},"13":{"code":"В","hrs":0},"14":{"code":"В","hrs":0},"15":{"code":"В","hrs":0},"16":{"code":"В","hrs":0},"17":{"code":"В","hrs":0},"18":{"code":"В","hrs":0},"19":{"code":"Д","hrs":0},"20":{"code":"Д","hrs":0},"21":{"code":"","hrs":11},"22":{"code":"","hrs":11},"23":{"code":"","hrs":11},"24":{"code":"","hrs":11},"25":{"code":"","hrs":11},"26":{"code":"","hrs":11},"27":{"code":"","hrs":11},"28":{"code":"","hrs":11},"29":{"code":"","hrs":11},"30":{"code":"","hrs":11},"31":{"code":"","hrs":11}},"2025-02":{"01":{"code":"","hrs":11},"02":{"code":"","hrs":11},"03":{"code":"","hrs":11},"04":{"code":"","hrs":11},"05":{"code":"","hrs":11},"06":{"code":"","hrs":11},"07":{"code":"","hrs":11},"08":{"code":"","hrs":11},"09":{"code":"","hrs":11},"10":{"code":"","hrs":11},"11":{"code":"","hrs":11},"12":{"code":"","hrs":11},"13":{"code":"","hrs":11},"14":{"code":"","hrs":11},"15":{"code":"","hrs":11},"16":{"code":"","hrs":11},"17":{"code":"","hrs":11},"18":{"code":"","hrs":11},"19":{"code":"","hrs":11},"20":{"code":"","hrs":11},"21":{"code":"","hrs":11},"22":{"code":"","hrs":11},"23":{"code":"","hrs":11},"24":{"code":"","hrs":11},"25":{"code":"","hrs":11},"26":{"code":"","hrs":11},"27":{"code":"","hrs":11},"28":{"code":"","hrs":11}},"2025-03":{"01":{"code":"","hrs":11},"02":{"code":"","hrs":11},"03":{"code":"","hrs":11},"04":{"code":"","hrs":11},"05":{"code":"","hrs":11},"06":{"code":"","hrs":11},"07":{"code":"","hrs":11},"08":{"code":"Д","hrs":0},"09":{"code":"Д","hrs":0},"10":{"code":"В","hrs":0},"11":{"code":"В","hrs":0},"12":{"code":"В","hrs":0},"13":{"code":"В","hrs":0},"14":{"code":"В","hrs":0},"15":{"code":"ОВ","hrs":0},"16":{"code":"О","hrs":0},"17":{"code":"О","hrs":0},"18":{"code":"О","hrs":0},"19":{"code":"О","hrs":0},"20":{"code":"О","hrs":0},"21":{"code":"ОВ","hrs":0},"22":{"code":"ОВ","hrs":0},"23":{"code":"О","hrs":0},"24":{"code":"О","hrs":0},"25":{"code":"О","hrs":0},"26":{"code":"О","hrs":0},"27":{"code":"О","hrs":0},"28":{"code":"ОВ","hrs":0},"29":{"code":"ОВ","hrs":0},"30":{"code":"О","hrs":0},"31":{"code":"О","hrs":0}},"2025-04":{"01":{"code":"О","hrs":0},"02":{"code":"О","hrs":0},"03":{"code":"В","hrs":0},"04":{"code":"В","hrs":0},"05":{"code":"В","hrs":0},"06":{"code":"В","hrs":0},"07":{"code":"В","hrs":0},"08":{"code":"В","hrs":0},"09":{"code":"В","hrs":0},"10":{"code":"Д","hrs":0},"11":{"code":"Д","hrs":0},"12":{"code":"","hrs":11},"13":{"code":"","hrs":11},"14":{"code":"","hrs":11},"15":{"code":"","hrs":11},"16":{"code":"","hrs":11},"17":{"code":"","hrs":11},"18":{"code":"","hrs":11},"19":{"code":"","hrs":11},"20":{"code":"","hrs":11},"21":{"code":"","hrs":11},"22":{"code":"","hrs":11},"23":{"code":"","hrs":11},"24":{"code":"","hrs":11},"25":{"code":"","hrs":11},"26":{"code":"","hrs":11},"27":{"code":"","hrs":11},"28":{"code":"","hrs":11},"29":{"code":"","hrs":11},"30":{"code":"","hrs":11}},"2025-05":{"01":{"code":"","hrs":11},"02":{"code":"","hrs":11},"03":{"code":"","hrs":11},"04":{"code":"","hrs":11},"05":{"code":"","hrs":11},"06":{"code":"","hrs":11},"07":{"code":"","hrs":11},"08":{"code":"","hrs":11},"09":{"code":"","hrs":11},"10":{"code":"","hrs":11},"11":{"code":"","hrs":11},"12":{"code":"","hrs":11},"13":{"code":"","hrs":11},"14":{"code":"","hrs":11},"15":{"code":"","hrs":11},"16":{"code":"","hrs":11},"17":{"code":"","hrs":11},"18":{"code":"","hrs":11},"19":{"code":"","hrs":11},"20":{"code":"","hrs":11},"21":{"code":"","hrs":11},"22":{"code":"","hrs":11},"23":{"code":"Д","hrs":0},"24":{"code":"Д","hrs":0},"25":{"code":"В","hrs":0},"26":{"code":"В","hrs":0},"27":{"code":"В","hrs":0},"28":{"code":"В","hrs":0},"29":{"code":"В","hrs":0},"30":{"code":"В","hrs":0},"31":{"code":"В","hrs":0}},"2025-06":{"01":{"code":"В","hrs":0},"02":{"code":"В","hrs":0},"03":{"code":"В","hrs":0},"04":{"code":"В","hrs":0},"05":{"code":"В","hrs":0},"06":{"code":"В","hrs":0},"07":{"code":"В","hrs":0},"08":{"code":"В","hrs":0},"09":{"code":"В","hrs":0},"10":{"code":"В","hrs":0},"11":{"code":"В","hrs":0},"12":{"code":"В","hrs":0},"13":{"code":"В","hrs":0},"14":{"code":"В","hrs":0},"15":{"code":"В","hrs":0},"16":{"code":"В","hrs":0},"17":{"code":"В","hrs":0},"18":{"code":"В","hrs":0},"19":{"code":"В","hrs":0},"20":{"code":"В","hrs":0},"21":{"code":"В","hrs":0},"22":{"code":"В","hrs":0},"23":{"code":"В","hrs":0},"24":{"code":"В","hrs":0},"25":{"code":"В","hrs":0},"26":{"code":"В","hrs":0},"27":{"code":"В","hrs":0},"28":{"code":"В","hrs":0},"29":{"code":"Д","hrs":0},"30":{"code":"Д","hrs":0}},"2025-07":{"01":{"code":"","hrs":11},"02":{"code":"","hrs":11},"03":{"code":"","hrs":11},"04":{"code":"","hrs":11},"05":{"code":"","hrs":11},"06":{"code":"","hrs":11},"07":{"code":"","hrs":11},"08":{"code":"","hrs":11},"09":{"code":"","hrs":11},"10":{"code":"","hrs":11},"11":{"code":"","hrs":11},"12":{"code":"","hrs":11},"13":{"code":"","hrs":11},"14":{"code":"","hrs":11},"15":{"code":"","hrs":11},"16":{"code":"","hrs":11},"17":{"code":"","hrs":11},"18":{"code":"","hrs":11},"19":{"code":"","hrs":11},"20":{"code":"","hrs":11},"21":{"code":"","hrs":11},"22":{"code":"","hrs":11},"23":{"code":"","hrs":11},"24":{"code":"","hrs":11},"25":{"code":"","hrs":11},"26":{"code":"","hrs":11},"27":{"code":"","hrs":11},"28":{"code":"","hrs":11},"29":{"code":"","hrs":11},"30":{"code":"","hrs":11},"31":{"code":"","hrs":11}},"2025-08":{"01":{"code":"","hrs":11},"02":{"code":"","hrs":11},"03":{"code":"Д","hrs":0},"04":{"code":"Д","hrs":0},"05":{"code":"В","hrs":0},"06":{"code":"В","hrs":0},"07":{"code":"В","hrs":0},"08":{"code":"В","hrs":0},"09":{"code":"В","hrs":0},"10":{"code":"В","hrs":0},"11":{"code":"В","hrs":0},"12":{"code":"В","hrs":0},"13":{"code":"В","hrs":0},"14":{"code":"В","hrs":0},"15":{"code":"В","hrs":0},"16":{"code":"В","hrs":0},"17":{"code":"В","hrs":0},"18":{"code":"В","hrs":0},"19":{"code":"В","hrs":0},"20":{"code":"В","hrs":0},"21":{"code":"В","hrs":0},"22":{"code":"В","hrs":0},"23":{"code":"В","hrs":0},"24":{"code":"В","hrs":0},"25":{"code":"В","hrs":0},"26":{"code":"О","hrs":0},"27":{"code":"О","hrs":0},"28":{"code":"О","hrs":0},"29":{"code":"ОВ","hrs":0},"30":{"code":"ОВ","hrs":0},"31":{"code":"О","hrs":0}},"2025-09":{"01":{"code":"О","hrs":0},"02":{"code":"О","hrs":0},"03":{"code":"О","hrs":0},"04":{"code":"О","hrs":0},"05":{"code":"ОВ","hrs":0},"06":{"code":"ОВ","hrs":0},"07":{"code":"О","hrs":0},"08":{"code":"О","hrs":0},"09":{"code":"О","hrs":0},"10":{"code":"О","hrs":0},"11":{"code":"О","hrs":0},"12":{"code":"В","hrs":0},"13":{"code":"В","hrs":0},"14":{"code":"В","hrs":0},"15":{"code":"В","hrs":0},"16":{"code":"В","hrs":0},"17":{"code":"В","hrs":0},"18":{"code":"В","hrs":0},"19":{"code":"Д","hrs":0},"20":{"code":"Д","hrs":0},"21":{"code":"","hrs":11},"22":{"code":"","hrs":11},"23":{"code":"","hrs":11},"24":{"code":"","hrs":11},"25":{"code":"","hrs":11},"26":{"code":"","hrs":11},"27":{"code":"","hrs":11},"28":{"code":"","hrs":11},"29":{"code":"","hrs":11},"30":{"code":"","hrs":11}},"2025-10":{"01":{"code":"","hrs":11},"02":{"code":"","hrs":11},"03":{"code":"","hrs":11},"04":{"code":"","hrs":11},"05":{"code":"","hrs":11},"06":{"code":"","hrs":11},"07":{"code":"","hrs":11},"08":{"code":"","hrs":11},"09":{"code":"","hrs":11},"10":{"code":"","hrs":11},"11":{"code":"","hrs":11},"12":{"code":"Д","hrs":0},"13":{"code":"Д","hrs":0},"14":{"code":"В","hrs":0},"15":{"code":"В","hrs":0},"16":{"code":"В","hrs":0},"17":{"code":"В","hrs":0},"18":{"code":"В","hrs":0},"19":{"code":"В","hrs":0},"20":{"code":"В","hrs":0},"21":{"code":"В","hrs":0},"22":{"code":"В","hrs":0},"23":{"code":"В","hrs":0},"24":{"code":"В","hrs":0},"25":{"code":"В","hrs":0},"26":{"code":"В","hrs":0},"27":{"code":"В","hrs":0},"28":{"code":"В","hrs":0},"29":{"code":"В","hrs":0},"30":{"code":"В","hrs":0},"31":{"code":"В","hrs":0}},"2025-11":{"01":{"code":"В","hrs":0},"02":{"code":"В","hrs":0},"03":{"code":"В","hrs":0},"04":{"code":"В","hrs":0},"05":{"code":"В","hrs":0},"06":{"code":"В","hrs":0},"07":{"code":"В","hrs":0},"08":{"code":"В","hrs":0},"09":{"code":"В","hrs":0},"10":{"code":"В","hrs":0},"11":{"code":"В","hrs":0},"12":{"code":"В","hrs":0},"13":{"code":"В","hrs":0},"14":{"code":"В","hrs":0},"15":{"code":"В","hrs":0},"16":{"code":"В","hrs":0},"17":{"code":"В","hrs":0},"18":{"code":"В","hrs":0},"19":{"code":"В","hrs":0},"20":{"code":"В","hrs":0},"21":{"code":"В","hrs":0},"22":{"code":"В","hrs":0},"23":{"code":"В","hrs":0},"24":{"code":"В","hrs":0},"25":{"code":"В","hrs":0},"26":{"code":"В","hrs":0},"27":{"code":"В","hrs":0},"28":{"code":"В","hrs":0},"29":{"code":"Д","hrs":0},"30":{"code":"Д","hrs":0}},"2025-12":{"01":{"code":"","hrs":7},"02":{"code":"","hrs":11},"03":{"code":"","hrs":11},"04":{"code":"","hrs":11},"05":{"code":"","hrs":11},"06":{"code":"","hrs":11},"07":{"code":"","hrs":11},"08":{"code":"","hrs":11},"09":{"code":"","hrs":11},"10":{"code":"","hrs":11},"11":{"code":"","hrs":11},"12":{"code":"","hrs":11},"13":{"code":"","hrs":11},"14":{"code":"","hrs":11},"15":{"code":"","hrs":11},"16":{"code":"","hrs":11},"17":{"code":"","hrs":11},"18":{"code":"","hrs":11},"19":{"code":"","hrs":11},"20":{"code":"П","hrs":0},"21":{"code":"П","hrs":0},"22":{"code":"П","hrs":0},"23":{"code":"П","hrs":0},"24":{"code":"П","hrs":0},"25":{"code":"П","hrs":0},"26":{"code":"П","hrs":0},"27":{"code":"П","hrs":0},"28":{"code":"П","hrs":0},"29":{"code":"П","hrs":0},"30":{"code":"Д","hrs":0},"31":{"code":"Д","hrs":0}}};
+const MN=['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'];
+
+let VOR=[{"cat":"1-й этаж","n":"Утеплитель минвата перекрытие","sec":"1эт","qty":50,"unit":"м²","price":1200},{"n":"Пароизоляция перекрытие","sec":"1эт","qty":100,"unit":"м²","price":100},{"n":"Пеноплекс 50мм на пол","sec":"1эт","qty":70,"unit":"шт","price":400},{"n":"Стяжка пола","sec":"1эт","qty":60,"unit":"м²","price":750},{"n":"Плитка керамогранит пол","sec":"1эт","qty":0,"unit":"м²","price":1000},{"n":"Плитка стены туалет/котельная","sec":"1эт","qty":15.6,"unit":"м²","price":1000},{"n":"Плинтусы","sec":"1эт","qty":0,"unit":"мп","price":100},{"n":"Плиточный клей","sec":"1эт","qty":6,"unit":"шт","price":350},{"n":"Натяжной потолок","sec":"1эт","qty":0,"unit":"м²","price":600},{"n":"Раковина","sec":"1эт","qty":0,"unit":"шт","price":4000},{"n":"Унитаз","sec":"1эт","qty":0,"unit":"шт","price":8000},{"n":"Смеситель","sec":"1эт","qty":0,"unit":"шт","price":5000},{"n":"Светильники","sec":"1эт","qty":0,"unit":"шт","price":500},{"n":"Выключатели 1-кл","sec":"1эт","qty":4,"unit":"шт","price":230},{"n":"Розетки","sec":"1эт","qty":9,"unit":"шт","price":230},{"cat":"2-й этаж","n":"Стяжка пола","sec":"2эт","qty":55,"unit":"м²","price":750},{"n":"Ламинат комнаты","sec":"2эт","qty":0,"unit":"м²","price":750},{"n":"Плитка пол ванная","sec":"2эт","qty":0,"unit":"м²","price":1000},{"n":"Плитка стены ванная","sec":"2эт","qty":0,"unit":"м²","price":1000},{"n":"Плинтусы","sec":"2эт","qty":0,"unit":"мп","price":100},{"n":"Плиточный клей","sec":"2эт","qty":0,"unit":"шт","price":350},{"n":"Натяжной потолок","sec":"2эт","qty":0,"unit":"м²","price":600},{"n":"Раковина","sec":"2эт","qty":0,"unit":"шт","price":5000},{"n":"Унитаз","sec":"2эт","qty":0,"unit":"шт","price":8000},{"n":"Ванна стальная эмалир. 1700×750","sec":"2эт","qty":0,"unit":"шт","price":15000},{"n":"Смеситель душ + умывальник","sec":"2эт","qty":0,"unit":"шт","price":5000},{"n":"Светильники","sec":"2эт","qty":0,"unit":"шт","price":500},{"n":"Выключатели","sec":"2эт","qty":0,"unit":"шт","price":230},{"n":"Розетки","sec":"2эт","qty":0,"unit":"шт","price":230},{"cat":"Тепловой узел (видеообзор Сантехник Белгород)","n":"Котёл De Dietrich FFMSL 24 кВт одноконтурный турбированный (имеется)","sec":"ТУ","qty":0,"unit":"шт","price":0},{"n":"Бойлер косвенного нагрева Royal Thermo","sec":"ТУ","qty":1,"unit":"шт","price":28000},{"n":"Стабилизатор инверторный для котла","sec":"ТУ","qty":1,"unit":"шт","price":6000},{"n":"Насос Valtek 25×6 радиаторы (пропорц. режим)","sec":"ТУ","qty":1,"unit":"шт","price":9500},{"n":"Насос Valtek 25×6 тёплые полы (пост. режим)","sec":"ТУ","qty":0,"unit":"шт","price":9500},{"n":"Двухходовой клапан Valtec большой КВС (смеш. узел ТП)","sec":"ТУ","qty":1,"unit":"шт","price":5200},{"n":"Термоголовка с выносным капиллярным датчиком","sec":"ТУ","qty":1,"unit":"шт","price":2800},{"n":"Коллекторная группа Ду32 на 5 выходов","sec":"ТУ","qty":1,"unit":"шт","price":10000},{"n":"Коллекторная группа Ду32 на 6 выходов","sec":"ТУ","qty":1,"unit":"шт","price":10000},{"n":"Коллекторная группа напольного отопления Ду32 на 6 вых.","sec":"ТУ","qty":1,"unit":"шт","price":15000},{"n":"Радиатор Royal Thermo Biliner биметалл 6 секц. нижн. подкл.","sec":"ТУ","qty":4,"unit":"шт","price":7500},{"n":"Конвектор внутрипольный Vitron 6 кВт с вентилятором","sec":"ТУ","qty":0,"unit":"шт","price":18000},{"n":"Расширительный бак 12 л (ГВС)","sec":"ТУ","qty":1,"unit":"шт","price":2500},{"n":"Расширительный бак 18 л (отопление доп.)","sec":"ТУ","qty":1,"unit":"шт","price":3200},{"n":"Манометр для тёплых полов (индикатор)","sec":"ТУ","qty":1,"unit":"шт","price":900},{"n":"Термометр-заглушка контроль подачи/обратки","sec":"ТУ","qty":4,"unit":"шт","price":650},{"n":"Грязефильтр","sec":"ТУ","qty":2,"unit":"шт","price":1200},{"n":"Обратный клапан","sec":"ТУ","qty":3,"unit":"шт","price":800},{"n":"Нептун кран антипротечки","sec":"ТУ","qty":0,"unit":"шт","price":4500},{"n":"Редуктор давления Этапов","sec":"ТУ","qty":2,"unit":"шт","price":2200},{"n":"Колба Gilex фильтр нитный 10 мкм","sec":"ТУ","qty":0,"unit":"шт","price":1800},{"n":"Группа безопасности 6 бар на бойлер","sec":"ТУ","qty":1,"unit":"шт","price":1800},{"n":"Байпас с кранами для хим-водоочистки (будущее)","sec":"ТУ","qty":0,"unit":"компл","price":2500},{"n":"Переход ПНД → полипропилен Unidelta","sec":"ТУ","qty":1,"unit":"шт","price":600},{"n":"Счётчик воды Valtec","sec":"ТУ","qty":0,"unit":"шт","price":1500},{"n":"Кран шаровой 3/4\" отсечные","sec":"ТУ","qty":12,"unit":"шт","price":380},{"n":"Кран LD/Sprite трехчетвертной плоская прокладка","sec":"ТУ","qty":6,"unit":"шт","price":350},{"n":"Сливной кран (опорожнение системы)","sec":"ТУ","qty":2,"unit":"шт","price":280},{"n":"Труба РОСТерм PEX-b 16×2 контуры К1–К5 тёплые полы","sec":"ТУ","qty":275,"unit":"м","price":70},{"n":"Труба РОСТерм PEX-a 16×2,2 контуры Т1–Т2","sec":"ТУ","qty":230,"unit":"м","price":90},{"n":"Труба РОСТерм PEX-a 22×2 В1–В4 ВС","sec":"ТУ","qty":26.1,"unit":"м","price":140},{"n":"Труба полипропилен 32 первичное кольцо","sec":"ТУ","qty":30,"unit":"м","price":180},{"n":"Муфта переходная 16×20 PPSU РОСТерм","sec":"ТУ","qty":10,"unit":"шт","price":120},{"n":"Муфта переходная ВН d32×20","sec":"ТУ","qty":2,"unit":"шт","price":250},{"n":"Отвод 20×90","sec":"ТУ","qty":8,"unit":"шт","price":90},{"n":"Отвод 32×45","sec":"ТУ","qty":2,"unit":"шт","price":150},{"n":"Отвод 32×90","sec":"ТУ","qty":9,"unit":"шт","price":150},{"n":"Пробка радиаторная переходная 1×3/4\"","sec":"ТУ","qty":36,"unit":"шт","price":40},{"n":"Тройник ПП равнопроходной 20","sec":"ТУ","qty":20,"unit":"шт","price":25},{"n":"Угольник 90° ПП 20","sec":"ТУ","qty":45,"unit":"шт","price":7},{"n":"Дверь стальная котельная","sec":"ТУ","qty":1,"unit":"шт","price":10000},{"cat":"ВК — Водоснабжение и канализация","n":"Унитаз с косым выпуском фарфоровый","sec":"ВК","qty":0,"unit":"шт","price":6500},{"n":"Мойка кухонная стальная","sec":"ВК","qty":0,"unit":"шт","price":3500},{"n":"Умывальник","sec":"ВК","qty":0,"unit":"шт","price":4000},{"n":"Инсталляция Alcaplast","sec":"ВК","qty":0,"unit":"шт","price":8500},{"n":"Сифон бутылочный","sec":"ВК","qty":0,"unit":"шт","price":500},{"n":"Сифон для ванной","sec":"ВК","qty":0,"unit":"шт","price":700},{"n":"Трап душевой встроенный","sec":"ВК","qty":0,"unit":"шт","price":4500},{"n":"Смеситель душ с тропическим настенный","sec":"ВК","qty":0,"unit":"шт","price":7500},{"n":"Смеситель для мойки","sec":"ВК","qty":0,"unit":"шт","price":3000},{"n":"Смеситель для умывальника","sec":"ВК","qty":0,"unit":"шт","price":2500},{"n":"Смеситель отдельностоящий для ванны","sec":"ВК","qty":0,"unit":"шт","price":12000},{"n":"Гигиенический душ","sec":"ВК","qty":0,"unit":"шт","price":2200},{"n":"Водорозетка 777 планка","sec":"ВК","qty":0,"unit":"шт","price":450},{"n":"Труба ПП ø110 канализация","sec":"ВК","qty":9,"unit":"м","price":350},{"n":"Труба ПП ø50 канализация","sec":"ВК","qty":3,"unit":"м","price":150},{"n":"Труба ПНД 25 ввод от водомерного узла","sec":"ВК","qty":20,"unit":"м","price":95},{"n":"Отвод канализац. 45° ø50","sec":"ВК","qty":6,"unit":"шт","price":80},{"n":"Отвод канализац. 45° ø110","sec":"ВК","qty":2,"unit":"шт","price":180},{"n":"Отвод канализац. 67° ø50","sec":"ВК","qty":1,"unit":"шт","price":80},{"n":"Переход 110×50","sec":"ВК","qty":2,"unit":"шт","price":120},{"n":"Тройник 45° 50×50","sec":"ВК","qty":2,"unit":"шт","price":130},{"n":"Тройник 90° 110×50","sec":"ВК","qty":1,"unit":"шт","price":200},{"n":"Тройник 90° 110×110","sec":"ВК","qty":6,"unit":"шт","price":260},{"cat":"Наружные работы","n":"Отмостка и площадка","sec":"Нар","qty":7,"unit":"м³","price":7000},{"n":"Арматура А500","sec":"Нар","qty":0.3,"unit":"тн","price":76000},{"cat":"Грунт / Отсыпка","n":"Грунт для отсыпки 5 машин 15 м³","sec":"Грунт","qty":80,"unit":"м³","price":531.25},{"n":"Плодородная земля 2 сотки слой 30 см","sec":"Грунт","qty":60,"unit":"м³","price":566.67}];
+
+// pills
+function pill(s){
+  return ({
+    '1эт':'<span class="pill p1">1 эт</span>',
+    '2эт':'<span class="pill p2">2 эт</span>',
+    'ОВ':'<span class="pill ph">ОВ</span>',
+    'ТУ':'<span class="pill ptu">ТУ</span>',
+    'ВК':'<span class="pill pvk">ВК</span>',
+    'Нар':'<span class="pill pn">Нар</span>',
+    'Грунт':'<span class="pill pg">Грунт</span>',
+    'Работа':'<span class="pill pw">Работа</span>',
+    'Прочее':'<span class="pill pn">—</span>',
+  })[s]||`<span class="pill pn">${s}</span>`;
+}
+
+// utils
+function rub(n){return Math.round(n).toLocaleString('ru')+' ₽'}
+function rbk(n){return Math.round(n/1000)+'к'}
+function nf(v){return isNaN(v)||!isFinite(v)?0:+v}
+function gr(){
+  const rH=+document.getElementById('r-rH').value||339.09;
+  const rk=+document.getElementById('r-rk').value||50;
+  const pn=+document.getElementById('r-pn').value||80;
+  const rv=+document.getElementById('r-rv').value||700;
+  const bp=+document.getElementById('r-bp').value||30;
+  const nd=+document.getElementById('r-nd').value||13;
+  return{rH,k:1+rk/100+pn/100,rv,bP:bp/100,nP:nd/100};
+}
+function getH(mon){
+  const d=RAW[mon]||{};let av=0,sl=0,avD=0,slD=0;
+  for(const[dd,c]of Object.entries(d)){if(c.hrs>0){const h=c.hrs,n=parseInt(dd);if(n<=15){av+=h;avD++;}else{sl+=h;slD++;}}}
+  return{av,sl,avD,slD,tot:av+sl,totD:avD+slD};
+}
+function h2(mon,f,t){
+  const d=RAW[mon]||{};let hrs=0,days=0;
+  for(const[dd,c]of Object.entries(d)){const n=parseInt(dd);if(n>=f&&n<=t&&c.hrs>0){hrs+=c.hrs;days++;}}
+  return{hrs,days};
+}
+function cg(h,d,r){return nf(h*r.rH*r.k+d*r.rv)}
+function ns(h,d,r){return nf(cg(h,d,r)*(1-r.nP))}
+function nb(g,r){return nf(g*r.bP*(1-r.nP))}
+function vt(){return VOR.reduce((a,r)=>a+nf(r.qty*r.price),0)}
+
+function showTab(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.getElementById('pg-'+id).classList.add('on');btn.classList.add('on');
+}
+
+// GANTT
+function buildGantt(){
+  const Y=2026,S=new Date(Y,0,1),E=new Date(Y,11,31,23,59,59);
+  const TOT=(E-S)/86400000+1;
+  const pct=d=>Math.max(0,(d-S)/86400000/TOT*100);
+  const sp=(s,e)=>Math.max(.2,(e-s)/86400000/TOT*100);
+  const today=new Date();
+  const mh=document.getElementById('gm');mh.innerHTML='';
+  for(let m=0;m<12;m++){const ms=new Date(Y,m,1),me=new Date(Y,m+1,0);const d=document.createElement('div');d.className='g-month';d.style.width=sp(ms,me)+'%';d.textContent=MN[m];mh.appendChild(d);}
+  const items=[
+    {n:'Вахта-1 (не учит.)',s:new Date(Y,0,19),e:new Date(Y,2,2),cls:'bskip',v:'В1',skip:true},
+    {n:'Вахта-2',s:new Date(Y,3,10),e:new Date(Y,4,29),cls:'bv',v:'В2'},
+    {n:'Вахта-3',s:new Date(Y,6,1),e:new Date(Y,7,2),cls:'bv',v:'В3'},
+    {n:'Вахта-4',s:new Date(Y,8,19),e:new Date(Y,9,13),cls:'bv',v:'В4'},
+    {n:'Вахта-5',s:new Date(Y,10,23),e:new Date(Y,11,31),cls:'bv',v:'В5'},
+    {n:'Завоз грунта и озеленение',s:new Date(Y,4,26),e:new Date(Y,4,29),cls:'bw3'},
+    {n:'Отопление и стяжка (оба этажа)',s:new Date(Y,5,1),e:new Date(Y,5,15),cls:'bw1'},
+    {n:'Плитка теплоузел и санузел',s:new Date(Y,5,16),e:new Date(Y,5,22),cls:'bw2'},
+    {n:'Установка оборудования теплоузел',s:new Date(Y,5,23),e:new Date(Y,6,1),cls:'bw3'},
+    {n:'Штукатурка и окраска 1-й эт.',s:new Date(Y,5,16),e:new Date(Y,6,1),cls:'bw2'},
+    {n:'Штукатурка и окраска 2-й эт.',s:new Date(Y,7,3),e:new Date(Y,7,15),cls:'bw2'},
+    {n:'Утепление и пароизоляция перекрытия',s:new Date(Y,7,5),e:new Date(Y,7,15),cls:'bw1'},
+    {n:'Сварка и запуск теплоснабжения',s:new Date(Y,7,3),e:new Date(Y,7,15),cls:'bw1'},
+    {n:'Электричество 2 этап',s:new Date(Y,7,15),e:new Date(Y,7,20),cls:'bw3'},
+    {n:'Отмостка',s:new Date(Y,7,21),e:new Date(Y,8,5),cls:'bw3'},
+  ];
+  const pays=payEv();
+  const rows=document.getElementById('gr');rows.innerHTML='';
+  items.forEach(it=>{
+    const row=document.createElement('div');row.className='g-row';
+    const nm=document.createElement('div');nm.className='g-name'+(it.cls==='bv'&&!it.skip?' main':'');
+    const inp=document.createElement('input');inp.value=it.n;inp.title='Редактировать';nm.appendChild(inp);
+    const tr=document.createElement('div');tr.className='g-track';
+    if(today>=S&&today<=E){
+      const tl=document.createElement('div');tl.className='today-line';tl.style.left=pct(today)+'%';
+      const lb=document.createElement('div');lb.className='today-lbl';lb.textContent=today.getDate()+' '+MN[today.getMonth()];
+      tl.appendChild(lb);tr.appendChild(tl);
+    }
+    const bar=document.createElement('div');bar.className='g-bar '+it.cls;
+    bar.style.left=pct(it.s)+'%';bar.style.width=sp(it.s,it.e)+'%';
+    if(it.skip)bar.style.opacity='.35';
+    if(sp(it.s,it.e)>3)bar.textContent=it.v||it.n.split(' ')[0];
+    tr.appendChild(bar);
+    if(it.cls==='bv'&&!it.skip){
+      pays.filter(p=>p.v===it.v&&p.month>=1&&p.month<=12).forEach(p=>{
+        const d=new Date(Y,p.month-1,p.day);if(d<S||d>E)return;
+        const ln=document.createElement('div');ln.className='pay-line';ln.style.left=pct(d)+'%';
+        ln.style.background=p.t==='sal'?'rgba(34,197,94,.8)':'rgba(59,130,246,.8)';ln.title=p.lbl+': '+rub(p.amt);
+        const dot=document.createElement('div');dot.className='pay-dot';dot.style.background=p.t==='sal'?'#22c55e':'#60a5fa';
+        ln.appendChild(dot);tr.appendChild(ln);
+      });
+    }
+    row.appendChild(nm);row.appendChild(tr);rows.appendChild(row);
+  });
+  buildPayList(pays);buildGanttKpi(pays);
+}
+
+function payEv(){
+  const r=gr(),ev=[];
+  const a1=h2('2025-04',12,15),a2=h2('2025-04',16,30),m1=h2('2025-05',1,15),m2=h2('2025-05',16,22);
+  const gApr=cg(a1.hrs+a2.hrs,a1.days+a2.days,r),gMay=cg(m1.hrs+m2.hrs,m1.days+m2.days,r);
+  ev.push({v:'В2',month:4,day:27,t:'adv',lbl:'Аванс 27 апр',amt:cg(a1.hrs,a1.days,r),desc:`12–15 апр (${a1.days}дн×11ч)`});
+  ev.push({v:'В2',month:5,day:12,t:'sal',lbl:'ЗП 12 мая',amt:ns(a2.hrs,a2.days,r),desc:`2-я пол. апр (${a2.days}дн)`});
+  ev.push({v:'В2',month:5,day:27,t:'adv',lbl:'Аванс+Пр 27 мая',amt:cg(m1.hrs,m1.days,r)+nb(gApr,r),desc:'1–15 мая + премия апр'});
+  ev.push({v:'В2',month:6,day:12,t:'sal',lbl:'ЗП 12 июн',amt:ns(m2.hrs,m2.days,r),desc:`2-я пол. мая (${m2.days}дн)`});
+  const j1=h2('2025-07',1,15),j2=h2('2025-07',16,31),au1=h2('2025-08',1,2);
+  const gJul=cg(j1.hrs+j2.hrs,j1.days+j2.days,r);
+  ev.push({v:'В3',month:6,day:27,t:'adv',lbl:'Премия 27 июн',amt:nb(gMay,r),desc:'Премия за май'});
+  ev.push({v:'В3',month:7,day:27,t:'adv',lbl:'Аванс 27 июл',amt:cg(j1.hrs,j1.days,r),desc:`1–15 июл (${j1.days}дн)`});
+  ev.push({v:'В3',month:8,day:12,t:'sal',lbl:'ЗП 12 авг',amt:ns(j2.hrs,j2.days,r),desc:`2-я пол. июл (${j2.days}дн)`});
+  ev.push({v:'В3',month:8,day:27,t:'adv',lbl:'Аванс+Пр 27 авг',amt:cg(au1.hrs,au1.days,r)+nb(gJul,r),desc:'1–2 авг + премия июл'});
+  const s1=h2('2025-09',21,30),o1=h2('2025-10',1,11);
+  const gSO=cg(s1.hrs+o1.hrs,s1.days+o1.days,r);
+  ev.push({v:'В4',month:9,day:27,t:'adv',lbl:'Аванс 27 сен',amt:cg(s1.hrs,s1.days,r),desc:`21–30 сен (${s1.days}дн)`});
+  ev.push({v:'В4',month:10,day:12,t:'sal',lbl:'ЗП 12 окт',amt:ns(o1.hrs,o1.days,r),desc:`1–11 окт (${o1.days}дн)`});
+  ev.push({v:'В4',month:10,day:27,t:'adv',lbl:'Премия 27 окт',amt:nb(gSO,r),desc:'Премия за В4'});
+  const d1=h2('2025-12',1,15),d2=h2('2025-12',16,19);
+  const gDec=cg(d1.hrs+d2.hrs,d1.days+d2.days,r);
+  ev.push({v:'В5',month:12,day:27,t:'adv',lbl:'Аванс 27 дек',amt:cg(d1.hrs,d1.days,r),desc:`1–15 дек (${d1.days}дн)`});
+  ev.push({v:'В5',month:1,day:12,t:'sal',lbl:'ЗП 12 янв (след.)',amt:ns(d2.hrs,d2.days,r),desc:`2-я пол. дек (${d2.days}дн)`});
+  ev.push({v:'В5',month:1,day:27,t:'adv',lbl:'Пр 27 янв (след.)',amt:nb(gDec,r),desc:'Премия за дек'});
+  return ev;
+}
+
+function buildGanttKpi(pays){
+  const vtot=vt();
+  const inc=pays.filter(p=>p.month>=1&&p.month<=12).reduce((a,p)=>a+p.amt,0);
+  const diff=inc-vtot;
+  document.getElementById('gantt-kpi').innerHTML=`
+    <div class="kpi"><div class="kpi-lbl">Вахты В2–В5</div><div class="kpi-val" style="--kc:var(--blue)">4</div></div>
+    <div class="kpi"><div class="kpi-lbl">Заработок</div><div class="kpi-val" style="--kc:var(--green)">${rbk(inc)}</div><div class="kpi-sub">${rub(inc)}</div></div>
+    <div class="kpi"><div class="kpi-lbl">Смета ВОР</div><div class="kpi-val" style="--kc:var(--amber)">${rbk(vtot)}</div><div class="kpi-sub">${rub(vtot)}</div></div>
+    <div class="kpi"><div class="kpi-lbl">Разница</div><div class="kpi-val" style="--kc:${diff>=0?'var(--green)':'var(--red)'}">${diff>=0?'+':''}${rbk(diff)}</div><div class="kpi-sub">${diff>=0?'Профицит':'Дефицит'}</div></div>`;
+}
+
+function buildPayList(pays){
+  const el=document.getElementById('pe');el.innerHTML='';
+  const vtot=vt(),bv={},dist={'В2':.25,'В3':.40,'В4':.20,'В5':.15};
+  pays.forEach(p=>{(bv[p.v]||(bv[p.v]=[])).push(p)});
+  let gE=0,gV=0;
+  Object.entries(bv).forEach(([v,evts])=>{
+    const earned=evts.reduce((a,e)=>a+e.amt,0),vc=vtot*(dist[v]||0),diff=earned-vc;gE+=earned;gV+=vc;
+    const bl=document.createElement('div');bl.style.cssText='margin-bottom:9px;border:1px solid var(--brd);border-radius:5px;overflow:hidden';
+    bl.innerHTML=`<div style="background:var(--card2);padding:8px 13px;display:grid;grid-template-columns:auto 1fr 1fr;gap:8px;align-items:center">
+      <span style="font-family:var(--mono);font-size:10px;color:#fff;letter-spacing:1px">${v}</span>
+      <div><div style="font-family:var(--mono);font-size:8px;color:var(--mu);margin-bottom:2px">ЗАРАБОТОК</div><div style="font-family:var(--head);font-size:17px;color:var(--green)">${rub(earned)}</div></div>
+      <div style="text-align:right"><div style="font-family:var(--mono);font-size:8px;color:var(--mu);margin-bottom:2px">РАЗНИЦА (−ВОР)</div><div style="font-family:var(--head);font-size:17px;color:${diff>=0?'var(--green)':'var(--red)'}">${diff>=0?'+':''}${rub(diff)}</div></div>
+    </div>`;
+    evts.forEach(p=>{
+      const r=document.createElement('div');r.style.cssText='display:flex;justify-content:space-between;align-items:center;padding:4px 13px;border-bottom:1px solid var(--brd);background:var(--card)';
+      r.innerHTML=`<div style="display:flex;align-items:center;gap:7px"><span style="font-family:var(--mono);font-size:9px;color:var(--mu)">${MN[(p.month-1+12)%12]} · ${p.day}-е</span><span style="font-size:11px;color:var(--tx2)">${p.desc}</span></div>
+        <span style="font-family:var(--mono);font-size:11px;font-weight:500;color:${p.t==='sal'?'var(--green)':'var(--blue)'}">${rub(p.amt)}</span>`;
+      bl.appendChild(r);
+    });
+    const vr=document.createElement('div');vr.style.cssText='display:flex;justify-content:space-between;padding:4px 13px;background:rgba(245,158,11,.04);border-top:1px solid var(--brd)';
+    vr.innerHTML=`<span style="font-size:11px;color:var(--amber)">Расходы ВОР (ориент.)</span><span style="font-family:var(--mono);font-size:11px;color:var(--amber)">−${rub(vc)}</span>`;
+    bl.appendChild(vr);el.appendChild(bl);
+  });
+  const td=gE-gV,tot=document.createElement('div');
+  tot.style.cssText='border:1px solid rgba(34,197,94,.3);border-radius:5px;padding:11px 13px;background:rgba(34,197,94,.04);display:flex;justify-content:space-between;align-items:center';
+  tot.innerHTML=`<div><div style="font-family:var(--mono);font-size:8px;color:var(--mu);margin-bottom:3px">ИТОГОВЫЙ БАЛАНС</div><div style="font-size:11px;color:var(--tx2)">Заработок ${rub(gE)} − ВОР ${rub(gV)}</div></div>
+    <div style="font-family:var(--head);font-size:26px;color:${td>=0?'var(--green)':'var(--red)'}">${td>=0?'+':''}${rub(td)}</div>`;
+  el.appendChild(tot);
+}
+
+// VOR TABLE
+function buildVor(){
+  const tb=document.getElementById('vtb');tb.innerHTML='';
+  let grand=0,catS=0,catN='',catK='';
+  function flush(){if(!catN)return;const tr=document.createElement('tr');tr.className='sum-row';tr.innerHTML=`<td colspan="7" style="text-align:right;font-size:10px">Итого ${catN}</td><td style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--green)">${Math.round(catS).toLocaleString('ru')} ₽</td>`;tb.appendChild(tr);catS=0;}
+  VOR.forEach((r,i)=>{
+    if(r.cat){flush();catN=r.cat;catK=i;catS=0;const tr=document.createElement('tr');tr.className='cat-row';tr.innerHTML=`<td colspan="8">${r.cat}</td>`;tb.appendChild(tr);}
+    const sum=nf(r.qty*r.price);grand+=sum;catS+=sum;
+    const tr=document.createElement('tr');tr.id='vr'+i;
+    tr.innerHTML=`<td style="color:var(--tx3);font-family:var(--mono);font-size:10px">${i+1}</td>
+      <td><input class="ce" value="${r.n.replace(/"/g,'&quot;')}" oninput="VOR[${i}].n=this.value" style="color:var(--tx);font-size:12px"></td>
+      <td>${pill(r.sec)}</td>
+      <td><input class="ce" type="number" value="${r.qty}" min="0" step="any" style="text-align:right;width:60px" oninput="VOR[${i}].qty=parseFloat(this.value)||0;rrw(${i})"></td>
+      <td><input class="ce" value="${r.unit}" oninput="VOR[${i}].unit=this.value" style="font-family:var(--mono);font-size:11px;color:var(--tx2);width:40px"></td>
+      <td><input class="ce" type="number" value="${r.price}" min="0" step="any" style="text-align:right;width:90px" oninput="VOR[${i}].price=parseFloat(this.value)||0;rrw(${i})"></td>
+      <td class="sm-td ${sum===0?'z':''}" id="vs${i}">${sum>0?Math.round(sum).toLocaleString('ru')+' ₽':'—'}</td>
+      <td><button class="del-btn" onclick="delRow(${i})" title="Удалить">✕</button></td>`;
+    tb.appendChild(tr);
+  });
+  flush();
+  const gtr=document.createElement('tr');gtr.className='grand-row';
+  gtr.innerHTML=`<td colspan="7">ИТОГО ВОР</td><td style="text-align:right;font-family:var(--mono)" id="vg">${Math.round(grand).toLocaleString('ru')} ₽</td>`;
+  tb.appendChild(gtr);
+  document.getElementById('vgt').textContent=rub(grand);
+}
+function rrw(i){
+  const sum=nf(VOR[i].qty*VOR[i].price);
+  const el=document.getElementById('vs'+i);
+  if(el){el.textContent=sum>0?Math.round(sum).toLocaleString('ru')+' ₽':'—';el.className='sm-td'+(sum===0?' z':'');}
+  rg();
+}
+function rg(){
+  const g=vt();const el=document.getElementById('vg');if(el)el.textContent=Math.round(g).toLocaleString('ru')+' ₽';
+  document.getElementById('vgt').textContent=rub(g);
+  const p=payEv();buildGanttKpi(p);buildPayList(p);buildCashflow();
+}
+function delRow(i){VOR.splice(i,1);buildVor();rg();}
+function addRow(){
+  const n=document.getElementById('nn').value.trim();if(!n){alert('Введите наименование');return;}
+  const sec=document.getElementById('ns').value,qty=parseFloat(document.getElementById('nq').value)||0;
+  const unit=document.getElementById('nu').value||'шт',price=parseFloat(document.getElementById('np').value)||0;
+  VOR.push({n,sec,qty,unit,price});
+  document.getElementById('nn').value='';document.getElementById('nq').value='1';document.getElementById('np').value='0';
+  buildVor();rg();
+}
+function addCat(){
+  const n=document.getElementById('nc').value.trim();if(!n){alert('Введите название');return;}
+  VOR.push({cat:n,n:'Новая позиция',sec:'Прочее',qty:1,unit:'шт',price:0});
+  document.getElementById('nc').value='';buildVor();
+}
+
+// SALARY
+function buildSalary(){
+  const r=gr(),c=document.getElementById('vb-blocks');c.innerHTML='';
+  const vk=[
+    {id:'В2',label:'Вахта-2',dates:'10 апр – 29 мая 2026',months:['2025-04','2025-05']},
+    {id:'В3',label:'Вахта-3',dates:'1 июл – 2 авг 2026',months:['2025-07','2025-08']},
+    {id:'В4',label:'Вахта-4',dates:'19 сен – 13 окт 2026',months:['2025-09','2025-10']},
+    {id:'В5',label:'Вахта-5',dates:'23 ноя – 31 дек 2026',months:['2025-11','2025-12']},
+  ];
+  let grand=0;
+  vk.forEach(v=>{
+    let tH=0,tD=0;v.months.forEach(m=>{const h=getH(m);tH+=h.tot;tD+=h.totD;});
+    const g=cg(tH,tD,r),net=ns(tH,tD,r),bon=nb(g,r),tot=net+bon;grand+=tot;
+    const b=document.createElement('div');b.className='vb open';b.id='vb-'+v.id;
+    b.innerHTML=`<div class="vb-hdr" onclick="document.getElementById('vb-${v.id}').classList.toggle('open')">
+        <div><div class="vb-title">${v.label}</div><div class="vb-dates">${v.dates}</div></div>
+        <div style="display:flex;align-items:center;gap:10px"><div class="vb-tot">${rub(tot)}</div><span class="chv">▼</span></div>
+      </div>
+      <div class="vb-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:9px">
+          <div class="kpi" style="padding:9px 11px"><div class="kpi-lbl">Часов</div><div class="kpi-val" style="font-size:20px;--kc:var(--tx2)">${tH}</div></div>
+          <div class="kpi" style="padding:9px 11px"><div class="kpi-lbl">Дней</div><div class="kpi-val" style="font-size:20px;--kc:var(--tx2)">${tD}</div></div>
+          <div class="kpi" style="padding:9px 11px"><div class="kpi-lbl">Gross</div><div class="kpi-val" style="font-size:20px;--kc:var(--amber)">${rbk(g)}</div></div>
+        </div>
+        <div class="pr"><span class="pd">12-е</span><span class="pdesc">Зарплата −НДФЛ ${Math.round(r.nP*100)}%</span><span class="pa gn">${rub(net)}</span></div>
+        <div class="pr"><span class="pd">27-е</span><span class="pdesc">Премия ${Math.round(r.bP*100)}% −НДФЛ</span><span class="pa or">${rub(bon)}</span></div>
+        <div class="div"></div>
+        <div class="pr" style="border:none"><span class="pdesc" style="font-weight:500;color:var(--tx)">Итого на руки</span><span class="pa gn" style="font-size:14px">${rub(tot)}</span></div>
+      </div>`;
+    c.appendChild(b);
+  });
+  document.getElementById('sg').textContent=rub(grand);return grand;
+}
+
+// CASHFLOW
+function buildCashflow(){
+  const pays=payEv(),vtot=vt();
+  const inc=pays.filter(p=>p.month>=1&&p.month<=12).reduce((a,p)=>a+p.amt,0),diff=inc-vtot;
+  document.getElementById('ci').textContent=rbk(inc);
+  document.getElementById('cv').textContent=rbk(vtot);
+  const de=document.getElementById('cd');de.textContent=(diff>=0?'+':'')+rbk(diff);de.style.setProperty('--kc',diff>=0?'var(--green)':'var(--red)');
+  const byM={};for(let m=1;m<=12;m++)byM[m]=0;
+  pays.filter(p=>p.month>=1&&p.month<=12).forEach(p=>byM[p.month]+=p.amt);
+  const vD={4:vtot*.05,5:vtot*.10,6:vtot*.28,7:vtot*.22,8:vtot*.15,9:vtot*.10,10:vtot*.10};
+  const maxV=Math.max(...Object.values(byM),...Object.values(vD));
+  const el=document.getElementById('cb');el.innerHTML='';
+  for(let m=1;m<=12;m++){
+    const i2=byM[m]||0,ex=vD[m]||0;
+    const row=document.createElement('div');row.className='cfr';
+    row.innerHTML=`<span class="cfl">${MN[m-1]}</span><div class="cbs">
+      <div class="cb" style="background:var(--green);opacity:.65;width:${maxV?i2/maxV*100:0}%"></div>
+      <div class="cb" style="background:var(--red);opacity:.55;width:${maxV?ex/maxV*100:0}%"></div>
+    </div><div class="cam">${i2>0?`<div style="color:var(--green)">+${Math.round(i2/1000)}к</div>`:''}${ex>0?`<div style="color:var(--red)">−${Math.round(ex/1000)}к</div>`:''}</div>`;
+    el.appendChild(row);
+  }
+  const leg=document.createElement('div');leg.style.cssText='display:flex;gap:14px;margin-top:8px;font-size:11px;color:var(--tx2)';
+  leg.innerHTML='<span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;background:var(--green);border-radius:2px;opacity:.7"></span>Доход ЗП</span><span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;background:var(--red);border-radius:2px;opacity:.6"></span>Расход ВОР</span>';
+  el.appendChild(leg);
+  const sum=document.getElementById('cs');
+  sum.innerHTML=`<div class="br"><span style="font-size:12px;color:var(--tx2)">Заработок на руки В2–В5</span><span style="font-family:var(--mono);font-size:13px;color:var(--green)">${rub(inc)}</span></div>
+    <div class="br"><span style="font-size:12px;color:var(--tx2)">Смета ВОР полная</span><span style="font-family:var(--mono);font-size:13px;color:var(--amber)">${rub(vtot)}</span></div>
+    <div class="div"></div>
+    <div class="br" style="border:none"><span style="font-size:13px;font-weight:500;color:var(--tx)">Итоговый баланс</span>
+      <span style="font-family:var(--head);font-size:26px;color:${diff>=0?'var(--green)':'var(--red)'}">${diff>=0?'+':''}${rub(diff)}</span></div>
+    <div class="note">Распределение ВОР по месяцам ориентировочное. Корректируйте цены в таблице ВОР.</div>`;
+}
+
+function rca(){buildSalary();const p=payEv();buildPayList(p);buildGanttKpi(p);buildCashflow();}
+buildGantt();buildVor();buildSalary();buildCashflow();
+
+function saveHTML(){
+  const vorJSON=JSON.stringify(VOR,null,0);
+  let html=document.documentElement.outerHTML;
+  html=html.replace(/let VOR=[\s\S]*?;\n/, 'let VOR='+vorJSON+';\n');
+  const blob=new Blob([html],{type:'text/html;charset=utf-8'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  const d=new Date();
+  a.download='Шушаков_план_'+d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')+'.html';
+  a.click();URL.revokeObjectURL(a.href);
+}
+</script>
+
+
+</body></html>
