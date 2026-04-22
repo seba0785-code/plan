@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Стадии тендерной воронки</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Golos+Text:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e8eaf0;
+    --muted: #7a7d8f;
+    --s1: #4d9fff;
+    --s2: #00d4aa;
+    --s3: #f5a623;
+    --s4: #ff6b35;
+    --s5: #9b59b6;
+    --win: #27ae60;
+    --lose: #e74c3c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Golos Text', sans-serif;
+    min-height: 100vh;
+    padding: 24px 16px 40px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    letter-spacing: 3px;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .header p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 6px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .flow {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 0 4px 12px;
+    margin-bottom: 28px;
+    scrollbar-width: none;
+  }
+  .flow::-webkit-scrollbar { display: none; }
+
+  .flow-step {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .flow-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+  }
+
+  .flow-arrow {
+    color: var(--muted);
+    font-size: 16px;
+  }
+
+  .stages { display: flex; flex-direction: column; gap: 14px; }
+
+  .stage {
+    background: var(--card);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+  .stage:active { transform: scale(0.98); }
+
+  .stage-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    cursor: pointer;
+  }
+
+  .stage-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .stage-info { flex: 1; }
+
+  .stage-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .stage-sub {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .stage-sla {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.06);
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .stage-body {
+    padding: 0 18px 18px;
+    display: none;
+  }
+  .stage-body.open { display: block; }
+
+  .stage-divider {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 14px;
+  }
+
+  .tasks-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .task-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    line-height: 1.5;
+    color: #c8cad8;
+  }
+  .task-item:last-child { border-bottom: none; }
+
+  .task-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .owner-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+
+  .owner-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  .result-row {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .result-row strong { color: var(--text); font-weight: 600; }
+
+  .divider-stages {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0 14px;
+  }
+  .divider-line { flex: 1; height: 1px; background: var(--border); }
+  .divider-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+  }
+
+  .final-stages { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .final-card {
+    border-radius: 16px;
+    padding: 16px;
+    text-align: center;
+  }
+  .final-card .icon { font-size: 28px; margin-bottom: 8px; }
+  .final-card .title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .final-card .desc { font-size: 12px; opacity: 0.7; }
+
+  .win-card { background: rgba(39,174,96,0.15); border: 1px solid rgba(39,174,96,0.3); }
+  .lose-card { background: rgba(231,76,60,0.12); border: 1px solid rgba(231,76,60,0.25); }
+
+  .tip-box {
+    margin-top: 24px;
+    padding: 16px;
+    background: rgba(77,159,255,0.08);
+    border: 1px solid rgba(77,159,255,0.2);
+    border-radius: 14px;
+    font-size: 13px;
+    color: #c8cad8;
+    line-height: 1.6;
+  }
+  .tip-box strong { color: var(--s1); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Тендерная воронка</h1>
+  <p>ИП Шушакова · Шпаргалка по стадиям</p>
+</div>
+
+<div class="flow">
+  <div class="flow-step">
+    <div class="flow-badge" style="background:rgba(77,159,255,0.2);color:#4d9fff;">Мониторинг</div>
+    <span class="flow-arrow">→</span>
+  </div>
+  <div class="flow-step">
+    <div class="flow-badge" style="background:rgba(0,212,170,0.2);color:#00d4aa;">Квалификация</div>
+    <span class="flow-arrow">→</span>
+  </div>
+  <div class="flow-step">
+    <div class="flow-badge" style="background:rgba(245,166,35,0.2);color:#f5a623;">Пакет</div>
+    <span class="flow-arrow">→</span>
+  </div>
+  <div class="flow-step">
+    <div class="flow-badge" style="background:rgba(255,107,53,0.2);color:#ff6b35;">Подача</div>
+    <span class="flow-arrow">→</span>
+  </div>
+  <div class="flow-step">
+    <div class="flow-badge" style="background:rgba(155,89,182,0.2);color:#9b59b6;">Сопровождение</div>
+    <span class="flow-arrow">→</span>
+  </div>
+  <div class="flow-badge" style="background:rgba(39,174,96,0.2);color:#27ae60;">Победа</div>
+</div>
+
+<div class="stages">
+
+  <div class="stage" onclick="toggle(this)">
+    <div class="stage-header">
+      <div class="stage-num" style="background:rgba(77,159,255,0.2);color:#4d9fff;">1</div>
+      <div class="stage-info">
+        <div class="stage-name" style="color:#4d9fff;">Мониторинг</div>
+        <div class="stage-sub">Нашли тендер — заносим в CRM</div>
+      </div>
+      <div class="stage-sla">до 2 ч</div>
+    </div>
+    <div class="stage-body">
+      <div class="stage-divider"></div>
+      <div class="tasks-title">Что делаем</div>
+      <div class="task-item"><div class="task-dot" style="background:#4d9fff;"></div>Ежедневно проверяем ЕИС — фильтр: строительство + малый бизнес + до 10 млн ₽ + Пермский край / Удмуртия</div>
+      <div class="task-item"><div class="task-dot" style="background:#4d9fff;"></div>Создаём карточку сделки в нужной воронке (Капремонт / Муниципальные / Благоустройство)</div>
+      <div class="task-item"><div class="task-dot" style="background:#4d9fff;"></div>Заполняем: название, сумма, дедлайн подачи, ссылка на ЕИС</div>
+      <div class="owner-row">
+        <span class="owner-badge" style="background:rgba(77,159,255,0.15);color:#4d9fff;">Антон</span>
+      </div>
+      <div class="result-row"><strong>Результат:</strong> карточка тендера в стадии «Мониторинг»</div>
+    </div>
+  </div>
+
+  <div class="stage" onclick="toggle(this)">
+    <div class="stage-header">
+      <div class="stage-num" style="background:rgba(0,212,170,0.2);color:#00d4aa;">2</div>
+      <div class="stage-info">
+        <div class="stage-name" style="color:#00d4aa;">Квалификация</div>
+        <div class="stage-sub">Решаем — идём или нет</div>
+      </div>
+      <div class="stage-sla">4 часа</div>
+    </div>
+    <div class="stage-body">
+      <div class="stage-divider"></div>
+      <div class="tasks-title">Что делаем</div>
+      <div class="task-item"><div class="task-dot" style="background:#00d4aa;"></div>Скачиваем техзадание и читаем требования</div>
+      <div class="task-item"><div class="task-dot" style="background:#00d4aa;"></div>Оцениваем: можем выполнить? есть материалы? укладываемся в срок?</div>
+      <div class="task-item"><div class="task-dot" style="background:#00d4aa;"></div>Считаем примерную маржу — выгодно ли участвовать</div>
+      <div class="task-item"><div class="task-dot" style="background:#00d4aa;"></div>Решение: идём → переводим в «Подготовка пакета» / не идём → «Проигрыш» с комментарием</div>
+      <div class="owner-row">
+        <span class="owner-badge" style="background:rgba(0,212,170,0.15);color:#00d4aa;">Антон</span>
+      </div>
+      <div class="result-row"><strong>Результат:</strong> решение зафиксировано в карточке</div>
+    </div>
+  </div>
+
+  <div class="stage" onclick="toggle(this)">
+    <div class="stage-header">
+      <div class="stage-num" style="background:rgba(245,166,35,0.2);color:#f5a623;">3</div>
+      <div class="stage-info">
+        <div class="stage-name" style="color:#f5a623;">Подготовка пакета</div>
+        <div class="stage-sub">Собираем документы для заявки</div>
+      </div>
+      <div class="stage-sla">до 5 дней</div>
+    </div>
+    <div class="stage-body">
+      <div class="stage-divider"></div>
+      <div class="tasks-title">Что делаем</div>
+      <div class="task-item"><div class="task-dot" style="background:#f5a623;"></div>Заявка на участие по форме заказчика</div>
+      <div class="task-item"><div class="task-dot" style="background:#f5a623;"></div>Выписка ЕГРЮЛ (не старше 3 мес), справка об отсутствии задолженностей</div>
+      <div class="task-item"><div class="task-dot" style="background:#f5a623;"></div>Свидетельство НОСТРОЙ, устав, решение о назначении директора</div>
+      <div class="task-item"><div class="task-dot" style="background:#f5a623;"></div>Техническое предложение — описание как будем выполнять работы</div>
+      <div class="task-item"><div class="task-dot" style="background:#f5a623;"></div>Ценовое предложение — смета с расчётом стоимости</div>
+      <div class="owner-row">
+        <span class="owner-badge" style="background:rgba(245,166,35,0.15);color:#f5a623;">Катя</span>
+        <span class="owner-badge" style="background:rgba(245,166,35,0.1);color:#f5a623;">Антон (смета)</span>
+      </div>
+      <div class="result-row"><strong>Результат:</strong> полный пакет документов готов, проверен вместе</div>
+    </div>
+  </div>
+
+  <div class="stage" onclick="toggle(this)">
+    <div class="stage-header">
+      <div class="stage-num" style="background:rgba(255,107,53,0.2);color:#ff6b35;">4</div>
+      <div class="stage-info">
+        <div class="stage-name" style="color:#ff6b35;">Подача</div>
+        <div class="stage-sub">Отправляем заявку на площадку</div>
+      </div>
+      <div class="stage-sla">за 24 ч до дедлайна</div>
+    </div>
+    <div class="stage-body">
+      <div class="stage-divider"></div>
+      <div class="tasks-title">Что делаем</div>
+      <div class="task-item"><div class="task-dot" style="background:#ff6b35;"></div>Заходим на торговую площадку (Сбербанк-АСТ / РТС-тендер)</div>
+      <div class="task-item"><div class="task-dot" style="background:#ff6b35;"></div>Загружаем пакет документов, подписываем ЭЦП</div>
+      <div class="task-item"><div class="task-dot" style="background:#ff6b35;"></div>Проверяем что заявка принята — берём скриншот подтверждения</div>
+      <div class="task-item"><div class="task-dot" style="background:#ff6b35;"></div>Фиксируем в карточке: дата подачи, номер заявки</div>
+      <div class="owner-row">
+        <span class="owner-badge" style="background:rgba(255,107,53,0.15);color:#ff6b35;">Антон</span>
+      </div>
+      <div class="result-row"><strong>Результат:</strong> заявка принята площадкой, скриншот в карточке</div>
+    </div>
+  </div>
+
+  <div class="stage" onclick="toggle(this)">
+    <div class="stage-header">
+      <div class="stage-num" style="background:rgba(155,89,182,0.2);color:#9b59b6;">5</div>
+      <div class="stage-info">
+        <div class="stage-name" style="color:#9b59b6;">Сопровождение</div>
+        <div class="stage-sub">Ждём результата, отвечаем на запросы</div>
+      </div>
+      <div class="stage-sla">ответ ≤ 24 ч</div>
+    </div>
+    <div class="stage-body">
+      <div class="stage-divider"></div>
+      <div class="tasks-title">Что делаем</div>
+      <div class="task-item"><div class="task-dot" style="background:#9b59b6;"></div>Следим за запросами разъяснений от заказчика</div>
+      <div class="task-item"><div class="task-dot" style="background:#9b59b6;"></div>Отвечаем на вопросы в течение 24 часов</div>
+      <div class="task-item"><div class="task-dot" style="background:#9b59b6;"></div>Следим за датой подведения итогов</div>
+      <div class="task-item"><div class="task-dot" style="background:#9b59b6;"></div>После итогов — переводим в «Победа» или «Проигрыш»</div>
+      <div class="owner-row">
+        <span class="owner-badge" style="background:rgba(155,89,182,0.15);color:#9b59b6;">Катя</span>
+      </div>
+      <div class="result-row"><strong>Результат:</strong> знаем итог тендера, карточка переведена в финальную стадию</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="divider-stages">
+  <div class="divider-line"></div>
+  <div class="divider-label">Финал</div>
+  <div class="divider-line"></div>
+</div>
+
+<div class="final-stages">
+  <div class="final-card win-card">
+    <div class="icon">🏆</div>
+    <div class="title" style="color:#27ae60;">Победа</div>
+    <div class="desc">Контракт подписан — стартуем. Создаём задачи по выполнению работ.</div>
+  </div>
+  <div class="final-card lose-card">
+    <div class="icon">📋</div>
+    <div class="title" style="color:#e74c3c;">Проигрыш</div>
+    <div class="desc">Фиксируем причину. Учимся. База знаний растёт.</div>
+  </div>
+</div>
+
+<div class="tip-box">
+  <strong>Правило SLA:</strong> квалификация — 4 часа, подготовка пакета — до 5 дней, подача — минимум за 24 часа до дедлайна, ответы заказчику — в течение 24 часов. Нарушение SLA = репутационный риск.
+</div>
+
+<script>
+function toggle(el) {
+  const body = el.querySelector('.stage-body');
+  body.classList.toggle('open');
+}
+</script>
+
+</body>
+</html>
