@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Как читать тендерную документацию</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Golos+Text:wght@400;500;600;700&display=swap');
+
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e8eaf0;
+    --muted: #7a7d8f;
+    --blue: #4d9fff;
+    --green: #27ae60;
+    --orange: #f5a623;
+    --red: #e74c3c;
+    --purple: #9b59b6;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Golos Text', sans-serif;
+    padding: 24px 16px 60px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 32px;
+    padding: 28px 20px;
+    background: linear-gradient(135deg, #1F3864, #2E75B6);
+    border-radius: 20px;
+  }
+
+  .header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+
+  .header p {
+    font-size: 13px;
+    opacity: 0.7;
+    letter-spacing: 0.5px;
+  }
+
+  .step {
+    background: var(--card);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    cursor: pointer;
+  }
+
+  .step-num {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .step-title { flex: 1; }
+  .step-name { font-size: 16px; font-weight: 600; margin-bottom: 2px; }
+  .step-sub { font-size: 12px; color: var(--muted); }
+  .step-arrow { color: var(--muted); font-size: 18px; transition: transform 0.2s; }
+  .step.open .step-arrow { transform: rotate(90deg); }
+
+  .step-body {
+    display: none;
+    padding: 0 18px 18px;
+  }
+  .step.open .step-body { display: block; }
+
+  .divider { height: 1px; background: var(--border); margin-bottom: 14px; }
+
+  .item {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    line-height: 1.6;
+    color: #c8cad8;
+  }
+  .item:last-child { border-bottom: none; }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  .flag {
+    background: rgba(231,76,60,0.12);
+    border: 1px solid rgba(231,76,60,0.25);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #e8a09a;
+  }
+
+  .flag-title {
+    font-weight: 700;
+    color: var(--red);
+    margin-bottom: 4px;
+    font-size: 12px;
+  }
+
+  .tip {
+    background: rgba(77,159,255,0.08);
+    border: 1px solid rgba(77,159,255,0.2);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #a8c8f0;
+  }
+
+  .tip-title {
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 4px;
+    font-size: 12px;
+  }
+
+  .questions {
+    margin-top: 20px;
+    background: var(--card);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .q-header {
+    background: linear-gradient(135deg, #375623, #27ae60);
+    padding: 14px 18px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+
+  .q-item {
+    padding: 10px 18px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: #c8cad8;
+    line-height: 1.5;
+  }
+  .q-item:last-child { border-bottom: none; }
+  .q-num { color: var(--green); font-weight: 700; margin-right: 8px; }
+
+  .checklist {
+    margin-top: 20px;
+    background: var(--card);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .cl-header {
+    background: linear-gradient(135deg, #7030A0, #9b59b6);
+    padding: 14px 18px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+
+  .cl-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: #c8cad8;
+    cursor: pointer;
+  }
+  .cl-item:last-child { border-bottom: none; }
+  .cl-item:active { background: rgba(255,255,255,0.03); }
+
+  .checkbox {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .cl-item.checked .checkbox {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .cl-item.checked .checkbox::after { content: '✓'; color: white; font-size: 13px; font-weight: 700; }
+  .cl-item.checked span { text-decoration: line-through; opacity: 0.5; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Как читать тендерную документацию</h1>
+  <p>ИП Шушакова · Инструкция для Антона и Кати</p>
+</div>
+
+<!-- STEP 1 -->
+<div class="step" onclick="toggle(this)">
+  <div class="step-header">
+    <div class="step-num" style="background:rgba(77,159,255,0.2);color:#4d9fff;">1</div>
+    <div class="step-title">
+      <div class="step-name" style="color:#4d9fff;">Извещение / Документация</div>
+      <div class="step-sub">Читай первым делом</div>
+    </div>
+    <div class="step-arrow">›</div>
+  </div>
+  <div class="step-body">
+    <div class="divider"></div>
+    <div class="item"><div class="dot" style="background:#4d9fff;"></div>Найди на ЕИС → открой карточку тендера → скачай все документы</div>
+    <div class="item"><div class="dot" style="background:#4d9fff;"></div>Найди раздел «Требования к участникам» — нужен ли опыт, НОСТРОЙ, лицензии</div>
+    <div class="item"><div class="dot" style="background:#4d9fff;"></div>Найди сроки подачи заявки — сколько дней у тебя есть</div>
+    <div class="item"><div class="dot" style="background:#4d9fff;"></div>Найди способ определения поставщика — аукцион, конкурс или котировки</div>
+    <div class="item"><div class="dot" style="background:#4d9fff;"></div>Найди площадку на которой проводится тендер — зарегистрирован ли ты там</div>
+    <div class="tip">
+      <div class="tip-title">💡 СОВЕТ</div>
+      Начинай только с 44-ФЗ. 223-ФЗ — сложнее, больше площадок, нестандартные правила.
+    </div>
+  </div>
+</div>
+
+<!-- STEP 2 -->
+<div class="step" onclick="toggle(this)">
+  <div class="step-header">
+    <div class="step-num" style="background:rgba(0,212,170,0.2);color:#00d4aa;">2</div>
+    <div class="step-title">
+      <div class="step-name" style="color:#00d4aa;">Техническое задание (ТЗ)</div>
+      <div class="step-sub">Самый важный документ</div>
+    </div>
+    <div class="step-arrow">›</div>
+  </div>
+  <div class="step-body">
+    <div class="divider"></div>
+    <div class="item"><div class="dot" style="background:#00d4aa;"></div>Читай каждую строчку — не пропускай мелкий шрифт</div>
+    <div class="item"><div class="dot" style="background:#00d4aa;"></div>Ищи слово «ЭКВИВАЛЕНТ» — если есть, можно предложить аналог дешевле</div>
+    <div class="item"><div class="dot" style="background:#00d4aa;"></div>Выпиши все виды работ и материалов — это основа для расчёта сметы</div>
+    <div class="item"><div class="dot" style="background:#00d4aa;"></div>Проверь ГОСТ и технические регламенты — соответствует ли твоя продукция</div>
+    <div class="item"><div class="dot" style="background:#00d4aa;"></div>Найди срок выполнения работ — реалистичный ли он</div>
+    <div class="item"><div class="dot" style="background:#00d4aa;"></div>Проверь место выполнения работ — один объект или несколько адресов</div>
+    <div class="flag">
+      <div class="flag-title">🚨 СТОП если:</div>
+      Срок менее 30 дней · Режим работы только ночью · ТЗ противоречиво или неполное
+    </div>
+  </div>
+</div>
+
+<!-- STEP 3 -->
+<div class="step" onclick="toggle(this)">
+  <div class="step-header">
+    <div class="step-num" style="background:rgba(245,166,35,0.2);color:#f5a623;">3</div>
+    <div class="step-title">
+      <div class="step-name" style="color:#f5a623;">Проект контракта</div>
+      <div class="step-sub">Условия которые нельзя изменить</div>
+    </div>
+    <div class="step-arrow">›</div>
+  </div>
+  <div class="step-body">
+    <div class="divider"></div>
+    <div class="item"><div class="dot" style="background:#f5a623;"></div>Найди порядок оплаты — постоплата 30/60/90 дней после сдачи</div>
+    <div class="item"><div class="dot" style="background:#f5a623;"></div>Найди размер обеспечения заявки — деньги замораживаются на спецсчёте</div>
+    <div class="item"><div class="dot" style="background:#f5a623;"></div>Найди размер обеспечения контракта — нужна банковская гарантия или деньги</div>
+    <div class="item"><div class="dot" style="background:#f5a623;"></div>Найди размер штрафов за просрочку — сколько % в день</div>
+    <div class="item"><div class="dot" style="background:#f5a623;"></div>Найди гарантийные обязательства — на какой срок и что покрывают</div>
+    <div class="item"><div class="dot" style="background:#f5a623;"></div>Найди порядок приёмки работ — какие документы нужны (КС-2, КС-3, журналы)</div>
+    <div class="flag">
+      <div class="flag-title">🚨 СТОП если:</div>
+      Штрафы более 1%/день · Обеспечение более 10% от суммы · Нет аванса + оплата только после госэкспертизы
+    </div>
+  </div>
+</div>
+
+<!-- STEP 4 -->
+<div class="step" onclick="toggle(this)">
+  <div class="step-header">
+    <div class="step-num" style="background:rgba(255,107,53,0.2);color:#ff6b35;">4</div>
+    <div class="step-title">
+      <div class="step-name" style="color:#ff6b35;">Проверка заказчика</div>
+      <div class="step-sub">Прежде чем подавать заявку</div>
+    </div>
+    <div class="step-arrow">›</div>
+  </div>
+  <div class="step-body">
+    <div class="divider"></div>
+    <div class="item"><div class="dot" style="background:#ff6b35;"></div><span><b>kad.arbitr.ru</b> — есть ли судебные иски о взыскании оплат с этого заказчика?</span></div>
+    <div class="item"><div class="dot" style="background:#ff6b35;"></div><span><b>pb.nalog.ru</b> — проверь ИНН и ОГРН заказчика, убедись что реальная организация</span></div>
+    <div class="item"><div class="dot" style="background:#ff6b35;"></div><span><b>ЕИС</b> → реестр контрактов — посмотри предыдущие контракты этого заказчика, платил ли вовремя</span></div>
+    <div class="item"><div class="dot" style="background:#ff6b35;"></div>Не плати никому за «гарантию победы» — это мошенники</div>
+    <div class="item"><div class="dot" style="background:#ff6b35;"></div>Не переводи предоплату на карту незнакомым поставщикам</div>
+    <div class="tip">
+      <div class="tip-title">💡 СОВЕТ</div>
+      Посмотри кто побеждал в предыдущих тендерах этого заказчика. Если всегда одна и та же компания — тендер может быть заточен под неё.
+    </div>
+  </div>
+</div>
+
+<!-- STEP 5 -->
+<div class="step" onclick="toggle(this)">
+  <div class="step-header">
+    <div class="step-num" style="background:rgba(155,89,182,0.2);color:#9b59b6;">5</div>
+    <div class="step-title">
+      <div class="step-name" style="color:#9b59b6;">Расчёт цены</div>
+      <div class="step-sub">Считай до подачи заявки</div>
+    </div>
+    <div class="step-arrow">›</div>
+  </div>
+  <div class="step-body">
+    <div class="divider"></div>
+    <div class="item"><div class="dot" style="background:#9b59b6;"></div>Выпиши все виды работ из ТЗ → запроси цены у субподрядчиков</div>
+    <div class="item"><div class="dot" style="background:#9b59b6;"></div>Выпиши все материалы → запроси цены у поставщиков</div>
+    <div class="item"><div class="dot" style="background:#9b59b6;"></div>Добавь транспорт, проживание (если другой регион), налоги</div>
+    <div class="item"><div class="dot" style="background:#9b59b6;"></div>Посчитай маржу — минимум 15%, идеал 25%+</div>
+    <div class="item"><div class="dot" style="background:#9b59b6;"></div>Посчитай сколько денег нужно ДО получения оплаты от заказчика</div>
+    <div class="item"><div class="dot" style="background:#9b59b6;"></div>Заполни скоринг-лист → если меньше 60 баллов — не участвуем</div>
+    <div class="flag">
+      <div class="flag-title">🚨 ПОМНИ:</div>
+      В госзакупках победа = лучшая цена. Ставь свою минимально возможную цену сразу.
+    </div>
+  </div>
+</div>
+
+<!-- 15 ВОПРОСОВ -->
+<div class="questions">
+  <div class="q-header">📋 15 ВОПРОСОВ ПРИ АНАЛИЗЕ ТЕНДЕРА</div>
+  <div class="q-item"><span class="q-num">1.</span>Что именно покупает заказчик? (детально изучи ТЗ)</div>
+  <div class="q-item"><span class="q-num">2.</span>44-ФЗ или 223-ФЗ? На какой площадке? Зарегистрирован ли там?</div>
+  <div class="q-item"><span class="q-num">3.</span>Обеспечение заявки и контракта — сколько денег нужно заморозить?</div>
+  <div class="q-item"><span class="q-num">4.</span>Были ли запросы разъяснений от других участников? Что ответил заказчик?</div>
+  <div class="q-item"><span class="q-num">5.</span>Требуется ли опыт, НОСТРОЙ, лицензия? У нас есть?</div>
+  <div class="q-item"><span class="q-num">6.</span>Есть ли национальный режим? Нужен российский товар?</div>
+  <div class="q-item"><span class="q-num">7.</span>Сроки и место выполнения работ — реалистично?</div>
+  <div class="q-item"><span class="q-num">8.</span>Какие обязательства кроме работ — разгрузка, монтаж, вывоз мусора?</div>
+  <div class="q-item"><span class="q-num">9.</span>Объём фиксированный или «по требованию» заказчика?</div>
+  <div class="q-item"><span class="q-num">10.</span>Все характеристики определены или нужно согласовывать в ходе работ?</div>
+  <div class="q-item"><span class="q-num">11.</span>Порядок приёмки — какие документы нужны, нужно ли присутствие?</div>
+  <div class="q-item"><span class="q-num">12.</span>Сроки оплаты — 30/60/90 дней после сдачи?</div>
+  <div class="q-item"><span class="q-num">13.</span>Гарантийные обязательства — срок и объём?</div>
+  <div class="q-item"><span class="q-num">14.</span>Штрафы за просрочку — стандартные или повышенные?</div>
+  <div class="q-item"><span class="q-num">15.</span>Что знаем о заказчике? Платит ли вовремя по прошлым контрактам?</div>
+</div>
+
+<!-- ЧЕКЛИСТ -->
+<div class="checklist" style="margin-top:20px;">
+  <div class="cl-header">✅ ЧЕКЛИСТ ПЕРЕД ПОДАЧЕЙ ЗАЯВКИ</div>
+  <div class="cl-item" onclick="check(this)"><div class="checkbox"></div><span>Прочитал извещение и документацию полностью</span></div>
+  <div class="cl-item" onclick="check(this)"><div class="checkbox"></div><span>Прочитал техзадание полностью — каждую строчку</span></div>
+  <div class="cl-item" onclick="check(this)"><div class="checkbox"></div><span>Проверил — есть ли слово «эквивалент» в ТЗ</span></div>
+  <div class="cl-item" onclick="check(this)"><div class="checkbox"></div><span>Прочитал проект контракта — оплата, штрафы, гарантии</span></div>
+  <div class="cl-item" onclick="check(this)"><div class="checkbox"></div><span>Проверил заказчика на kad.arbitr.ru</span></div>
+  <div class="cl-item" onclick="check(this)"><div class="checkbox"></div><span>Запросил цены у субподрядчиков и поставщиков</span></div>
+  <div class="cl-item" onclick="check(this)"><div class="checkbox"></div><span>Заполнил скоринг-лист — балл выше 60</span></div>
+  <div class="cl-item" onclick="check(this)"><div class="checkbox"></div><span>Посчитал оборотные средства до оплаты заказчика</span></div>
+  <div class="cl-item" onclick="check(this)"><div class="checkbox"></div><span>Красных флагов нет</span></div>
+  <div class="cl-item" onclick="check(this)"><div class="checkbox"></div><span>Принял решение — УЧАСТВУЕМ</span></div>
+</div>
+
+<script>
+function toggle(el) {
+  el.classList.toggle('open');
+}
+function check(el) {
+  el.classList.toggle('checked');
+}
+</script>
+
+</body>
+</html>
