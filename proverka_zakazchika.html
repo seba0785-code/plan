@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Проверка заказчика</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Golos+Text:wght@400;500;600;700&display=swap');
+
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e8eaf0;
+    --muted: #7a7d8f;
+    --blue: #4d9fff;
+    --green: #27ae60;
+    --orange: #f5a623;
+    --red: #e74c3c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Golos Text', sans-serif;
+    padding: 20px 16px 60px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .header {
+    text-align: center;
+    padding: 24px 20px;
+    background: linear-gradient(135deg, #C55A11, #f5a623);
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+
+  .header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 34px;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+
+  .header p { font-size: 12px; opacity: 0.8; }
+
+  .site-card {
+    background: var(--card);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+
+  .site-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .site-num {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .site-info { flex: 1; }
+  .site-name { font-size: 15px; font-weight: 700; }
+  .site-url { font-size: 11px; color: var(--muted); margin-top: 1px; }
+
+  .site-link {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+  }
+
+  .checks { padding: 12px 16px; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+  .check-item:last-child { border-bottom: none; }
+
+  .checkbox {
+    width: 24px;
+    height: 24px;
+    border-radius: 7px;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+  }
+
+  .check-item.checked .checkbox {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .check-item.checked .checkbox::after {
+    content: '✓';
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .check-text { flex: 1; }
+  .check-title { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+  .check-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+  .check-item.checked .check-title {
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+
+  .verdict {
+    background: var(--card);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    margin-top: 20px;
+    overflow: hidden;
+  }
+
+  .verdict-header {
+    padding: 14px 16px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+    background: rgba(255,255,255,0.04);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .verdict-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .verdict-item:last-child { border-bottom: none; }
+
+  .verdict-icon { font-size: 20px; flex-shrink: 0; }
+
+  .reset-btn {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--muted);
+    font-size: 13px;
+    font-family: 'Golos Text', sans-serif;
+    cursor: pointer;
+    text-align: center;
+  }
+  .reset-btn:active { background: rgba(255,255,255,0.1); }
+
+  .progress-bar {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin: 16px 0 20px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--green);
+    border-radius: 2px;
+    transition: width 0.3s;
+    width: 0%;
+  }
+
+  .counter {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🔍 Проверка заказчика</h1>
+  <p>Катя · Памятка перед каждым тендером</p>
+</div>
+
+<div class="counter" id="counter">Выполнено: 0 из 10</div>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+<!-- САЙТ 1 -->
+<div class="site-card">
+  <div class="site-header">
+    <div class="site-num" style="background:rgba(77,159,255,0.2);color:#4d9fff;">1</div>
+    <div class="site-info">
+      <div class="site-name" style="color:#4d9fff;">Налоговая — реестр</div>
+      <div class="site-url">pb.nalog.ru</div>
+    </div>
+    <a href="https://pb.nalog.ru" target="_blank" class="site-link" style="background:#4d9fff;">Открыть →</a>
+  </div>
+  <div class="checks">
+    <div class="check-item" onclick="check(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <div class="check-title">Вбила ИНН заказчика</div>
+        <div class="check-desc">ИНН берём из тендерной документации на ЕИС</div>
+      </div>
+    </div>
+    <div class="check-item" onclick="check(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <div class="check-title">Организация реальная и действующая</div>
+        <div class="check-desc">Статус: «Действующее» — хорошо. «Ликвидировано» — СТОП</div>
+      </div>
+    </div>
+    <div class="check-item" onclick="check(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <div class="check-title">Нет в списке дисквалифицированных лиц</div>
+        <div class="check-desc">Проверь вкладку «Дисквалифицированные лица»</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- САЙТ 2 -->
+<div class="site-card">
+  <div class="site-header">
+    <div class="site-num" style="background:rgba(231,76,60,0.2);color:#e74c3c;">2</div>
+    <div class="site-info">
+      <div class="site-name" style="color:#e74c3c;">Арбитраж — суды</div>
+      <div class="site-url">kad.arbitr.ru</div>
+    </div>
+    <a href="https://kad.arbitr.ru" target="_blank" class="site-link" style="background:#e74c3c;">Открыть →</a>
+  </div>
+  <div class="checks">
+    <div class="check-item" onclick="check(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <div class="check-title">Нет исков о взыскании оплат от подрядчиков</div>
+        <div class="check-desc">Ищи иски где заказчик — ответчик, а подрядчик — истец</div>
+      </div>
+    </div>
+    <div class="check-item" onclick="check(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <div class="check-title">Мало судебных дел (до 3-5 — норма)</div>
+        <div class="check-desc">Десятки исков = заказчик системно не платит → СТОП</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- САЙТ 3 -->
+<div class="site-card">
+  <div class="site-header">
+    <div class="site-num" style="background:rgba(245,166,35,0.2);color:#f5a623;">3</div>
+    <div class="site-info">
+      <div class="site-name" style="color:#f5a623;">Приставы — долги</div>
+      <div class="site-url">fssp.gov.ru</div>
+    </div>
+    <a href="https://fssp.gov.ru/iss/ip" target="_blank" class="site-link" style="background:#f5a623;">Открыть →</a>
+  </div>
+  <div class="checks">
+    <div class="check-item" onclick="check(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <div class="check-title">Нет исполнительных производств</div>
+        <div class="check-desc">Долги у заказчика = риск что не заплатит и нам</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- САЙТ 4 -->
+<div class="site-card">
+  <div class="site-header">
+    <div class="site-num" style="background:rgba(39,174,96,0.2);color:#27ae60;">4</div>
+    <div class="site-info">
+      <div class="site-name" style="color:#27ae60;">ЕИС — история контрактов</div>
+      <div class="site-url">zakupki.gov.ru</div>
+    </div>
+    <a href="https://zakupki.gov.ru" target="_blank" class="site-link" style="background:#27ae60;">Открыть →</a>
+  </div>
+  <div class="checks">
+    <div class="check-item" onclick="check(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <div class="check-title">Посмотрела предыдущие контракты заказчика</div>
+        <div class="check-desc">Реестр контрактов → поиск по ИНН заказчика</div>
+      </div>
+    </div>
+    <div class="check-item" onclick="check(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <div class="check-title">Контракты исполнены без скандалов</div>
+        <div class="check-desc">Смотри статус контрактов — «Исполнен» хорошо</div>
+      </div>
+    </div>
+    <div class="check-item" onclick="check(this)">
+      <div class="checkbox"></div>
+      <div class="check-text">
+        <div class="check-title">Не всегда побеждает одна и та же компания</div>
+        <div class="check-desc">Если победитель всегда один — тендер может быть заточен под него</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ВЕРДИКТ -->
+<div class="verdict">
+  <div class="verdict-header">ВЕРДИКТ</div>
+  <div class="verdict-item">
+    <div class="verdict-icon">✅</div>
+    <div><strong>Всё чисто</strong> — сообщи Антону, можно участвовать</div>
+  </div>
+  <div class="verdict-item">
+    <div class="verdict-icon">⚠️</div>
+    <div><strong>Есть вопросы</strong> — обсудите вместе перед решением</div>
+  </div>
+  <div class="verdict-item">
+    <div class="verdict-icon">🔴</div>
+    <div><strong>Много исков / долгов</strong> — переводи сделку в «Проигрыш», не участвуем</div>
+  </div>
+</div>
+
+<button class="reset-btn" onclick="reset()">🔄 Сбросить — новый тендер</button>
+
+<script>
+const total = document.querySelectorAll('.check-item').length;
+
+function check(el) {
+  el.classList.toggle('checked');
+  updateProgress();
+}
+
+function updateProgress() {
+  const done = document.querySelectorAll('.check-item.checked').length;
+  document.getElementById('counter').textContent = `Выполнено: ${done} из ${total}`;
+  document.getElementById('progress').style.width = `${(done/total)*100}%`;
+}
+
+function reset() {
+  document.querySelectorAll('.check-item').forEach(el => el.classList.remove('checked'));
+  updateProgress();
+}
+</script>
+
+</body>
+</html>
