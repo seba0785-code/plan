@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Разбор тендера — ИП Шушакова</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=Golos+Text:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --surface2: #1e1e1e;
+    --border: #2a2a2a;
+    --text: #f0f0f0;
+    --muted: #666;
+    --green: #22c55e;
+    --green-dim: #052e16;
+    --amber: #f59e0b;
+    --amber-dim: #1c1200;
+    --red: #ef4444;
+    --red-dim: #200a0a;
+    --blue: #3b82f6;
+    --blue-dim: #0a1628;
+    --purple: #a855f7;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Golos Text', sans-serif;
+    min-height: 100vh;
+    padding-bottom: 4rem;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #0a0a0a 0%, #111827 50%, #0a0a0a 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 1.75rem 1.25rem 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40px; left: 50%; transform: translateX(-50%);
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    border: 1px solid #1e3a5f;
+    border-radius: 20px;
+    padding: 4px 12px;
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(1.5rem, 6vw, 2.2rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 0.4rem;
+  }
+  .hero-sub { font-size: 13px; color: var(--muted); }
+
+  /* CONTAINER */
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 0;
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+    padding-left: 2px;
+  }
+
+  /* INPUT CARD */
+  .input-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .field { margin-bottom: 1rem; }
+  .field:last-child { margin-bottom: 0; }
+  .field label {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .field input, .field select {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    color: var(--text);
+    font-family: 'Golos Text', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.15s;
+    -webkit-appearance: none;
+  }
+  .field input:focus, .field select:focus { border-color: var(--blue); }
+  .field select option { background: #1e1e1e; }
+
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  /* QUESTIONS */
+  .questions-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .q-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 0.9rem 1.1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .q-item:last-child { border-bottom: none; }
+
+  .q-text { flex: 1; font-size: 13px; color: var(--text); line-height: 1.5; padding-top: 2px; }
+  .q-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  .toggle-wrap {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .toggle-btn {
+    padding: 5px 11px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'Golos Text', sans-serif;
+  }
+  .toggle-btn:hover { border-color: #444; color: var(--text); }
+  .toggle-btn.yes.active { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+  .toggle-btn.no.active { background: var(--red-dim); border-color: var(--red); color: var(--red); }
+
+  /* RUN BUTTON */
+  .run-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--blue);
+    border: none;
+    border-radius: 14px;
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em;
+  }
+  .run-btn:hover { background: #2563eb; }
+  .run-btn:active { transform: scale(0.98); }
+
+  /* RESULT */
+  .result { display: none; }
+  .result.show { display: block; }
+
+  /* SCORE CARD */
+  .score-card {
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    border: 1px solid;
+  }
+  .score-card.green { background: var(--green-dim); border-color: #166534; }
+  .score-card.amber { background: var(--amber-dim); border-color: #92400e; }
+  .score-card.red { background: var(--red-dim); border-color: #7f1d1d; }
+
+  .score-num {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .score-card.green .score-num { color: var(--green); }
+  .score-card.amber .score-num { color: var(--amber); }
+  .score-card.red .score-num { color: var(--red); }
+
+  .score-label { font-size: 13px; opacity: 0.8; }
+  .score-verdict {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 0.6rem;
+  }
+  .score-card.green .score-verdict { color: var(--green); }
+  .score-card.amber .score-verdict { color: var(--amber); }
+  .score-card.red .score-verdict { color: var(--red); }
+
+  /* FLAGS */
+  .flags-card {
+    background: var(--red-dim);
+    border: 1px solid #7f1d1d;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+  .flags-header {
+    padding: 0.75rem 1.1rem;
+    border-bottom: 1px solid #3a1010;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--red);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .flag-item {
+    display: flex;
+    gap: 10px;
+    padding: 0.65rem 1.1rem;
+    border-bottom: 1px solid #2a1010;
+    font-size: 13px;
+    color: #f87171;
+    line-height: 1.45;
+  }
+  .flag-item:last-child { border-bottom: none; }
+  .flag-dot { color: var(--red); flex-shrink: 0; margin-top: 2px; }
+
+  /* TOOLS */
+  .tools-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+    padding-left: 2px;
+  }
+
+  .tool-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1rem 1.1rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .tool-card.urgent { border-color: var(--red); background: var(--red-dim); }
+  .tool-card.warn { border-color: #92400e; background: var(--amber-dim); }
+
+  .tool-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+  .tool-body { flex: 1; }
+  .tool-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .tool-card.urgent .tool-name { color: #f87171; }
+  .tool-card.warn .tool-name { color: var(--amber); }
+  .tool-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .tool-link {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    background: var(--blue);
+  }
+  .tool-card.urgent .tool-link { background: var(--red); }
+  .tool-card.warn .tool-link { background: var(--amber); color: #000; }
+
+  /* RESET */
+  .reset-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--muted);
+    font-family: 'Golos Text', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: all 0.15s;
+  }
+  .reset-btn:hover { border-color: #444; color: var(--text); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-badge">ИП Шушакова · Тендерный завод</div>
+  <h1>Разбор тендера</h1>
+  <p class="hero-sub">Заполни данные — система покажет риски и что проверить</p>
+</div>
+
+<div class="container">
+
+  <!-- ВВОД ДАННЫХ -->
+  <div class="section-label">Основные данные</div>
+  <div class="input-card">
+    <div class="field">
+      <label>Название тендера</label>
+      <input type="text" id="name" placeholder="Капитальный ремонт МКД по ул. Ленина 5">
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>НМЦК (₽)</label>
+        <input type="number" id="nmck" placeholder="1500000">
+      </div>
+      <div class="field">
+        <label>Срок выполнения (дней)</label>
+        <input type="number" id="days" placeholder="90">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Тип закупки</label>
+        <select id="type">
+          <option value="">Выбери</option>
+          <option value="44">44-ФЗ</option>
+          <option value="223">223-ФЗ</option>
+          <option value="com">Коммерческая</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Воронка</label>
+        <select id="funnel">
+          <option value="">Выбери</option>
+          <option value="mkd">Капремонт МКД</option>
+          <option value="mun">Муниципальные объекты</option>
+          <option value="blag">Благоустройство</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- ВОПРОСЫ -->
+  <div class="section-label">Быстрый скоринг — отвечай да/нет</div>
+  <div class="questions-card">
+
+    <div class="q-item" data-key="nostroy" data-yes="0" data-no="-20">
+      <div class="q-text">
+        Требуется НОСТРОЙ / лицензия?
+        <div class="q-sub">Проверь раздел «Требования к участникам»</div>
+      </div>
+      <div class="toggle-wrap">
+        <button class="toggle-btn yes" onclick="setAnswer(this,'yes')">Да</button>
+        <button class="toggle-btn no" onclick="setAnswer(this,'no')">Нет</button>
+      </div>
+    </div>
+
+    <div class="q-item" data-key="exp" data-yes="10" data-no="-15">
+      <div class="q-text">
+        У нас есть опыт таких работ?
+        <div class="q-sub">Аналогичные контракты за последние 3 года</div>
+      </div>
+      <div class="toggle-wrap">
+        <button class="toggle-btn yes" onclick="setAnswer(this,'yes')">Да</button>
+        <button class="toggle-btn no" onclick="setAnswer(this,'no')">Нет</button>
+      </div>
+    </div>
+
+    <div class="q-item" data-key="sub" data-yes="10" data-no="-15">
+      <div class="q-text">
+        Есть субподрядчики под этот вид работ?
+        <div class="q-sub">Договорённости с бригадой / подрядчиком</div>
+      </div>
+      <div class="toggle-wrap">
+        <button class="toggle-btn yes" onclick="setAnswer(this,'yes')">Да</button>
+        <button class="toggle-btn no" onclick="setAnswer(this,'no')">Нет</button>
+      </div>
+    </div>
+
+    <div class="q-item" data-key="money" data-yes="15" data-no="-20">
+      <div class="q-text">
+        Хватает оборотных средств до оплаты?
+        <div class="q-sub">Аванса нет — работаем на своих деньгах</div>
+      </div>
+      <div class="toggle-wrap">
+        <button class="toggle-btn yes" onclick="setAnswer(this,'yes')">Да</button>
+        <button class="toggle-btn no" onclick="setAnswer(this,'no')">Нет</button>
+      </div>
+    </div>
+
+    <div class="q-item" data-key="margin" data-yes="15" data-no="-25">
+      <div class="q-text">
+        Маржа больше 15%?
+        <div class="q-sub">После всех расходов — материалы, люди, транспорт</div>
+      </div>
+      <div class="toggle-wrap">
+        <button class="toggle-btn yes" onclick="setAnswer(this,'yes')">Да</button>
+        <button class="toggle-btn no" onclick="setAnswer(this,'no')">Нет</button>
+      </div>
+    </div>
+
+    <div class="q-item" data-key="days_ok" data-yes="10" data-no="-20">
+      <div class="q-text">
+        Срок выполнения реалистичный (30+ дней)?
+        <div class="q-sub">Менее 30 дней — красный флаг</div>
+      </div>
+      <div class="toggle-wrap">
+        <button class="toggle-btn yes" onclick="setAnswer(this,'yes')">Да</button>
+        <button class="toggle-btn no" onclick="setAnswer(this,'no')">Нет</button>
+      </div>
+    </div>
+
+    <div class="q-item" data-key="zakazchik" data-yes="10" data-no="-20">
+      <div class="q-text">
+        Заказчик проверен — нет долгов и судов?
+        <div class="q-sub">kad.arbitr.ru + fssp.gov.ru + ЕИС история</div>
+      </div>
+      <div class="toggle-wrap">
+        <button class="toggle-btn yes" onclick="setAnswer(this,'yes')">Да</button>
+        <button class="toggle-btn no" onclick="setAnswer(this,'no')">Нет</button>
+      </div>
+    </div>
+
+    <div class="q-item" data-key="zaточка" data-yes="-15" data-no="10">
+      <div class="q-text">
+        Признаки заточки ТЗ под конкурента?
+        <div class="q-sub">Один победитель всегда, нереальные параметры</div>
+      </div>
+      <div class="toggle-wrap">
+        <button class="toggle-btn yes" onclick="setAnswer(this,'yes')">Да</button>
+        <button class="toggle-btn no" onclick="setAnswer(this,'no')">Нет</button>
+      </div>
+    </div>
+
+    <div class="q-item" data-key="fines" data-yes="-15" data-no="10">
+      <div class="q-text">
+        Штрафы в контракте больше 1% в день?
+        <div class="q-sub">Найди в проекте контракта раздел «Ответственность»</div>
+      </div>
+      <div class="toggle-wrap">
+        <button class="toggle-btn yes" onclick="setAnswer(this,'yes')">Да</button>
+        <button class="toggle-btn no" onclick="setAnswer(this,'no')">Нет</button>
+      </div>
+    </div>
+
+    <div class="q-item" data-key="223" data-yes="-10" data-no="5">
+      <div class="q-text">
+        Это 223-ФЗ и нет опыта на этой площадке?
+        <div class="q-sub">223-ФЗ сложнее — нестандартные правила</div>
+      </div>
+      <div class="toggle-wrap">
+        <button class="toggle-btn yes" onclick="setAnswer(this,'yes')">Да</button>
+        <button class="toggle-btn no" onclick="setAnswer(this,'no')">Нет</button>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="run-btn" onclick="analyze()">⚡ Разобрать тендер</button>
+
+  <!-- РЕЗУЛЬТАТ -->
+  <div class="result" id="result">
+
+    <div class="section-label">Результат анализа</div>
+    <div class="score-card" id="scoreCard">
+      <div class="score-num" id="scoreNum">0</div>
+      <div class="score-label">баллов из 100</div>
+      <div class="score-verdict" id="scoreVerdict"></div>
+    </div>
+
+    <div class="flags-card" id="flagsCard" style="display:none;">
+      <div class="flags-header">🚩 Красные флаги — требуют внимания</div>
+      <div id="flagsList"></div>
+    </div>
+
+    <div class="tools-label">Что делать дальше</div>
+    <div id="toolsList"></div>
+
+    <button class="reset-btn" onclick="resetAll()">🔄 Новый тендер</button>
+  </div>
+
+</div>
+
+<script>
+const answers = {};
+
+function setAnswer(btn, val) {
+  const wrap = btn.closest('.toggle-wrap');
+  wrap.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const item = btn.closest('.q-item');
+  answers[item.dataset.key] = val;
+}
+
+function analyze() {
+  const name = document.getElementById('name').value || 'Тендер';
+  const nmck = parseInt(document.getElementById('nmck').value) || 0;
+  const days = parseInt(document.getElementById('days').value) || 0;
+  const type = document.getElementById('type').value;
+
+  let score = 50;
+  const flags = [];
+  const tools = [];
+
+  // Score from questions
+  document.querySelectorAll('.q-item').forEach(item => {
+    const key = item.dataset.key;
+    const ans = answers[key];
+    if (!ans) return;
+    const delta = ans === 'yes' ? parseInt(item.dataset.yes) : parseInt(item.dataset.no);
+    score += delta;
+  });
+
+  // Auto checks from inputs
+  if (nmck > 0 && nmck < 500000) {
+    flags.push('Сумма менее 500 тыс ₽ — стоит ли тратить время?');
+    score -= 10;
+  }
+  if (days > 0 && days < 30) {
+    flags.push('Срок менее 30 дней — крайне рискованно');
+    score -= 15;
+  }
+  if (type === '223') {
+    flags.push('223-ФЗ — нестандартные правила, проверь требования площадки');
+    score -= 5;
+  }
+
+  // Flags from answers
+  if (answers['nostroy'] === 'yes') flags.push('Требуется НОСТРОЙ/лицензия — проверь наличие до подачи');
+  if (answers['exp'] === 'no') flags.push('Нет опыта таких работ — высокий риск срыва контракта и РНП');
+  if (answers['sub'] === 'no') flags.push('Нет субподрядчиков — кто будет делать работу?');
+  if (answers['money'] === 'no') flags.push('Нет оборотных средств — без денег контракт не исполнить');
+  if (answers['margin'] === 'no') flags.push('Маржа менее 15% — участие экономически нецелесообразно');
+  if (answers['days_ok'] === 'no') flags.push('Нереальный срок — риск просрочки и штрафов');
+  if (answers['zakazchik'] === 'no') flags.push('Заказчик не проверен — сначала проверь, потом решай');
+  if (answers['zaточка'] === 'yes') flags.push('Признаки заточки ТЗ — тендер может быть под конкурента');
+  if (answers['fines'] === 'yes') flags.push('Штрафы более 1%/день — катастрофические потери при просрочке');
+  if (answers['223'] === 'yes') flags.push('223-ФЗ без опыта — очень высокий риск ошибки в заявке');
+
+  score = Math.max(0, Math.min(100, score));
+
+  // Score card
+  const card = document.getElementById('scoreCard');
+  const num = document.getElementById('scoreNum');
+  const verdict = document.getElementById('scoreVerdict');
+  num.textContent = score;
+
+  if (score >= 70) {
+    card.className = 'score-card green';
+    verdict.textContent = '✅ УЧАСТВУЕМ';
+  } else if (score >= 45) {
+    card.className = 'score-card amber';
+    verdict.textContent = '⚠️ ОБСУДИТЬ С АНТОНОМ';
+  } else {
+    card.className = 'score-card red';
+    verdict.textContent = '🚫 НЕ УЧАСТВУЕМ';
+  }
+
+  // Flags
+  const flagsCard = document.getElementById('flagsCard');
+  const flagsList = document.getElementById('flagsList');
+  if (flags.length > 0) {
+    flagsCard.style.display = 'block';
+    flagsList.innerHTML = flags.map(f =>
+      `<div class="flag-item"><span class="flag-dot">▸</span><span>${f}</span></div>`
+    ).join('');
+  } else {
+    flagsCard.style.display = 'none';
+  }
+
+  // Tools
+  const toolsList = document.getElementById('toolsList');
+  const toolsHTML = [];
+
+  if (answers['zakazchik'] === 'no' || answers['zakazchik'] === undefined) {
+    toolsHTML.push(`
+      <div class="tool-card urgent">
+        <div class="tool-icon">🔍</div>
+        <div class="tool-body">
+          <div class="tool-name">Сначала — проверить заказчика</div>
+          <div class="tool-desc">Кате: налоговая, арбитраж, приставы, история контрактов</div>
+          <a href="https://seba0785-code.github.io/plan/proverka_zakazchika.html" target="_blank" class="tool-link">Открыть памятку →</a>
+        </div>
+      </div>`);
+  }
+
+  toolsHTML.push(`
+    <div class="tool-card ${flags.length > 2 ? 'warn' : ''}">
+      <div class="tool-icon">📖</div>
+      <div class="tool-body">
+        <div class="tool-name">Как читать ТЗ — памятка Антона</div>
+        <div class="tool-desc">Символы, признаки заточки, запрос разъяснений заказчику</div>
+        <a href="https://seba0785-code.github.io/plan/kak_chitat_techzadanie.html" target="_blank" class="tool-link">Открыть →</a>
+      </div>
+    </div>`);
+
+  if (score >= 45) {
+    toolsHTML.push(`
+      <div class="tool-card">
+        <div class="tool-icon">✅</div>
+        <div class="tool-body">
+          <div class="tool-name">Перед подачей — финальный чеклист</div>
+          <div class="tool-desc">Подписи, печати, реквизиты, обеспечение — всё по списку</div>
+          <a href="https://seba0785-code.github.io/plan/finalcheck.html" target="_blank" class="tool-link">Открыть →</a>
+        </div>
+      </div>`);
+  }
+
+  if (score >= 70) {
+    toolsHTML.push(`
+      <div class="tool-card">
+        <div class="tool-icon">📋</div>
+        <div class="tool-body">
+          <div class="tool-name">После победы — проверить контракт</div>
+          <div class="tool-desc">До подписания: реквизиты, цена, НДС, штрафы, сроки</div>
+          <a href="https://seba0785-code.github.io/plan/proverka_kontrakta.html" target="_blank" class="tool-link">Открыть →</a>
+        </div>
+      </div>`);
+  }
+
+  toolsHTML.push(`
+    <div class="tool-card">
+      <div class="tool-icon">📊</div>
+      <div class="tool-body">
+        <div class="tool-name">Скоринг-лист — детальный расчёт</div>
+        <div class="tool-desc">Блок 1: можем выполнить · Блок 2: выгодно · Блок 3: риски</div>
+        <a href="https://docs.google.com/spreadsheets/d/1_LDyBAgZoESBK15GDopREUSIEtPsflM7lLt6LETEpnM/edit" target="_blank" class="tool-link">Открыть →</a>
+      </div>
+    </div>`);
+
+  toolsList.innerHTML = toolsHTML.join('');
+
+  document.getElementById('result').className = 'result show';
+  document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function resetAll() {
+  answers = {};
+  document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('name').value = '';
+  document.getElementById('nmck').value = '';
+  document.getElementById('days').value = '';
+  document.getElementById('type').value = '';
+  document.getElementById('funnel').value = '';
+  document.getElementById('result').className = 'result';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
