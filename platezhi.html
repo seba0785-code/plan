@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Платёжный календарь — ИП Шушакова</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=Golos+Text:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --surface2: #1e1e1e;
+    --border: #2a2a2a;
+    --text: #f0f0f0;
+    --muted: #666;
+    --green: #22c55e;
+    --green-dim: #052e16;
+    --green-border: #166534;
+    --amber: #f59e0b;
+    --amber-dim: #1c1200;
+    --amber-border: #92400e;
+    --red: #ef4444;
+    --red-dim: #200a0a;
+    --red-border: #7f1d1d;
+    --blue: #3b82f6;
+    --blue-dim: #0a1628;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Golos Text', sans-serif;
+    min-height: 100vh;
+    padding-bottom: 4rem;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #0a0a0a 0%, #0d1f0d 50%, #0a0a0a 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 1.75rem 1.25rem 1.5rem;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green);
+    border: 1px solid var(--green-border);
+    border-radius: 20px;
+    padding: 4px 12px;
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(1.4rem, 5vw, 2rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 0.4rem;
+  }
+  .hero-sub { font-size: 13px; color: var(--muted); }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 0;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+    padding-left: 2px;
+  }
+
+  /* BALANCE */
+  .balance-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.1rem 1.25rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .balance-label { font-size: 13px; color: var(--muted); flex: 1; }
+  .balance-input {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px 14px;
+    color: var(--text);
+    font-family: 'Golos Text', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    width: 180px;
+    text-align: right;
+    outline: none;
+  }
+  .balance-input:focus { border-color: var(--green); }
+  .rub { font-size: 13px; color: var(--muted); }
+
+  /* CARDS */
+  .entries-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .entries-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .entries-title {
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .add-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 5px 12px;
+    color: var(--muted);
+    font-family: 'Golos Text', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .add-btn:hover { border-color: #444; color: var(--text); }
+
+  .entry-row {
+    display: grid;
+    grid-template-columns: 1fr 120px 110px 36px;
+    gap: 8px;
+    padding: 0.65rem 1.1rem;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+  }
+  .entry-row:last-child { border-bottom: none; }
+
+  .entry-input {
+    background: var(--surface2);
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 7px 10px;
+    color: var(--text);
+    font-family: 'Golos Text', sans-serif;
+    font-size: 13px;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .entry-input:focus { border-color: var(--border); }
+  .entry-input[type="date"] { color-scheme: dark; }
+
+  .del-btn {
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: var(--muted);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    line-height: 1;
+  }
+  .del-btn:hover { background: var(--red-dim); border-color: var(--red-border); color: var(--red); }
+
+  .col-header {
+    display: grid;
+    grid-template-columns: 1fr 120px 110px 36px;
+    gap: 8px;
+    padding: 0.4rem 1.1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .col-h { font-size: 11px; color: var(--muted); font-weight: 500; }
+
+  /* CALC BUTTON */
+  .calc-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--green);
+    border: none;
+    border-radius: 14px;
+    color: #000;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+    margin-bottom: 1.5rem;
+  }
+  .calc-btn:hover { background: #16a34a; }
+  .calc-btn:active { transform: scale(0.98); }
+
+  /* RESULT */
+  .result { display: none; }
+  .result.show { display: block; }
+
+  /* METRICS */
+  .metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 1rem;
+  }
+  .metric {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .metric.danger { background: var(--red-dim); border-color: var(--red-border); }
+  .metric.warn { background: var(--amber-dim); border-color: var(--amber-border); }
+  .metric.good { background: var(--green-dim); border-color: var(--green-border); }
+  .metric-val {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+  .metric.danger .metric-val { color: var(--red); }
+  .metric.warn .metric-val { color: var(--amber); }
+  .metric.good .metric-val { color: var(--green); }
+  .metric-label { font-size: 11px; color: var(--muted); line-height: 1.3; }
+
+  /* TIMELINE */
+  .timeline-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+  .timeline-header {
+    padding: 0.85rem 1.1rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .tl-row {
+    display: grid;
+    grid-template-columns: 90px 1fr auto auto;
+    gap: 10px;
+    padding: 0.7rem 1.1rem;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+    font-size: 13px;
+  }
+  .tl-row:last-child { border-bottom: none; }
+  .tl-row.income { border-left: 3px solid var(--green); }
+  .tl-row.expense { border-left: 3px solid var(--red); }
+  .tl-row.gap { background: var(--red-dim); border-left: 3px solid var(--red); }
+
+  .tl-date { font-size: 12px; color: var(--muted); }
+  .tl-name { color: var(--text); }
+  .tl-amount { font-weight: 600; white-space: nowrap; }
+  .tl-amount.plus { color: var(--green); }
+  .tl-amount.minus { color: var(--red); }
+  .tl-balance { font-size: 12px; white-space: nowrap; }
+  .tl-balance.ok { color: var(--green); }
+  .tl-balance.warn { color: var(--amber); }
+  .tl-balance.bad { color: var(--red); font-weight: 600; }
+
+  /* GAP ALERT */
+  .gap-alert {
+    background: var(--red-dim);
+    border: 1px solid var(--red-border);
+    border-radius: 14px;
+    padding: 1rem 1.1rem;
+    margin-bottom: 1rem;
+  }
+  .gap-alert-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--red);
+    margin-bottom: 0.5rem;
+  }
+  .gap-alert-item {
+    font-size: 13px;
+    color: #f87171;
+    padding: 4px 0;
+    border-bottom: 1px solid #2a1010;
+    display: flex;
+    justify-content: space-between;
+  }
+  .gap-alert-item:last-child { border-bottom: none; }
+
+  .tip-card {
+    background: var(--blue-dim);
+    border: 1px solid #1e3a5f;
+    border-radius: 14px;
+    padding: 1rem 1.1rem;
+    margin-bottom: 1rem;
+  }
+  .tip-title { font-size: 12px; font-weight: 600; color: var(--blue); margin-bottom: 6px; }
+  .tip-text { font-size: 13px; color: #93c5fd; line-height: 1.6; }
+
+  .reset-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--muted);
+    font-family: 'Golos Text', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .reset-btn:hover { border-color: #444; color: var(--text); }
+
+  @media (max-width: 480px) {
+    .metrics { grid-template-columns: 1fr 1fr; }
+    .entry-row { grid-template-columns: 1fr 100px 36px; }
+    .entry-row .amount-col { display: none; }
+    .col-header { grid-template-columns: 1fr 100px 36px; }
+    .col-header .amount-col { display: none; }
+    .tl-row { grid-template-columns: 80px 1fr auto; }
+    .tl-balance { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-badge">ИП Шушакова · Финансы</div>
+  <h1>Платёжный календарь</h1>
+  <p class="hero-sub">Введи контракты и расходы — увидишь кассовые разрывы заранее</p>
+</div>
+
+<div class="container">
+
+  <!-- БАЛАНС -->
+  <div class="section-label">Текущий баланс на счёте</div>
+  <div class="balance-card">
+    <div class="balance-label">Сколько денег сейчас на расчётном счёте</div>
+    <input type="number" class="balance-input" id="balance" placeholder="0">
+    <span class="rub">₽</span>
+  </div>
+
+  <!-- ПОСТУПЛЕНИЯ -->
+  <div class="section-label">Поступления — оплаты по контрактам</div>
+  <div class="entries-card">
+    <div class="entries-header">
+      <div class="entries-title">💰 Контракты</div>
+      <button class="add-btn" onclick="addRow('incomes')">+ Добавить</button>
+    </div>
+    <div class="col-header">
+      <div class="col-h">Название контракта</div>
+      <div class="col-h amount-col">Сумма (₽)</div>
+      <div class="col-h">Дата оплаты</div>
+      <div class="col-h"></div>
+    </div>
+    <div id="incomes">
+      <div class="entry-row">
+        <input class="entry-input" type="text" placeholder="Контракт — капремонт МКД">
+        <input class="entry-input amount-col" type="number" placeholder="500000">
+        <input class="entry-input" type="date">
+        <button class="del-btn" onclick="delRow(this)">×</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- РАСХОДЫ -->
+  <div class="section-label">Расходы — платежи по контрактам</div>
+  <div class="entries-card">
+    <div class="entries-header">
+      <div class="entries-title">📤 Расходы</div>
+      <button class="add-btn" onclick="addRow('expenses')">+ Добавить</button>
+    </div>
+    <div class="col-header">
+      <div class="col-h">Назначение платежа</div>
+      <div class="col-h amount-col">Сумма (₽)</div>
+      <div class="col-h">Дата платежа</div>
+      <div class="col-h"></div>
+    </div>
+    <div id="expenses">
+      <div class="entry-row">
+        <input class="entry-input" type="text" placeholder="Материалы — кровля">
+        <input class="entry-input amount-col" type="number" placeholder="150000">
+        <input class="entry-input" type="date">
+        <button class="del-btn" onclick="delRow(this)">×</button>
+      </div>
+      <div class="entry-row">
+        <input class="entry-input" type="text" placeholder="Зарплата бригаде">
+        <input class="entry-input amount-col" type="number" placeholder="80000">
+        <input class="entry-input" type="date">
+        <button class="del-btn" onclick="delRow(this)">×</button>
+      </div>
+    </div>
+  </div>
+
+  <button class="calc-btn" onclick="calculate()">📊 Рассчитать календарь</button>
+
+  <!-- РЕЗУЛЬТАТ -->
+  <div class="result" id="result">
+
+    <div class="section-label">Итог по периоду</div>
+    <div class="metrics" id="metrics"></div>
+
+    <div id="gapAlert"></div>
+
+    <div class="section-label">Движение денег по датам</div>
+    <div class="timeline-card">
+      <div class="timeline-header">📅 Хронология платежей</div>
+      <div id="timeline"></div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-title">💡 КАК ИЗБЕЖАТЬ КАССОВОГО РАЗРЫВА</div>
+      <div class="tip-text">
+        • Запросить у заказчика частичную оплату по КС-2 до финала<br>
+        • Договориться с субподрядчиком об отсрочке платежа<br>
+        • Использовать кредитную карту на беспроцентный период<br>
+        • Взять тендерный кредит в банке под конкретный контракт<br>
+        • Не брать новый контракт пока не закрыт кассовый разрыв
+      </div>
+    </div>
+
+    <button class="reset-btn" onclick="resetAll()">🔄 Очистить и начать заново</button>
+  </div>
+
+</div>
+
+<script>
+function addRow(containerId) {
+  const container = document.getElementById(containerId);
+  const isIncome = containerId === 'incomes';
+  const row = document.createElement('div');
+  row.className = 'entry-row';
+  row.innerHTML = `
+    <input class="entry-input" type="text" placeholder="${isIncome ? 'Контракт' : 'Назначение платежа'}">
+    <input class="entry-input amount-col" type="number" placeholder="0">
+    <input class="entry-input" type="date">
+    <button class="del-btn" onclick="delRow(this)">×</button>
+  `;
+  container.appendChild(row);
+}
+
+function delRow(btn) {
+  const row = btn.closest('.entry-row');
+  const container = row.parentElement;
+  if (container.querySelectorAll('.entry-row').length > 1) {
+    row.remove();
+  }
+}
+
+function fmt(n) {
+  return new Intl.NumberFormat('ru-RU').format(Math.round(n)) + ' ₽';
+}
+
+function fmtDate(d) {
+  return d.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit' });
+}
+
+function calculate() {
+  const balance = parseFloat(document.getElementById('balance').value) || 0;
+  const events = [];
+
+  // Collect incomes
+  document.querySelectorAll('#incomes .entry-row').forEach(row => {
+    const inputs = row.querySelectorAll('input');
+    const name = inputs[0].value.trim();
+    const amount = parseFloat(inputs[1] ? inputs[1].value : 0) || 0;
+    const dateVal = inputs[2] ? inputs[2].value : inputs[1].value;
+    if (!name || !amount || !dateVal) return;
+    events.push({ type: 'income', name, amount, date: new Date(dateVal) });
+  });
+
+  // Collect expenses
+  document.querySelectorAll('#expenses .entry-row').forEach(row => {
+    const inputs = row.querySelectorAll('input');
+    const name = inputs[0].value.trim();
+    const amount = parseFloat(inputs[1] ? inputs[1].value : 0) || 0;
+    const dateVal = inputs[2] ? inputs[2].value : inputs[1].value;
+    if (!name || !amount || !dateVal) return;
+    events.push({ type: 'expense', name, amount, date: new Date(dateVal) });
+  });
+
+  if (events.length === 0) {
+    alert('Заполни хотя бы одну строку с датой и суммой');
+    return;
+  }
+
+  events.sort((a, b) => a.date - b.date);
+
+  let running = balance;
+  let minBalance = balance;
+  let minDate = null;
+  let totalIn = 0;
+  let totalOut = 0;
+  const gaps = [];
+  const rows = [];
+
+  // Starting balance row
+  rows.push({ type: 'start', name: 'Остаток на счёте сейчас', amount: balance, balance: balance, date: new Date() });
+
+  events.forEach(ev => {
+    if (ev.type === 'income') {
+      running += ev.amount;
+      totalIn += ev.amount;
+    } else {
+      running -= ev.amount;
+      totalOut += ev.amount;
+    }
+
+    if (running < minBalance) {
+      minBalance = running;
+      minDate = ev.date;
+    }
+
+    if (running < 0) {
+      gaps.push({ name: ev.name, date: ev.date, shortfall: Math.abs(running) });
+    }
+
+    rows.push({ type: ev.type, name: ev.name, amount: ev.amount, balance: running, date: ev.date });
+  });
+
+  // Metrics
+  const metricsEl = document.getElementById('metrics');
+  const balanceClass = running >= 0 ? 'good' : 'danger';
+  const minClass = minBalance >= 0 ? (minBalance < balance * 0.2 ? 'warn' : 'good') : 'danger';
+
+  metricsEl.innerHTML = `
+    <div class="metric good">
+      <div class="metric-val">${fmt(totalIn)}</div>
+      <div class="metric-label">Поступит денег</div>
+    </div>
+    <div class="metric danger">
+      <div class="metric-val">${fmt(totalOut)}</div>
+      <div class="metric-label">Нужно заплатить</div>
+    </div>
+    <div class="metric ${balanceClass}">
+      <div class="metric-val">${fmt(running)}</div>
+      <div class="metric-label">Остаток в конце</div>
+    </div>
+  `;
+
+  // Gap alert
+  const gapEl = document.getElementById('gapAlert');
+  if (gaps.length > 0) {
+    gapEl.innerHTML = `
+      <div class="gap-alert">
+        <div class="gap-alert-title">🚨 Кассовый разрыв — не хватит денег в эти даты:</div>
+        ${gaps.map(g => `
+          <div class="gap-alert-item">
+            <span>${fmtDate(g.date)} — ${g.name}</span>
+            <span>не хватает ${fmt(g.shortfall)}</span>
+          </div>
+        `).join('')}
+      </div>`;
+  } else {
+    gapEl.innerHTML = `
+      <div style="background:var(--green-dim);border:1px solid var(--green-border);border-radius:14px;padding:0.85rem 1.1rem;margin-bottom:1rem;font-size:13px;color:var(--green);">
+        ✅ Кассовых разрывов нет — денег хватает на все платежи
+      </div>`;
+  }
+
+  // Timeline
+  const tlEl = document.getElementById('timeline');
+  tlEl.innerHTML = rows.map(r => {
+    if (r.type === 'start') {
+      return `<div class="tl-row" style="border-left:3px solid var(--blue);">
+        <div class="tl-date">${fmtDate(r.date)}</div>
+        <div class="tl-name" style="color:var(--muted);">Начальный остаток</div>
+        <div class="tl-amount" style="color:var(--blue);">${fmt(r.amount)}</div>
+        <div class="tl-balance ok">${fmt(r.balance)}</div>
+      </div>`;
+    }
+    const isIn = r.type === 'income';
+    const balClass = r.balance >= 0 ? (r.balance < 50000 ? 'warn' : 'ok') : 'bad';
+    return `<div class="tl-row ${isIn ? 'income' : 'expense'} ${r.balance < 0 ? 'gap' : ''}">
+      <div class="tl-date">${fmtDate(r.date)}</div>
+      <div class="tl-name">${r.name}</div>
+      <div class="tl-amount ${isIn ? 'plus' : 'minus'}">${isIn ? '+' : '−'}${fmt(r.amount)}</div>
+      <div class="tl-balance ${balClass}">${fmt(r.balance)}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('result').className = 'result show';
+  document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function resetAll() {
+  document.getElementById('balance').value = '';
+  ['incomes', 'expenses'].forEach(id => {
+    const c = document.getElementById(id);
+    c.querySelectorAll('.entry-row').forEach((r, i) => { if (i > 0) r.remove(); });
+    c.querySelectorAll('input').forEach(i => i.value = '');
+  });
+  document.getElementById('result').className = 'result';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
