@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Финальная проверка заявки</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700&family=Golos+Text:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #0f0f0f;
+    --surface: #1a1a1a;
+    --surface2: #222222;
+    --border: #2e2e2e;
+    --text: #f0f0f0;
+    --muted: #888;
+    --green: #22c55e;
+    --green-bg: #052e16;
+    --green-border: #166534;
+    --amber: #f59e0b;
+    --amber-bg: #1c1200;
+    --red: #ef4444;
+    --red-bg: #200a0a;
+    --red-border: #7f1d1d;
+    --blue: #3b82f6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Golos Text', sans-serif;
+    font-size: 15px;
+    min-height: 100vh;
+    padding-bottom: 3rem;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #1a0a00 0%, #2d1500 50%, #1a1a00 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 2rem 1.25rem 1.5rem;
+    text-align: center;
+  }
+
+  .hero-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(1.4rem, 5vw, 1.9rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .progress-wrap {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .progress-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .progress-label {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .progress-count {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 13px;
+    color: var(--amber);
+  }
+
+  .progress-bar {
+    height: 5px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--amber);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+    width: 0%;
+  }
+
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .timing-banner {
+    background: var(--amber-bg);
+    border: 1px solid #3d2800;
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--amber);
+  }
+
+  .timing-icon { font-size: 1.1rem; }
+
+  .section-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .section-header {
+    padding: 0.85rem 1.1rem 0.65rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-num {
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 11px;
+    color: var(--amber);
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .section-icon { font-size: 1rem; }
+
+  .item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 0.75rem 1.1rem;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.12s;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  .item:last-child { border-bottom: none; }
+  .item:hover { background: var(--surface2); }
+  .item:active { background: #1f1f1f; }
+
+  .cb {
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    border-radius: 6px;
+    border: 1.5px solid #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+    transition: all 0.15s;
+    background: transparent;
+  }
+
+  .cb svg { display: none; }
+
+  .item.done .cb {
+    background: var(--green);
+    border-color: var(--green);
+  }
+
+  .item.done .cb svg { display: block; }
+
+  .item-body { flex: 1; }
+
+  .item-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.5;
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+
+  .item.done .item-text {
+    color: var(--muted);
+    text-decoration: line-through;
+  }
+
+  .item-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+
+  .item-note.warn {
+    color: var(--red);
+  }
+
+  .stop-card {
+    background: var(--red-bg);
+    border: 1px solid var(--red-border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .stop-header {
+    padding: 0.85rem 1.1rem 0.65rem;
+    border-bottom: 1px solid var(--red-border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .stop-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--red);
+  }
+
+  .stop-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 0.65rem 1.1rem;
+    border-bottom: 1px solid #2a1010;
+    font-size: 13px;
+    color: #f87171;
+    line-height: 1.45;
+  }
+
+  .stop-item:last-child { border-bottom: none; }
+  .stop-dot { color: var(--red); margin-top: 2px; flex-shrink: 0; }
+
+  .verdict-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.25rem 1.1rem;
+    text-align: center;
+  }
+
+  .verdict-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .verdict-result {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s;
+  }
+
+  .verdict-result.pending {
+    background: var(--surface2);
+    color: var(--muted);
+    border: 1px solid var(--border);
+  }
+
+  .verdict-result.ready {
+    background: var(--green-bg);
+    color: var(--green);
+    border: 1px solid var(--green-border);
+  }
+
+  .verdict-sub {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .reset-btn {
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.7rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--muted);
+    font-family: 'Golos Text', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .reset-btn:hover {
+    border-color: #444;
+    color: var(--text);
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="hero-icon">✅</span>
+  <h1>Финальная проверка заявки</h1>
+  <p class="hero-sub">Антон / Катя — выполнить за 1–2 часа до дедлайна подачи</p>
+  <div class="progress-wrap">
+    <div class="progress-row">
+      <span class="progress-label">Выполнено</span>
+      <span class="progress-count" id="cnt">0 из 14</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="fill"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="timing-banner">
+    <span class="timing-icon">⏰</span>
+    <span>Подавать заявку с запасом минимум 30 минут до окончания срока приёма</span>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <span class="section-icon">📁</span>
+      <span class="section-title">Комплектность документов</span>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <div class="item-text">Все документы из перечня конкурсной документации приложены</div>
+        <div class="item-note">Сверить пункт за пунктом — не по памяти</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <div class="item-text">Формы заявки не изменены — таблицы и разделы как в оригинале</div>
+        <div class="item-note warn">Изменение формы = основание для отклонения</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <div class="item-text">Обеспечение заявки предоставлено</div>
+        <div class="item-note">Банковская гарантия или платёж — до 3% от НМЦК</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <span class="section-icon">✍️</span>
+      <span class="section-title">Подписи и печати</span>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <div class="item-text">Все страницы заявки подписаны в нужных местах</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <div class="item-text">Подписывает ИП Шушаков лично или уполномоченный по доверенности</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <div class="item-text">Если подписывает не ИП — доверенность приложена к заявке</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <div class="item-text">Печать стоит во всех требуемых местах</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <span class="section-icon">🔢</span>
+      <span class="section-title">Цифры и реквизиты</span>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <div class="item-text">Цена не ниже допустимого минимума из скоринг-листа</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <div class="item-text">Цена цифрами совпадает с ценой прописью</div>
+        <div class="item-note warn">Расхождение = автоматическое отклонение</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <div class="item-text">Реквизиты совпадают во всех документах заявки</div>
+        <div class="item-note">ИНН, адрес, расчётный счёт — без расхождений</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <div class="item-text">Сроки выполнения работ указаны и соответствуют ТЗ</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <span class="section-icon">📤</span>
+      <span class="section-title">Отправка</span>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <div class="item-text">Конверт / файл заявки промаркирован по требованиям документации</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <div class="item-text">Заявка подана строго до окончания срока приёма</div>
+        <div class="item-note">Опоздание даже на 1 минуту = не принимают</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <div class="item-text">Получено подтверждение / отметка о регистрации заявки</div>
+        <div class="item-note">Скриншот или штамп — сохранить в папку сделки в Битрикс</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stop-card">
+    <div class="stop-header">
+      <span style="font-size:1rem">🚫</span>
+      <span class="stop-title">Стоп-факторы — заявку не подаём</span>
+    </div>
+    <div class="stop-item">
+      <span class="stop-dot">▸</span>
+      <span>Нет обеспечения заявки и нет времени оформить банковскую гарантию</span>
+    </div>
+    <div class="stop-item">
+      <span class="stop-dot">▸</span>
+      <span>Не хватает обязательного документа и нет времени получить</span>
+    </div>
+    <div class="stop-item">
+      <span class="stop-dot">▸</span>
+      <span>Цена ниже минимальной маржи — лучше не выиграть, чем уйти в минус</span>
+    </div>
+    <div class="stop-item">
+      <span class="stop-dot">▸</span>
+      <span>Скоринг-лист показал красный флаг, решение не принято</span>
+    </div>
+  </div>
+
+  <div class="verdict-card">
+    <div class="verdict-label">Готовность к подаче</div>
+    <div class="verdict-result pending" id="verdict">Проверяем...</div>
+    <div class="verdict-sub" id="verdict-sub">Отметьте все пункты чтобы получить вердикт</div>
+    <button class="reset-btn" onclick="resetAll()">🔄 Сбросить — новый тендер</button>
+  </div>
+
+</div>
+
+<script>
+  const TOTAL = 14;
+
+  function toggle(el) {
+    el.classList.toggle('done');
+    update();
+  }
+
+  function update() {
+    const done = document.querySelectorAll('.item.done').length;
+    document.getElementById('cnt').textContent = done + ' из ' + TOTAL;
+    document.getElementById('fill').style.width = (done / TOTAL * 100) + '%';
+
+    const v = document.getElementById('verdict');
+    const vs = document.getElementById('verdict-sub');
+
+    if (done === TOTAL) {
+      v.textContent = '✅ Можно подавать';
+      v.className = 'verdict-result ready';
+      vs.textContent = 'Все пункты проверены — заявка готова';
+    } else if (done >= TOTAL * 0.7) {
+      v.textContent = '⚠️ Почти готово';
+      v.className = 'verdict-result pending';
+      vs.textContent = 'Осталось ' + (TOTAL - done) + ' пункт(а) — не торопитесь';
+    } else {
+      v.textContent = 'Проверяем...';
+      v.className = 'verdict-result pending';
+      vs.textContent = 'Выполнено ' + done + ' из ' + TOTAL;
+    }
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.item.done').forEach(el => el.classList.remove('done'));
+    update();
+  }
+</script>
+</body>
+</html>
