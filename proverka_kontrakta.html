@@ -478,7 +478,50 @@
     </div>
   </div>
 
-  <div class="rnp-card">
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <span class="section-icon">🏦</span>
+      <span class="section-title">Банковская гарантия — как не купить фальшивую</span>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <div class="item-text">Если нужна банковская гарантия — банк есть в реестре Минфина</div>
+        <div class="item-note info">Проверь на minfin.gov.ru → Финансовые рынки → Реестр банков</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <div class="item-text">Гарантия внесена в реестр ЕИС — есть номер для проверки</div>
+        <div class="item-note warn">Без номера в реестре ЕИС гарантия — филькина грамота</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <div class="item-text">Проект гарантии согласован с заказчиком ДО оформления</div>
+        <div class="item-note">Банк даёт черновик → отправь заказчику → получи одобрение → только потом оформляй</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <div class="item-text">ОИК внесено ДО подписания контракта нами</div>
+        <div class="item-note warn">Обеспечение заявки нельзя зачесть — это разные деньги на разных счетах</div>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="item-body">
+        <div class="item-text">Размер ОИК проверен — для МСП считается от нашей цены контракта, не от НМЦК</div>
+        <div class="item-note">Если тендер только для малого бизнеса — ОИК от победившей цены, это меньше</div>
+      </div>
+    </div>
+  </div>
+
+    <div class="rnp-card">
     <div class="rnp-header">
       <span style="font-size:1rem">🚫</span>
       <span class="rnp-title">РНП — что это и как не попасть</span>
@@ -515,7 +558,7 @@
 </div>
 
 <script>
-  const TOTAL = 16;
+  const TOTAL = 21;
 
   function toggle(el) {
     el.classList.toggle('done');
