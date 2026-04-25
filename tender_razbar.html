@@ -316,6 +316,24 @@
     transition: all 0.15s;
   }
   .reset-btn:hover { border-color: #444; color: var(--text); }
+
+  /* EDIT MODE */
+  .edit-toggle-row { display: flex; justify-content: flex-end; margin-bottom: 0.75rem; }
+  .edit-toggle-btn { background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 10px; padding: 8px 16px; color: var(--muted); font-family: 'Golos Text', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .edit-toggle-btn.active { background: rgba(245,166,35,0.15); border-color: var(--amber); color: var(--amber); }
+  body.edit-mode .toggle-btn { pointer-events: none; opacity: 0.4; }
+  .del-q-btn { display: none; width: 28px; height: 28px; border-radius: 7px; background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.3); color: var(--red); font-size: 16px; cursor: pointer; flex-shrink: 0; align-items: center; justify-content: center; line-height: 1; }
+  body.edit-mode .del-q-btn { display: flex; }
+  .q-edit-fields { display: none; flex: 1; flex-direction: column; gap: 5px; }
+  body.edit-mode .q-edit-fields { display: flex; }
+  body.edit-mode .q-text { display: none; }
+  body.edit-mode .toggle-wrap { opacity: 0.4; }
+  .q-edit-input { background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 7px; padding: 6px 10px; color: var(--text); font-family: 'Golos Text', sans-serif; font-size: 13px; outline: none; width: 100%; }
+  .q-edit-input.sub { font-size: 11px; color: var(--muted); }
+  .q-edit-input:focus { border-color: var(--amber); }
+  .add-q-btn { display: none; width: 100%; padding: 9px; background: rgba(245,166,35,0.08); border: 1px dashed rgba(245,166,35,0.3); border-radius: 10px; color: var(--amber); font-size: 12px; font-family: 'Golos Text', sans-serif; font-weight: 600; cursor: pointer; text-align: center; margin-top: 4px; }
+  body.edit-mode .add-q-btn { display: block; }
+
 </style>
 </head>
 <body>
@@ -368,7 +386,8 @@
   </div>
 
   <!-- ВОПРОСЫ -->
-  <div class="section-label">Быстрый скоринг — отвечай да/нет</div>
+  <div class="edit-toggle-row"><button class="edit-toggle-btn" id="editToggle" onclick="toggleEditMode()">✏️ Редактировать вопросы</button></div>
+<div class="section-label">Быстрый скоринг — отвечай да/нет</div>
   <div class="questions-card">
 
     <div class="q-item" data-key="nostroy" data-yes="0" data-no="-20">
@@ -376,6 +395,7 @@
         Требуется НОСТРОЙ / лицензия?
         <div class="q-sub">Проверь раздел «Требования к участникам»</div>
       </div>
+      <div class="q-edit-fields"><input class="q-edit-input" type="text" value="Требуется НОСТРОЙ / лицензия?" oninput="syncQText(this,'q-text')"><input class="q-edit-input sub" type="text" value="Проверь раздел «Требования к участникам»" placeholder="Подсказка" oninput="syncQText(this,'q-sub')"></div><button class="del-q-btn" onclick="delQItem(this)">×</button>
       <div class="toggle-wrap">
         <button class="toggle-btn yes" onclick="setAnswer(this,'yes')">Да</button>
         <button class="toggle-btn no" onclick="setAnswer(this,'no')">Нет</button>
@@ -387,6 +407,7 @@
         У нас есть опыт таких работ?
         <div class="q-sub">Аналогичные контракты за последние 3 года</div>
       </div>
+      <div class="q-edit-fields"><input class="q-edit-input" type="text" value="У нас есть опыт таких работ?" oninput="syncQText(this,'q-text')"><input class="q-edit-input sub" type="text" value="Аналогичные контракты за последние 3 года" placeholder="Подсказка" oninput="syncQText(this,'q-sub')"></div><button class="del-q-btn" onclick="delQItem(this)">×</button>
       <div class="toggle-wrap">
         <button class="toggle-btn yes" onclick="setAnswer(this,'yes')">Да</button>
         <button class="toggle-btn no" onclick="setAnswer(this,'no')">Нет</button>
@@ -398,6 +419,7 @@
         Есть субподрядчики под этот вид работ?
         <div class="q-sub">Договорённости с бригадой / подрядчиком</div>
       </div>
+      <div class="q-edit-fields"><input class="q-edit-input" type="text" value="Есть субподрядчики под этот вид работ?" oninput="syncQText(this,'q-text')"><input class="q-edit-input sub" type="text" value="Договорённости с бригадой / подрядчиком" placeholder="Подсказка" oninput="syncQText(this,'q-sub')"></div><button class="del-q-btn" onclick="delQItem(this)">×</button>
       <div class="toggle-wrap">
         <button class="toggle-btn yes" onclick="setAnswer(this,'yes')">Да</button>
         <button class="toggle-btn no" onclick="setAnswer(this,'no')">Нет</button>
@@ -409,6 +431,7 @@
         Хватает оборотных средств до оплаты?
         <div class="q-sub">Аванса нет — работаем на своих деньгах</div>
       </div>
+      <div class="q-edit-fields"><input class="q-edit-input" type="text" value="Хватает оборотных средств до оплаты?" oninput="syncQText(this,'q-text')"><input class="q-edit-input sub" type="text" value="Аванса нет — работаем на своих деньгах" placeholder="Подсказка" oninput="syncQText(this,'q-sub')"></div><button class="del-q-btn" onclick="delQItem(this)">×</button>
       <div class="toggle-wrap">
         <button class="toggle-btn yes" onclick="setAnswer(this,'yes')">Да</button>
         <button class="toggle-btn no" onclick="setAnswer(this,'no')">Нет</button>
@@ -420,6 +443,7 @@
         Маржа больше 15%?
         <div class="q-sub">После всех расходов — материалы, люди, транспорт</div>
       </div>
+      <div class="q-edit-fields"><input class="q-edit-input" type="text" value="Маржа больше 15%?" oninput="syncQText(this,'q-text')"><input class="q-edit-input sub" type="text" value="После всех расходов — материалы, люди, транспорт" placeholder="Подсказка" oninput="syncQText(this,'q-sub')"></div><button class="del-q-btn" onclick="delQItem(this)">×</button>
       <div class="toggle-wrap">
         <button class="toggle-btn yes" onclick="setAnswer(this,'yes')">Да</button>
         <button class="toggle-btn no" onclick="setAnswer(this,'no')">Нет</button>
@@ -431,6 +455,7 @@
         Срок выполнения реалистичный (30+ дней)?
         <div class="q-sub">Менее 30 дней — красный флаг</div>
       </div>
+      <div class="q-edit-fields"><input class="q-edit-input" type="text" value="Срок выполнения реалистичный (30+ дней)?" oninput="syncQText(this,'q-text')"><input class="q-edit-input sub" type="text" value="Менее 30 дней — красный флаг" placeholder="Подсказка" oninput="syncQText(this,'q-sub')"></div><button class="del-q-btn" onclick="delQItem(this)">×</button>
       <div class="toggle-wrap">
         <button class="toggle-btn yes" onclick="setAnswer(this,'yes')">Да</button>
         <button class="toggle-btn no" onclick="setAnswer(this,'no')">Нет</button>
@@ -442,6 +467,7 @@
         Заказчик проверен — нет долгов и судов?
         <div class="q-sub">kad.arbitr.ru + fssp.gov.ru + ЕИС история</div>
       </div>
+      <div class="q-edit-fields"><input class="q-edit-input" type="text" value="Заказчик проверен — нет долгов и судов?" oninput="syncQText(this,'q-text')"><input class="q-edit-input sub" type="text" value="kad.arbitr.ru + fssp.gov.ru + ЕИС история" placeholder="Подсказка" oninput="syncQText(this,'q-sub')"></div><button class="del-q-btn" onclick="delQItem(this)">×</button>
       <div class="toggle-wrap">
         <button class="toggle-btn yes" onclick="setAnswer(this,'yes')">Да</button>
         <button class="toggle-btn no" onclick="setAnswer(this,'no')">Нет</button>
@@ -453,6 +479,7 @@
         Признаки заточки ТЗ под конкурента?
         <div class="q-sub">Один победитель всегда, нереальные параметры</div>
       </div>
+      <div class="q-edit-fields"><input class="q-edit-input" type="text" value="Признаки заточки ТЗ под конкурента?" oninput="syncQText(this,'q-text')"><input class="q-edit-input sub" type="text" value="Один победитель всегда, нереальные параметры" placeholder="Подсказка" oninput="syncQText(this,'q-sub')"></div><button class="del-q-btn" onclick="delQItem(this)">×</button>
       <div class="toggle-wrap">
         <button class="toggle-btn yes" onclick="setAnswer(this,'yes')">Да</button>
         <button class="toggle-btn no" onclick="setAnswer(this,'no')">Нет</button>
@@ -464,6 +491,7 @@
         Штрафы в контракте больше 1% в день?
         <div class="q-sub">Найди в проекте контракта раздел «Ответственность»</div>
       </div>
+      <div class="q-edit-fields"><input class="q-edit-input" type="text" value="Штрафы в контракте больше 1% в день?" oninput="syncQText(this,'q-text')"><input class="q-edit-input sub" type="text" value="Найди в проекте контракта раздел «Ответственность»" placeholder="Подсказка" oninput="syncQText(this,'q-sub')"></div><button class="del-q-btn" onclick="delQItem(this)">×</button>
       <div class="toggle-wrap">
         <button class="toggle-btn yes" onclick="setAnswer(this,'yes')">Да</button>
         <button class="toggle-btn no" onclick="setAnswer(this,'no')">Нет</button>
@@ -475,13 +503,16 @@
         Это 223-ФЗ и нет опыта на этой площадке?
         <div class="q-sub">223-ФЗ сложнее — нестандартные правила</div>
       </div>
+      <div class="q-edit-fields"><input class="q-edit-input" type="text" value="Это 223-ФЗ и нет опыта на этой площадке?" oninput="syncQText(this,'q-text')"><input class="q-edit-input sub" type="text" value="223-ФЗ сложнее — нестандартные правила" placeholder="Подсказка" oninput="syncQText(this,'q-sub')"></div><button class="del-q-btn" onclick="delQItem(this)">×</button>
       <div class="toggle-wrap">
         <button class="toggle-btn yes" onclick="setAnswer(this,'yes')">Да</button>
         <button class="toggle-btn no" onclick="setAnswer(this,'no')">Нет</button>
       </div>
     </div>
 
-  </div>
+  
+  <button class="add-q-btn" onclick="addQItem()">+ Добавить вопрос</button>
+</div>
 
   <button class="run-btn" onclick="analyze()">⚡ Разобрать тендер</button>
 
@@ -672,6 +703,34 @@ function resetAll() {
   document.getElementById('result').className = 'result';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+function toggleEditMode() {
+  document.body.classList.toggle('edit-mode');
+  const btn = document.getElementById('editToggle');
+  btn.classList.toggle('active');
+  btn.textContent = document.body.classList.contains('edit-mode') ? '✅ Готово' : '✏️ Редактировать вопросы';
+}
+function syncQText(input, cls) {
+  input.closest('.q-item').querySelector('.' + cls).textContent = input.value;
+}
+function delQItem(btn) {
+  btn.closest('.q-item').remove();
+}
+function addQItem() {
+  const card = document.querySelector('.questions-card');
+  const addBtn = card.querySelector('.add-q-btn');
+  const key = 'q_' + Date.now();
+  const item = document.createElement('div');
+  item.className = 'q-item';
+  item.setAttribute('data-key', key);
+  item.setAttribute('data-yes', '10');
+  item.setAttribute('data-no', '-10');
+  item.innerHTML = `<div class="q-text">Новый вопрос<div class="q-sub">Подсказка</div></div><div class="q-edit-fields"><input class="q-edit-input" type="text" value="Новый вопрос" oninput="syncQText(this,'q-text')"><input class="q-edit-input sub" type="text" value="Подсказка" oninput="syncQText(this,'q-sub')"></div><div class="toggle-wrap"><button class="toggle-btn yes" onclick="setAnswer(this,'yes')">Да</button><button class="toggle-btn no" onclick="setAnswer(this,'no')">Нет</button></div><button class="del-q-btn" onclick="delQItem(this)">×</button>`;
+  card.insertBefore(item, addBtn);
+  item.querySelector('.q-edit-input').focus();
+  item.querySelector('.q-edit-input').select();
+}
+
 </script>
 </body>
 </html>

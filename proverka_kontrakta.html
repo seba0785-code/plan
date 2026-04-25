@@ -288,6 +288,25 @@
   }
 
   .reset-btn:hover { border-color: #444; color: var(--text); }
+
+  /* EDIT MODE */
+  .edit-toggle-row { display: flex; justify-content: flex-end; padding: 0 1rem; margin-bottom: -0.5rem; }
+  .edit-toggle-btn { background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 10px; padding: 8px 16px; color: var(--muted); font-family: 'Golos Text', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .edit-toggle-btn.active { background: rgba(245,166,35,0.15); border-color: #f59e0b; color: #f59e0b; }
+  body.edit-mode .item { cursor: default; }
+  body.edit-mode .cb { display: none; }
+  body.edit-mode .item.done .item-text { text-decoration: none; color: var(--text); }
+  .del-item-btn { display: none; width: 28px; height: 28px; border-radius: 7px; background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.3); color: var(--red); font-size: 16px; cursor: pointer; flex-shrink: 0; align-items: center; justify-content: center; line-height: 1; margin-top: 1px; }
+  body.edit-mode .del-item-btn { display: flex; }
+  .edit-fields { display: none; flex: 1; flex-direction: column; gap: 5px; }
+  body.edit-mode .edit-fields { display: flex; }
+  body.edit-mode .item-body { display: none; }
+  .edit-input-main { background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 7px; padding: 7px 10px; color: var(--text); font-family: 'Golos Text', sans-serif; font-size: 14px; font-weight: 500; outline: none; width: 100%; }
+  .edit-input-sub { background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 7px; padding: 5px 10px; color: var(--muted); font-family: 'Golos Text', sans-serif; font-size: 12px; outline: none; width: 100%; }
+  .edit-input-main:focus, .edit-input-sub:focus { border-color: #f59e0b; }
+  .add-item-btn { display: none; width: 100%; margin: 6px 0 0; padding: 9px; background: rgba(245,166,35,0.08); border: 1px dashed rgba(245,166,35,0.3); border-radius: 10px; color: #f59e0b; font-size: 12px; font-family: 'Golos Text', sans-serif; font-weight: 600; cursor: pointer; text-align: center; }
+  body.edit-mode .add-item-btn { display: block; }
+
 </style>
 </head>
 <body>
@@ -307,6 +326,8 @@
   </div>
 </div>
 
+
+<div class="edit-toggle-row"><button class="edit-toggle-btn" id="editToggle" onclick="toggleEdit()">✏️ Редактировать</button></div>
 <div class="container">
 
   <div class="timing-banner">
@@ -314,13 +335,10 @@
     <span>Срок подписания контракта строго ограничен — не тяни. Просрочка = риск РНП</span>
   </div>
 
-  <div class="section-card">
+  <div class="section-card" id="section-1">
     <div class="section-header">
       <div class="section-num">1</div>
-      <span class="section-icon">👥</span>
-      <span class="section-title">Преамбула — стороны контракта</span>
-    </div>
-    <div class="item" onclick="toggle(this)">
+    <button class="add-item-btn" onclick="addCheckItem('section-1')">+ Добавить пункт</button></div><div class="item" onclick="toggle(this)">
       <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div class="item-body">
         <div class="item-text">Наименование ИП указано точно — ИП Шушакова А.В.</div>
@@ -340,14 +358,12 @@
       </div>
     </div>
   </div>
+      <div class="edit-fields"><input class="edit-input-main" type="text" value="Наименование ИП указано точно — ИП Шушакова А.В." oninput="syncItemText(this,'item-text')"><input class="edit-input-sub" type="text" value="Любая опечатка в имени = проблемы с оплатой" placeholder="Подсказка (необязательно)" oninput="syncItemText(this,'item-note')"></div><button class="del-item-btn" onclick="delCheckItem(event,this)">×</button>
 
-  <div class="section-card">
+  <div class="section-card" id="section-2">
     <div class="section-header">
       <div class="section-num">2</div>
-      <span class="section-icon">🔧</span>
-      <span class="section-title">Предмет контракта — что именно делаем</span>
-    </div>
-    <div class="item" onclick="toggle(this)">
+    <button class="add-item-btn" onclick="addCheckItem('section-2')">+ Добавить пункт</button></div><div class="item" onclick="toggle(this)">
       <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div class="item-body">
         <div class="item-text">Описание работ совпадает с ТЗ и нашей заявкой — ничего не пропало, ничего лишнего</div>
@@ -367,14 +383,12 @@
       </div>
     </div>
   </div>
+      <div class="edit-fields"><input class="edit-input-main" type="text" value="Описание работ совпадает с ТЗ и нашей заявкой — ничего не пропало, ничего лишнего" oninput="syncItemText(this,'item-text')"><input class="edit-input-sub" type="text" value="С даты подписания контракта — не с даты подачи заявки" placeholder="Подсказка (необязательно)" oninput="syncItemText(this,'item-note')"></div><button class="del-item-btn" onclick="delCheckItem(event,this)">×</button>
 
-  <div class="section-card">
+  <div class="section-card" id="section-3">
     <div class="section-header">
       <div class="section-num">3</div>
-      <span class="section-icon">💰</span>
-      <span class="section-title">Цена и оплата</span>
-    </div>
-    <div class="item" onclick="toggle(this)">
+    <button class="add-item-btn" onclick="addCheckItem('section-3')">+ Добавить пункт</button></div><div class="item" onclick="toggle(this)">
       <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div class="item-body">
         <div class="item-text">Цена совпадает с нашим победившим предложением</div>
@@ -400,14 +414,12 @@
       </div>
     </div>
   </div>
+      <div class="edit-fields"><input class="edit-input-main" type="text" value="Цена совпадает с нашим победившим предложением" oninput="syncItemText(this,'item-text')"><input class="edit-input-sub" type="text" value="Если написано «в т.ч. НДС 20%» — это потеря 20% прибыли" placeholder="Подсказка (необязательно)" oninput="syncItemText(this,'item-note')"></div><button class="del-item-btn" onclick="delCheckItem(event,this)">×</button>
 
-  <div class="section-card">
+  <div class="section-card" id="section-4">
     <div class="section-header">
       <div class="section-num">4</div>
-      <span class="section-icon">⚠️</span>
-      <span class="section-title">Штрафы и ответственность</span>
-    </div>
-    <div class="item" onclick="toggle(this)">
+    <button class="add-item-btn" onclick="addCheckItem('section-4')">+ Добавить пункт</button></div><div class="item" onclick="toggle(this)">
       <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div class="item-body">
         <div class="item-text">Штрафы за просрочку не превышают 1% в день</div>
@@ -429,14 +441,12 @@
       </div>
     </div>
   </div>
+      <div class="edit-fields"><input class="edit-input-main" type="text" value="Штрафы за просрочку не превышают 1% в день" oninput="syncItemText(this,'item-text')"><input class="edit-input-sub" type="text" value="Более 1%/день = красный флаг, обсудить с Антоном" placeholder="Подсказка (необязательно)" oninput="syncItemText(this,'item-note')"></div><button class="del-item-btn" onclick="delCheckItem(event,this)">×</button>
 
-  <div class="section-card">
+  <div class="section-card" id="section-5">
     <div class="section-header">
       <div class="section-num">5</div>
-      <span class="section-icon">📄</span>
-      <span class="section-title">Приёмка и документы</span>
-    </div>
-    <div class="item" onclick="toggle(this)">
+    <button class="add-item-btn" onclick="addCheckItem('section-5')">+ Добавить пункт</button></div><div class="item" onclick="toggle(this)">
       <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div class="item-body">
         <div class="item-text">Порядок приёмки прописан — кто принимает, в какие сроки</div>
@@ -450,14 +460,12 @@
       </div>
     </div>
   </div>
+      <div class="edit-fields"><input class="edit-input-main" type="text" value="Порядок приёмки прописан — кто принимает, в какие сроки" oninput="syncItemText(this,'item-text')"><input class="edit-input-sub" type="text" value="КС-2, КС-3, общий журнал работ, акты скрытых работ" placeholder="Подсказка (необязательно)" oninput="syncItemText(this,'item-note')"></div><button class="del-item-btn" onclick="delCheckItem(event,this)">×</button>
 
-  <div class="section-card">
+  <div class="section-card" id="section-6">
     <div class="section-header">
       <div class="section-num">6</div>
-      <span class="section-icon">🏦</span>
-      <span class="section-title">Наши реквизиты в контракте</span>
-    </div>
-    <div class="item" onclick="toggle(this)">
+    <button class="add-item-btn" onclick="addCheckItem('section-6')">+ Добавить пункт</button></div><div class="item" onclick="toggle(this)">
       <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div class="item-body">
         <div class="item-text">Расчётный счёт указан верный и актуальный</div>
@@ -477,14 +485,12 @@
       </div>
     </div>
   </div>
+      <div class="edit-fields"><input class="edit-input-main" type="text" value="Расчётный счёт указан верный и актуальный" oninput="syncItemText(this,'item-text')"><input class="edit-input-sub" type="text" value="Деньги уйдут на счёт из контракта — не на тот что в письме" placeholder="Подсказка (необязательно)" oninput="syncItemText(this,'item-note')"></div><button class="del-item-btn" onclick="delCheckItem(event,this)">×</button>
 
-  <div class="section-card">
+  <div class="section-card" id="section-7">
     <div class="section-header">
       <div class="section-num">7</div>
-      <span class="section-icon">🏦</span>
-      <span class="section-title">Банковская гарантия — как не купить фальшивую</span>
-    </div>
-    <div class="item" onclick="toggle(this)">
+    <button class="add-item-btn" onclick="addCheckItem('section-7')">+ Добавить пункт</button></div><div class="item" onclick="toggle(this)">
       <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div class="item-body">
         <div class="item-text">Если нужна банковская гарантия — банк есть в реестре Минфина</div>
@@ -520,6 +526,7 @@
       </div>
     </div>
   </div>
+      <div class="edit-fields"><input class="edit-input-main" type="text" value="Если нужна банковская гарантия — банк есть в реестре Минфина" oninput="syncItemText(this,'item-text')"><input class="edit-input-sub" type="text" value="Проверь на minfin.gov.ru → Финансовые рынки → Реестр банков" placeholder="Подсказка (необязательно)" oninput="syncItemText(this,'item-note')"></div><button class="del-item-btn" onclick="delCheckItem(event,this)">×</button>
 
     <div class="rnp-card">
     <div class="rnp-header">
@@ -615,6 +622,35 @@
     document.querySelectorAll('.item.done').forEach(el => el.classList.remove('done'));
     update();
   }
+
+  function toggleEdit() {
+    document.body.classList.toggle('edit-mode');
+    const btn = document.getElementById('editToggle');
+    btn.classList.toggle('active');
+    btn.textContent = document.body.classList.contains('edit-mode') ? '✅ Готово' : '✏️ Редактировать';
+    update();
+  }
+  function syncItemText(input, cls) {
+    input.closest('.item').querySelector('.' + cls).textContent = input.value;
+  }
+  function delCheckItem(e, btn) {
+    e.stopPropagation();
+    btn.closest('.item').remove();
+    update();
+  }
+  function addCheckItem(sectionId) {
+    const section = document.getElementById(sectionId);
+    const addBtn = section.querySelector('.add-item-btn');
+    const item = document.createElement('div');
+    item.className = 'item';
+    item.setAttribute('onclick', 'toggle(this)');
+    item.innerHTML = '<div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="item-body"><div class="item-text">Новый пункт</div></div><div class="edit-fields"><input class="edit-input-main" type="text" value="Новый пункт" oninput="syncItemText(this,\'item-text\')"><input class="edit-input-sub" type="text" value="" placeholder="Подсказка (необязательно)" oninput="syncItemText(this,\'item-note\')"></div><button class="del-item-btn" onclick="delCheckItem(event,this)">×</button>';
+    section.insertBefore(item, addBtn);
+    item.querySelector('.edit-input-main').focus();
+    item.querySelector('.edit-input-main').select();
+    update();
+  }
+
 </script>
 </body>
 </html>

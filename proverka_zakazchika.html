@@ -6,200 +6,61 @@
 <title>Проверка заказчика</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Golos+Text:wght@400;500;600;700&display=swap');
-
   :root {
-    --bg: #0f1117;
-    --card: #1a1d27;
-    --border: #2a2d3a;
-    --text: #e8eaf0;
-    --muted: #7a7d8f;
-    --blue: #4d9fff;
-    --green: #27ae60;
-    --orange: #f5a623;
-    --red: #e74c3c;
+    --bg: #0f1117; --card: #1a1d27; --border: #2a2d3a;
+    --text: #e8eaf0; --muted: #7a7d8f;
+    --blue: #4d9fff; --green: #27ae60; --orange: #f5a623; --red: #e74c3c;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Golos Text', sans-serif;
-    padding: 20px 16px 60px;
-    max-width: 480px;
-    margin: 0 auto;
-  }
-
-  .header {
-    text-align: center;
-    padding: 24px 20px;
-    background: linear-gradient(135deg, #C55A11, #f5a623);
-    border-radius: 20px;
-    margin-bottom: 24px;
-  }
-
-  .header h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 34px;
-    letter-spacing: 2px;
-    margin-bottom: 4px;
-  }
-
+  body { background: var(--bg); color: var(--text); font-family: 'Golos Text', sans-serif; padding: 20px 16px 60px; max-width: 480px; margin: 0 auto; }
+  .header { text-align: center; padding: 24px 20px; background: linear-gradient(135deg, #C55A11, #f5a623); border-radius: 20px; margin-bottom: 24px; }
+  .header h1 { font-family: 'Bebas Neue', sans-serif; font-size: 34px; letter-spacing: 2px; margin-bottom: 4px; }
   .header p { font-size: 12px; opacity: 0.8; }
-
-  .site-card {
-    background: var(--card);
-    border-radius: 16px;
-    border: 1px solid var(--border);
-    margin-bottom: 14px;
-    overflow: hidden;
-  }
-
-  .site-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 16px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .site-num {
-    width: 34px;
-    height: 34px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
-    flex-shrink: 0;
-  }
-
+  .site-card { background: var(--card); border-radius: 16px; border: 1px solid var(--border); margin-bottom: 14px; overflow: hidden; }
+  .site-header { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--border); }
+  .site-num { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 20px; flex-shrink: 0; }
   .site-info { flex: 1; }
   .site-name { font-size: 15px; font-weight: 700; }
   .site-url { font-size: 11px; color: var(--muted); margin-top: 1px; }
-
-  .site-link {
-    display: inline-block;
-    padding: 6px 12px;
-    border-radius: 8px;
-    font-size: 11px;
-    font-weight: 600;
-    text-decoration: none;
-    color: white;
-  }
-
+  .site-link { display: inline-block; padding: 6px 12px; border-radius: 8px; font-size: 11px; font-weight: 600; text-decoration: none; color: white; }
   .checks { padding: 12px 16px; }
-
-  .check-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    cursor: pointer;
-  }
+  .check-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); cursor: pointer; }
   .check-item:last-child { border-bottom: none; }
-
-  .checkbox {
-    width: 24px;
-    height: 24px;
-    border-radius: 7px;
-    border: 2px solid var(--border);
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
-    margin-top: 1px;
-  }
-
-  .check-item.checked .checkbox {
-    background: var(--green);
-    border-color: var(--green);
-  }
-  .check-item.checked .checkbox::after {
-    content: '✓';
-    color: white;
-    font-size: 14px;
-    font-weight: 700;
-  }
-
+  .checkbox { width: 24px; height: 24px; border-radius: 7px; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.2s; margin-top: 1px; }
+  .check-item.checked .checkbox { background: var(--green); border-color: var(--green); }
+  .check-item.checked .checkbox::after { content: '✓'; color: white; font-size: 14px; font-weight: 700; }
   .check-text { flex: 1; }
   .check-title { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
   .check-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
+  .check-item.checked .check-title { text-decoration: line-through; opacity: 0.5; }
 
-  .check-item.checked .check-title {
-    text-decoration: line-through;
-    opacity: 0.5;
-  }
+  /* EDIT MODE */
+  .edit-toggle-row { display: flex; justify-content: flex-end; margin-bottom: 16px; }
+  .edit-toggle-btn { background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 10px; padding: 8px 16px; color: var(--muted); font-family: 'Golos Text', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .edit-toggle-btn.active { background: rgba(245,166,35,0.15); border-color: var(--orange); color: var(--orange); }
+  body.edit-mode .check-item { cursor: default; }
+  body.edit-mode .checkbox { display: none; }
+  body.edit-mode .check-item.checked .check-title { text-decoration: none; opacity: 1; }
+  .del-item-btn { display: none; width: 28px; height: 28px; border-radius: 7px; background: rgba(231,76,60,0.12); border: 1px solid rgba(231,76,60,0.3); color: var(--red); font-size: 16px; cursor: pointer; flex-shrink: 0; align-items: center; justify-content: center; line-height: 1; margin-top: 1px; }
+  body.edit-mode .del-item-btn { display: flex; }
+  .edit-fields { display: none; flex: 1; flex-direction: column; gap: 5px; }
+  body.edit-mode .edit-fields { display: flex; }
+  body.edit-mode .check-text { display: none; }
+  .edit-input { background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 7px; padding: 6px 10px; color: var(--text); font-family: 'Golos Text', sans-serif; font-size: 13px; font-weight: 600; outline: none; width: 100%; }
+  .edit-input.desc-input { font-weight: 400; font-size: 12px; color: var(--muted); }
+  .edit-input:focus { border-color: var(--orange); }
+  .add-item-btn { display: none; width: 100%; margin-top: 2px; padding: 9px; background: rgba(245,166,35,0.08); border: 1px dashed rgba(245,166,35,0.3); border-radius: 10px; color: var(--orange); font-size: 12px; font-family: 'Golos Text', sans-serif; font-weight: 600; cursor: pointer; text-align: center; }
+  body.edit-mode .add-item-btn { display: block; }
 
-  .verdict {
-    background: var(--card);
-    border-radius: 16px;
-    border: 1px solid var(--border);
-    margin-top: 20px;
-    overflow: hidden;
-  }
-
-  .verdict-header {
-    padding: 14px 16px;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
-    letter-spacing: 1px;
-    background: rgba(255,255,255,0.04);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .verdict-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--border);
-    font-size: 13px;
-  }
+  .verdict { background: var(--card); border-radius: 16px; border: 1px solid var(--border); margin-top: 20px; overflow: hidden; }
+  .verdict-header { padding: 14px 16px; font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1px; background: rgba(255,255,255,0.04); border-bottom: 1px solid var(--border); }
+  .verdict-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 13px; }
   .verdict-item:last-child { border-bottom: none; }
-
   .verdict-icon { font-size: 20px; flex-shrink: 0; }
-
-  .reset-btn {
-    display: block;
-    width: 100%;
-    margin-top: 20px;
-    padding: 14px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    color: var(--muted);
-    font-size: 13px;
-    font-family: 'Golos Text', sans-serif;
-    cursor: pointer;
-    text-align: center;
-  }
-  .reset-btn:active { background: rgba(255,255,255,0.1); }
-
-  .progress-bar {
-    height: 4px;
-    background: var(--border);
-    border-radius: 2px;
-    margin: 16px 0 20px;
-    overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%;
-    background: var(--green);
-    border-radius: 2px;
-    transition: width 0.3s;
-    width: 0%;
-  }
-
-  .counter {
-    text-align: center;
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 4px;
-  }
+  .reset-btn { display: block; width: 100%; margin-top: 20px; padding: 14px; background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 12px; color: var(--muted); font-size: 13px; font-family: 'Golos Text', sans-serif; cursor: pointer; text-align: center; }
+  .progress-bar { height: 4px; background: var(--border); border-radius: 2px; margin: 16px 0 20px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--green); border-radius: 2px; transition: width 0.3s; width: 0%; }
+  .counter { text-align: center; font-size: 12px; color: var(--muted); margin-bottom: 4px; }
 </style>
 </head>
 <body>
@@ -209,215 +70,134 @@
   <p>Катя · Памятка перед каждым тендером</p>
 </div>
 
+<div class="edit-toggle-row">
+  <button class="edit-toggle-btn" id="editToggle" onclick="toggleEdit()">✏️ Редактировать</button>
+</div>
+
 <div class="counter" id="counter">Выполнено: 0 из 15</div>
 <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
 
-<!-- САЙТ 1 -->
 <div class="site-card">
   <div class="site-header">
     <div class="site-num" style="background:rgba(77,159,255,0.2);color:#4d9fff;">1</div>
-    <div class="site-info">
-      <div class="site-name" style="color:#4d9fff;">Налоговая — реестр</div>
-      <div class="site-url">pb.nalog.ru</div>
-    </div>
+    <div class="site-info"><div class="site-name" style="color:#4d9fff;">Налоговая — реестр</div><div class="site-url">pb.nalog.ru</div></div>
     <a href="https://pb.nalog.ru" target="_blank" class="site-link" style="background:#4d9fff;">Открыть →</a>
   </div>
-  <div class="checks">
-    <div class="check-item" onclick="check(this)">
-      <div class="checkbox"></div>
-      <div class="check-text">
-        <div class="check-title">Вбила ИНН заказчика</div>
-        <div class="check-desc">ИНН берём из тендерной документации на ЕИС</div>
-      </div>
-    </div>
-    <div class="check-item" onclick="check(this)">
-      <div class="checkbox"></div>
-      <div class="check-text">
-        <div class="check-title">Организация реальная и действующая</div>
-        <div class="check-desc">Статус: «Действующее» — хорошо. «Ликвидировано» — СТОП</div>
-      </div>
-    </div>
-    <div class="check-item" onclick="check(this)">
-      <div class="checkbox"></div>
-      <div class="check-text">
-        <div class="check-title">Нет в списке дисквалифицированных лиц</div>
-        <div class="check-desc">Проверь вкладку «Дисквалифицированные лица»</div>
-      </div>
-    </div>
+  <div class="checks" id="group-1">
+    <div class="check-item" onclick="check(event,this)"><div class="checkbox"></div><div class="check-text"><div class="check-title">Вбила ИНН заказчика</div><div class="check-desc">ИНН берём из тендерной документации на ЕИС</div></div><div class="edit-fields"><input class="edit-input" type="text" value="Вбила ИНН заказчика" oninput="syncText(this,'check-title')"><input class="edit-input desc-input" type="text" value="ИНН берём из тендерной документации на ЕИС" oninput="syncText(this,'check-desc')"></div><button class="del-item-btn" onclick="delItem(event,this)">×</button></div>
+    <div class="check-item" onclick="check(event,this)"><div class="checkbox"></div><div class="check-text"><div class="check-title">Организация реальная и действующая</div><div class="check-desc">Статус: «Действующее» — хорошо. «Ликвидировано» — СТОП</div></div><div class="edit-fields"><input class="edit-input" type="text" value="Организация реальная и действующая" oninput="syncText(this,'check-title')"><input class="edit-input desc-input" type="text" value="Статус: «Действующее» — хорошо. «Ликвидировано» — СТОП" oninput="syncText(this,'check-desc')"></div><button class="del-item-btn" onclick="delItem(event,this)">×</button></div>
+    <div class="check-item" onclick="check(event,this)"><div class="checkbox"></div><div class="check-text"><div class="check-title">Нет в списке дисквалифицированных лиц</div><div class="check-desc">Проверь вкладку «Дисквалифицированные лица»</div></div><div class="edit-fields"><input class="edit-input" type="text" value="Нет в списке дисквалифицированных лиц" oninput="syncText(this,'check-title')"><input class="edit-input desc-input" type="text" value="Проверь вкладку «Дисквалифицированные лица»" oninput="syncText(this,'check-desc')"></div><button class="del-item-btn" onclick="delItem(event,this)">×</button></div>
   </div>
+  <div style="padding: 0 16px 12px;"><button class="add-item-btn" onclick="addItem('group-1')">+ Добавить критерий</button></div>
 </div>
 
-<!-- САЙТ 2 -->
 <div class="site-card">
   <div class="site-header">
     <div class="site-num" style="background:rgba(231,76,60,0.2);color:#e74c3c;">2</div>
-    <div class="site-info">
-      <div class="site-name" style="color:#e74c3c;">Арбитраж — суды</div>
-      <div class="site-url">kad.arbitr.ru</div>
-    </div>
+    <div class="site-info"><div class="site-name" style="color:#e74c3c;">Арбитраж — суды</div><div class="site-url">kad.arbitr.ru</div></div>
     <a href="https://kad.arbitr.ru" target="_blank" class="site-link" style="background:#e74c3c;">Открыть →</a>
   </div>
-  <div class="checks">
-    <div class="check-item" onclick="check(this)">
-      <div class="checkbox"></div>
-      <div class="check-text">
-        <div class="check-title">Нет исков о взыскании оплат от подрядчиков</div>
-        <div class="check-desc">Ищи иски где заказчик — ответчик, а подрядчик — истец</div>
-      </div>
-    </div>
-    <div class="check-item" onclick="check(this)">
-      <div class="checkbox"></div>
-      <div class="check-text">
-        <div class="check-title">Мало судебных дел (до 3-5 — норма)</div>
-        <div class="check-desc">Десятки исков = заказчик системно не платит → СТОП</div>
-      </div>
-    </div>
+  <div class="checks" id="group-2">
+    <div class="check-item" onclick="check(event,this)"><div class="checkbox"></div><div class="check-text"><div class="check-title">Нет исков о взыскании оплат от подрядчиков</div><div class="check-desc">Ищи иски где заказчик — ответчик, а подрядчик — истец</div></div><div class="edit-fields"><input class="edit-input" type="text" value="Нет исков о взыскании оплат от подрядчиков" oninput="syncText(this,'check-title')"><input class="edit-input desc-input" type="text" value="Ищи иски где заказчик — ответчик, а подрядчик — истец" oninput="syncText(this,'check-desc')"></div><button class="del-item-btn" onclick="delItem(event,this)">×</button></div>
+    <div class="check-item" onclick="check(event,this)"><div class="checkbox"></div><div class="check-text"><div class="check-title">Мало судебных дел (до 3-5 — норма)</div><div class="check-desc">Десятки исков = заказчик системно не платит → СТОП</div></div><div class="edit-fields"><input class="edit-input" type="text" value="Мало судебных дел (до 3-5 — норма)" oninput="syncText(this,'check-title')"><input class="edit-input desc-input" type="text" value="Десятки исков = заказчик системно не платит → СТОП" oninput="syncText(this,'check-desc')"></div><button class="del-item-btn" onclick="delItem(event,this)">×</button></div>
   </div>
+  <div style="padding: 0 16px 12px;"><button class="add-item-btn" onclick="addItem('group-2')">+ Добавить критерий</button></div>
 </div>
 
-<!-- САЙТ 3 -->
 <div class="site-card">
   <div class="site-header">
     <div class="site-num" style="background:rgba(245,166,35,0.2);color:#f5a623;">3</div>
-    <div class="site-info">
-      <div class="site-name" style="color:#f5a623;">Приставы — долги</div>
-      <div class="site-url">fssp.gov.ru</div>
-    </div>
+    <div class="site-info"><div class="site-name" style="color:#f5a623;">Приставы — долги</div><div class="site-url">fssp.gov.ru</div></div>
     <a href="https://fssp.gov.ru/iss/ip" target="_blank" class="site-link" style="background:#f5a623;">Открыть →</a>
   </div>
-  <div class="checks">
-    <div class="check-item" onclick="check(this)">
-      <div class="checkbox"></div>
-      <div class="check-text">
-        <div class="check-title">Нет исполнительных производств</div>
-        <div class="check-desc">Долги у заказчика = риск что не заплатит и нам</div>
-      </div>
-    </div>
+  <div class="checks" id="group-3">
+    <div class="check-item" onclick="check(event,this)"><div class="checkbox"></div><div class="check-text"><div class="check-title">Нет исполнительных производств</div><div class="check-desc">Долги у заказчика = риск что не заплатит и нам</div></div><div class="edit-fields"><input class="edit-input" type="text" value="Нет исполнительных производств" oninput="syncText(this,'check-title')"><input class="edit-input desc-input" type="text" value="Долги у заказчика = риск что не заплатит и нам" oninput="syncText(this,'check-desc')"></div><button class="del-item-btn" onclick="delItem(event,this)">×</button></div>
   </div>
+  <div style="padding: 0 16px 12px;"><button class="add-item-btn" onclick="addItem('group-3')">+ Добавить критерий</button></div>
 </div>
 
-<!-- САЙТ 4 -->
 <div class="site-card">
   <div class="site-header">
     <div class="site-num" style="background:rgba(39,174,96,0.2);color:#27ae60;">4</div>
-    <div class="site-info">
-      <div class="site-name" style="color:#27ae60;">ЕИС — история контрактов</div>
-      <div class="site-url">zakupki.gov.ru</div>
-    </div>
+    <div class="site-info"><div class="site-name" style="color:#27ae60;">ЕИС — история контрактов</div><div class="site-url">zakupki.gov.ru</div></div>
     <a href="https://zakupki.gov.ru" target="_blank" class="site-link" style="background:#27ae60;">Открыть →</a>
   </div>
-  <div class="checks">
-    <div class="check-item" onclick="check(this)">
-      <div class="checkbox"></div>
-      <div class="check-text">
-        <div class="check-title">Посмотрела предыдущие контракты заказчика</div>
-        <div class="check-desc">Реестр контрактов → поиск по ИНН заказчика</div>
-      </div>
-    </div>
-    <div class="check-item" onclick="check(this)">
-      <div class="checkbox"></div>
-      <div class="check-text">
-        <div class="check-title">Контракты исполнены без скандалов</div>
-        <div class="check-desc">Смотри статус контрактов — «Исполнен» хорошо</div>
-      </div>
-    </div>
-    <div class="check-item" onclick="check(this)">
-      <div class="checkbox"></div>
-      <div class="check-text">
-        <div class="check-title">Не всегда побеждает одна и та же компания</div>
-        <div class="check-desc">Если победитель всегда один — тендер может быть заточен под него</div>
-      </div>
-    </div>
+  <div class="checks" id="group-4">
+    <div class="check-item" onclick="check(event,this)"><div class="checkbox"></div><div class="check-text"><div class="check-title">Посмотрела предыдущие контракты заказчика</div><div class="check-desc">Реестр контрактов → поиск по ИНН заказчика</div></div><div class="edit-fields"><input class="edit-input" type="text" value="Посмотрела предыдущие контракты заказчика" oninput="syncText(this,'check-title')"><input class="edit-input desc-input" type="text" value="Реестр контрактов → поиск по ИНН заказчика" oninput="syncText(this,'check-desc')"></div><button class="del-item-btn" onclick="delItem(event,this)">×</button></div>
+    <div class="check-item" onclick="check(event,this)"><div class="checkbox"></div><div class="check-text"><div class="check-title">Контракты исполнены без скандалов</div><div class="check-desc">Смотри статус контрактов — «Исполнен» хорошо</div></div><div class="edit-fields"><input class="edit-input" type="text" value="Контракты исполнены без скандалов" oninput="syncText(this,'check-title')"><input class="edit-input desc-input" type="text" value="Смотри статус контрактов — «Исполнен» хорошо" oninput="syncText(this,'check-desc')"></div><button class="del-item-btn" onclick="delItem(event,this)">×</button></div>
+    <div class="check-item" onclick="check(event,this)"><div class="checkbox"></div><div class="check-text"><div class="check-title">Не всегда побеждает одна и та же компания</div><div class="check-desc">Если победитель всегда один — тендер может быть заточен под него</div></div><div class="edit-fields"><input class="edit-input" type="text" value="Не всегда побеждает одна и та же компания" oninput="syncText(this,'check-title')"><input class="edit-input desc-input" type="text" value="Если победитель всегда один — тендер может быть заточен под него" oninput="syncText(this,'check-desc')"></div><button class="del-item-btn" onclick="delItem(event,this)">×</button></div>
   </div>
+  <div style="padding: 0 16px 12px;"><button class="add-item-btn" onclick="addItem('group-4')">+ Добавить критерий</button></div>
 </div>
 
-<!-- САЙТ 5 -->
 <div class="site-card">
   <div class="site-header">
     <div class="site-num" style="background:rgba(155,89,182,0.2);color:#9b59b6;">5</div>
-    <div class="site-info">
-      <div class="site-name" style="color:#9b59b6;">Анализ конкурентов</div>
-      <div class="site-url">zakupki.gov.ru → реестр контрактов</div>
-    </div>
+    <div class="site-info"><div class="site-name" style="color:#9b59b6;">Анализ конкурентов</div><div class="site-url">zakupki.gov.ru → реестр контрактов</div></div>
     <a href="https://zakupki.gov.ru" target="_blank" class="site-link" style="background:#9b59b6;">Открыть →</a>
   </div>
-  <div class="checks">
-    <div class="check-item" onclick="check(this)">
-      <div class="checkbox"></div>
-      <div class="check-text">
-        <div class="check-title">Кто обычно побеждает в похожих тендерах</div>
-        <div class="check-desc">Поиск по ОКПД или ключевым словам — смотри победителей за последний год</div>
-      </div>
-    </div>
-    <div class="check-item" onclick="check(this)">
-      <div class="checkbox"></div>
-      <div class="check-text">
-        <div class="check-title">На сколько % снижают цену победители</div>
-        <div class="check-desc">НМЦК минус цена контракта — типичное снижение в нише. Ориентир для нашей ставки</div>
-      </div>
-    </div>
-    <div class="check-item" onclick="check(this)">
-      <div class="checkbox"></div>
-      <div class="check-text">
-        <div class="check-title">Сколько участников обычно подаёт заявки</div>
-        <div class="check-desc">1-2 участника = низкая конкуренция, можно снижаться меньше. 5+ = жёсткая борьба</div>
-      </div>
-    </div>
-    <div class="check-item" onclick="check(this)">
-      <div class="checkbox"></div>
-      <div class="check-text">
-        <div class="check-title">Проверила победителя на признаки заточки</div>
-        <div class="check-desc">Если одна компания побеждает 3+ раза подряд у этого заказчика — тендер может быть под неё</div>
-      </div>
-    </div>
-    <div class="check-item" onclick="check(this)">
-      <div class="checkbox"></div>
-      <div class="check-text">
-        <div class="check-title">Проверила победителя в РНП</div>
-        <div class="check-desc">ЕИС → Реестр недобросовестных поставщиков → поиск по ИНН конкурента</div>
-      </div>
-    </div>
+  <div class="checks" id="group-5">
+    <div class="check-item" onclick="check(event,this)"><div class="checkbox"></div><div class="check-text"><div class="check-title">Кто обычно побеждает в похожих тендерах</div><div class="check-desc">Поиск по ОКПД или ключевым словам — смотри победителей за последний год</div></div><div class="edit-fields"><input class="edit-input" type="text" value="Кто обычно побеждает в похожих тендерах" oninput="syncText(this,'check-title')"><input class="edit-input desc-input" type="text" value="Поиск по ОКПД или ключевым словам — смотри победителей за последний год" oninput="syncText(this,'check-desc')"></div><button class="del-item-btn" onclick="delItem(event,this)">×</button></div>
+    <div class="check-item" onclick="check(event,this)"><div class="checkbox"></div><div class="check-text"><div class="check-title">На сколько % снижают цену победители</div><div class="check-desc">НМЦК минус цена контракта — типичное снижение в нише. Ориентир для нашей ставки</div></div><div class="edit-fields"><input class="edit-input" type="text" value="На сколько % снижают цену победители" oninput="syncText(this,'check-title')"><input class="edit-input desc-input" type="text" value="НМЦК минус цена контракта — типичное снижение в нише. Ориентир для нашей ставки" oninput="syncText(this,'check-desc')"></div><button class="del-item-btn" onclick="delItem(event,this)">×</button></div>
+    <div class="check-item" onclick="check(event,this)"><div class="checkbox"></div><div class="check-text"><div class="check-title">Сколько участников обычно подаёт заявки</div><div class="check-desc">1-2 участника = низкая конкуренция, можно снижаться меньше. 5+ = жёсткая борьба</div></div><div class="edit-fields"><input class="edit-input" type="text" value="Сколько участников обычно подаёт заявки" oninput="syncText(this,'check-title')"><input class="edit-input desc-input" type="text" value="1-2 участника = низкая конкуренция, можно снижаться меньше. 5+ = жёсткая борьба" oninput="syncText(this,'check-desc')"></div><button class="del-item-btn" onclick="delItem(event,this)">×</button></div>
+    <div class="check-item" onclick="check(event,this)"><div class="checkbox"></div><div class="check-text"><div class="check-title">Проверила победителя на признаки заточки</div><div class="check-desc">Если одна компания побеждает 3+ раза подряд у этого заказчика — тендер может быть под неё</div></div><div class="edit-fields"><input class="edit-input" type="text" value="Проверила победителя на признаки заточки" oninput="syncText(this,'check-title')"><input class="edit-input desc-input" type="text" value="Если одна компания побеждает 3+ раза подряд у этого заказчика — тендер может быть под неё" oninput="syncText(this,'check-desc')"></div><button class="del-item-btn" onclick="delItem(event,this)">×</button></div>
+    <div class="check-item" onclick="check(event,this)"><div class="checkbox"></div><div class="check-text"><div class="check-title">Проверила победителя в РНП</div><div class="check-desc">ЕИС → Реестр недобросовестных поставщиков → поиск по ИНН конкурента</div></div><div class="edit-fields"><input class="edit-input" type="text" value="Проверила победителя в РНП" oninput="syncText(this,'check-title')"><input class="edit-input desc-input" type="text" value="ЕИС → Реестр недобросовестных поставщиков → поиск по ИНН конкурента" oninput="syncText(this,'check-desc')"></div><button class="del-item-btn" onclick="delItem(event,this)">×</button></div>
   </div>
+  <div style="padding: 0 16px 12px;"><button class="add-item-btn" onclick="addItem('group-5')">+ Добавить критерий</button></div>
 </div>
 
-<!-- ВЕРДИКТ -->
 <div class="verdict">
   <div class="verdict-header">ВЕРДИКТ</div>
-  <div class="verdict-item">
-    <div class="verdict-icon">✅</div>
-    <div><strong>Всё чисто</strong> — сообщи Антону, можно участвовать</div>
-  </div>
-  <div class="verdict-item">
-    <div class="verdict-icon">⚠️</div>
-    <div><strong>Есть вопросы</strong> — обсудите вместе перед решением</div>
-  </div>
-  <div class="verdict-item">
-    <div class="verdict-icon">🔴</div>
-    <div><strong>Много исков / долгов</strong> — переводи сделку в «Проигрыш», не участвуем</div>
-  </div>
+  <div class="verdict-item"><div class="verdict-icon">✅</div><div><strong>Всё чисто</strong> — сообщи Антону, можно участвовать</div></div>
+  <div class="verdict-item"><div class="verdict-icon">⚠️</div><div><strong>Есть вопросы</strong> — обсудите вместе перед решением</div></div>
+  <div class="verdict-item"><div class="verdict-icon">🔴</div><div><strong>Много исков / долгов</strong> — переводи сделку в «Проигрыш», не участвуем</div></div>
 </div>
 
 <button class="reset-btn" onclick="reset()">🔄 Сбросить — новый тендер</button>
 
 <script>
-const total = document.querySelectorAll('.check-item').length;
-
-function check(el) {
+function check(e, el) {
+  if (document.body.classList.contains('edit-mode')) return;
   el.classList.toggle('checked');
   updateProgress();
 }
-
 function updateProgress() {
+  const total = document.querySelectorAll('.check-item').length;
   const done = document.querySelectorAll('.check-item.checked').length;
-  document.getElementById('counter').textContent = `Выполнено: ${done} из ${total}`;
-  document.getElementById('progress').style.width = `${(done/total)*100}%`;
+  document.getElementById('counter').textContent = 'Выполнено: ' + done + ' из ' + total;
+  document.getElementById('progress').style.width = (total ? (done/total)*100 : 0) + '%';
 }
-
 function reset() {
   document.querySelectorAll('.check-item').forEach(el => el.classList.remove('checked'));
   updateProgress();
 }
+function toggleEdit() {
+  document.body.classList.toggle('edit-mode');
+  const btn = document.getElementById('editToggle');
+  btn.classList.toggle('active');
+  btn.textContent = document.body.classList.contains('edit-mode') ? '✅ Готово' : '✏️ Редактировать';
+  updateProgress();
+}
+function syncText(input, cls) {
+  input.closest('.check-item').querySelector('.' + cls).textContent = input.value;
+}
+function delItem(e, btn) {
+  e.stopPropagation();
+  btn.closest('.check-item').remove();
+  updateProgress();
+}
+function addItem(groupId) {
+  const group = document.getElementById(groupId);
+  const item = document.createElement('div');
+  item.className = 'check-item';
+  item.setAttribute('onclick', 'check(event,this)');
+  item.innerHTML = '<div class="checkbox"></div><div class="check-text"><div class="check-title">Новый критерий</div><div class="check-desc">Описание критерия</div></div><div class="edit-fields"><input class="edit-input" type="text" value="Новый критерий" oninput="syncText(this,\'check-title\')"><input class="edit-input desc-input" type="text" value="Описание критерия" oninput="syncText(this,\'check-desc\')"></div><button class="del-item-btn" onclick="delItem(event,this)">×</button>';
+  group.appendChild(item);
+  item.querySelector('.edit-input').focus();
+  item.querySelector('.edit-input').select();
+  updateProgress();
+}
+updateProgress();
 </script>
-
 </body>
 </html>

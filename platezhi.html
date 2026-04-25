@@ -345,6 +345,20 @@
     .tl-row { grid-template-columns: 80px 1fr auto; }
     .tl-balance { display: none; }
   }
+
+  /* EDIT MODE for tips */
+  .tip-edit-toggle-row { display: flex; justify-content: flex-end; margin-bottom: 6px; }
+  .tip-edit-btn { background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; color: var(--muted); font-family: 'Golos Text', sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; }
+  .tip-edit-btn.active { background: rgba(59,130,246,0.15); border-color: var(--blue); color: var(--blue); }
+  .del-tip-btn { display: none; padding: 2px 8px; border-radius: 6px; background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.3); color: var(--red); font-size: 13px; cursor: pointer; white-space: nowrap; }
+  body.tip-edit-mode .del-tip-btn { display: inline-block; }
+  .tip-row-edit { display: none; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; color: #93c5fd; font-family: 'Golos Text', sans-serif; font-size: 13px; line-height: 1.6; outline: none; width: 100%; resize: none; }
+  body.tip-edit-mode .tip-row-edit { display: block; }
+  body.tip-edit-mode .tip-row-text { display: none; }
+  .add-tip-btn { display: none; padding: 7px; background: rgba(59,130,246,0.08); border: 1px dashed rgba(59,130,246,0.3); border-radius: 8px; color: var(--blue); font-size: 12px; font-family: 'Golos Text', sans-serif; font-weight: 600; cursor: pointer; text-align: center; width: 100%; margin-top: 6px; }
+  body.tip-edit-mode .add-tip-btn { display: block; }
+  .tip-row-wrapper { margin: 2px 0; }
+
 </style>
 </head>
 <body>
@@ -433,15 +447,16 @@
       <div id="timeline"></div>
     </div>
 
-    <div class="tip-card">
+    <div class="tip-edit-toggle-row"><button class="tip-edit-btn" id="tipEditBtn" onclick="toggleTipEdit()">✏️ Редактировать советы</button></div>
+<div class="tip-card">
       <div class="tip-title">💡 КАК ИЗБЕЖАТЬ КАССОВОГО РАЗРЫВА</div>
-      <div class="tip-text">
-        • Запросить у заказчика частичную оплату по КС-2 до финала<br>
-        • Договориться с субподрядчиком об отсрочке платежа<br>
-        • Использовать кредитную карту на беспроцентный период<br>
-        • Взять тендерный кредит в банке под конкретный контракт<br>
-        • Не брать новый контракт пока не закрыт кассовый разрыв
-      </div>
+      <div class="tip-text" id="tip-rows">
+<div class="tip-row-wrapper"><span class="tip-row-text">• Запросить у заказчика частичную оплату по КС-2 до финала</span><input class="tip-row-edit" type="text" value="• Запросить у заказчика частичную оплату по КС-2 до финала" oninput="syncTipRow(this)"><button class="del-tip-btn" onclick="delTipRow(this)">×</button></div>
+<div class="tip-row-wrapper"><span class="tip-row-text">• Договориться с субподрядчиком об отсрочке платежа</span><input class="tip-row-edit" type="text" value="• Договориться с субподрядчиком об отсрочке платежа" oninput="syncTipRow(this)"><button class="del-tip-btn" onclick="delTipRow(this)">×</button></div>
+<div class="tip-row-wrapper"><span class="tip-row-text">• Использовать кредитную карту на беспроцентный период</span><input class="tip-row-edit" type="text" value="• Использовать кредитную карту на беспроцентный период" oninput="syncTipRow(this)"><button class="del-tip-btn" onclick="delTipRow(this)">×</button></div>
+<div class="tip-row-wrapper"><span class="tip-row-text">• Взять тендерный кредит в банке под конкретный контракт</span><input class="tip-row-edit" type="text" value="• Взять тендерный кредит в банке под конкретный контракт" oninput="syncTipRow(this)"><button class="del-tip-btn" onclick="delTipRow(this)">×</button></div>
+<div class="tip-row-wrapper"><span class="tip-row-text">• Не брать новый контракт пока не закрыт кассовый разрыв</span><input class="tip-row-edit" type="text" value="• Не брать новый контракт пока не закрыт кассовый разрыв" oninput="syncTipRow(this)"><button class="del-tip-btn" onclick="delTipRow(this)">×</button></div>
+<button class="add-tip-btn" onclick="addTipRow()">+ Добавить совет</button></div>
     </div>
 
     <button class="reset-btn" onclick="resetAll()">🔄 Очистить и начать заново</button>
@@ -618,6 +633,30 @@ function resetAll() {
   document.getElementById('result').className = 'result';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+function toggleTipEdit() {
+  document.body.classList.toggle('tip-edit-mode');
+  const btn = document.getElementById('tipEditBtn');
+  btn.classList.toggle('active');
+  btn.textContent = document.body.classList.contains('tip-edit-mode') ? '✅ Готово' : '✏️ Редактировать советы';
+}
+function syncTipRow(input) {
+  input.closest('.tip-row-wrapper').querySelector('.tip-row-text').textContent = input.value;
+}
+function delTipRow(btn) {
+  btn.closest('.tip-row-wrapper').remove();
+}
+function addTipRow() {
+  const rows = document.getElementById('tip-rows');
+  const addBtn = rows.querySelector('.add-tip-btn');
+  const wrapper = document.createElement('div');
+  wrapper.className = 'tip-row-wrapper';
+  wrapper.innerHTML = '<span class="tip-row-text">• Новый совет</span><input class="tip-row-edit" type="text" value="• Новый совет" oninput="syncTipRow(this)"><button class="del-tip-btn" onclick="delTipRow(this)">×</button>';
+  rows.insertBefore(wrapper, addBtn);
+  wrapper.querySelector('.tip-row-edit').focus();
+  wrapper.querySelector('.tip-row-edit').select();
+}
+
 </script>
 </body>
 </html>

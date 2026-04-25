@@ -219,6 +219,23 @@
   }
   .cl-item.checked .checkbox::after { content: '✓'; color: white; font-size: 13px; font-weight: 700; }
   .cl-item.checked span { text-decoration: line-through; opacity: 0.5; }
+
+  /* EDIT MODE for checklist */
+  .edit-toggle-row { display: flex; justify-content: flex-end; margin-bottom: 12px; }
+  .edit-toggle-btn { background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 10px; padding: 8px 16px; color: var(--muted); font-family: 'Golos Text', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .edit-toggle-btn.active { background: rgba(245,166,35,0.15); border-color: var(--orange); color: var(--orange); }
+  body.edit-mode .cl-item { cursor: default; }
+  body.edit-mode .checkbox { display: none; }
+  body.edit-mode .cl-item.checked span { text-decoration: none; }
+  .del-cl-btn { display: none; width: 26px; height: 26px; border-radius: 6px; background: rgba(231,76,60,0.12); border: 1px solid rgba(231,76,60,0.3); color: var(--red); font-size: 14px; cursor: pointer; flex-shrink: 0; align-items: center; justify-content: center; line-height: 1; }
+  body.edit-mode .del-cl-btn { display: flex; }
+  .cl-edit-input { display: none; flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 7px; padding: 6px 10px; color: var(--text); font-family: 'Golos Text', sans-serif; font-size: 13px; outline: none; }
+  body.edit-mode .cl-edit-input { display: block; }
+  body.edit-mode .cl-item > span { display: none; }
+  .cl-edit-input:focus { border-color: var(--orange); }
+  .add-cl-btn { display: none; width: 100%; padding: 9px; background: rgba(245,166,35,0.08); border: 1px dashed rgba(245,166,35,0.3); border-radius: 10px; color: var(--orange); font-size: 12px; font-family: 'Golos Text', sans-serif; font-weight: 600; cursor: pointer; text-align: center; margin-top: 6px; }
+  body.edit-mode .add-cl-btn { display: block; }
+
 </style>
 </head>
 <body>
@@ -650,18 +667,21 @@
 </div>
 
 <!-- ЧЕКЛИСТ -->
+<div class="edit-toggle-row"><button class="edit-toggle-btn" id="editToggle" onclick="toggleEditMode()">✏️ Редактировать чеклист</button></div>
 <div class="checklist" style="margin-top:20px;">
   <div class="cl-header">✅ ЧЕКЛИСТ ПЕРЕД ПОДАЧЕЙ ЗАЯВКИ</div>
-  <div class="cl-item" onclick="check(this)"><div class="checkbox"></div><span>Прочитал извещение и документацию полностью</span></div>
-  <div class="cl-item" onclick="check(this)"><div class="checkbox"></div><span>Прочитал техзадание полностью — каждую строчку</span></div>
-  <div class="cl-item" onclick="check(this)"><div class="checkbox"></div><span>Проверил — есть ли слово «эквивалент» в ТЗ</span></div>
-  <div class="cl-item" onclick="check(this)"><div class="checkbox"></div><span>Прочитал проект контракта — оплата, штрафы, гарантии</span></div>
-  <div class="cl-item" onclick="check(this)"><div class="checkbox"></div><span>Проверил заказчика на kad.arbitr.ru</span></div>
-  <div class="cl-item" onclick="check(this)"><div class="checkbox"></div><span>Запросил цены у субподрядчиков и поставщиков</span></div>
-  <div class="cl-item" onclick="check(this)"><div class="checkbox"></div><span>Заполнил скоринг-лист — балл выше 60</span></div>
-  <div class="cl-item" onclick="check(this)"><div class="checkbox"></div><span>Посчитал оборотные средства до оплаты заказчика</span></div>
-  <div class="cl-item" onclick="check(this)"><div class="checkbox"></div><span>Красных флагов нет</span></div>
-  <div class="cl-item" onclick="check(this)"><div class="checkbox"></div><span>Принял решение — УЧАСТВУЕМ</span></div>
+  <div class="cl-item" onclick="check(this)"><div class="checkbox"><input class="cl-edit-input" type="text" value="Пункт" oninput="syncClText(this)"><button class="del-cl-btn" onclick="delClItem(event,this)">×</button></div><span>Прочитал извещение и документацию полностью</span></div>
+  <div class="cl-item" onclick="check(this)"><div class="checkbox"><input class="cl-edit-input" type="text" value="Пункт" oninput="syncClText(this)"><button class="del-cl-btn" onclick="delClItem(event,this)">×</button></div><span>Прочитал техзадание полностью — каждую строчку</span></div>
+  <div class="cl-item" onclick="check(this)"><div class="checkbox"><input class="cl-edit-input" type="text" value="Пункт" oninput="syncClText(this)"><button class="del-cl-btn" onclick="delClItem(event,this)">×</button></div><span>Проверил — есть ли слово «эквивалент» в ТЗ</span></div>
+  <div class="cl-item" onclick="check(this)"><div class="checkbox"><input class="cl-edit-input" type="text" value="Пункт" oninput="syncClText(this)"><button class="del-cl-btn" onclick="delClItem(event,this)">×</button></div><span>Прочитал проект контракта — оплата, штрафы, гарантии</span></div>
+  <div class="cl-item" onclick="check(this)"><div class="checkbox"><input class="cl-edit-input" type="text" value="Пункт" oninput="syncClText(this)"><button class="del-cl-btn" onclick="delClItem(event,this)">×</button></div><span>Проверил заказчика на kad.arbitr.ru</span></div>
+  <div class="cl-item" onclick="check(this)"><div class="checkbox"><input class="cl-edit-input" type="text" value="Пункт" oninput="syncClText(this)"><button class="del-cl-btn" onclick="delClItem(event,this)">×</button></div><span>Запросил цены у субподрядчиков и поставщиков</span></div>
+  <div class="cl-item" onclick="check(this)"><div class="checkbox"><input class="cl-edit-input" type="text" value="Пункт" oninput="syncClText(this)"><button class="del-cl-btn" onclick="delClItem(event,this)">×</button></div><span>Заполнил скоринг-лист — балл выше 60</span></div>
+  <div class="cl-item" onclick="check(this)"><div class="checkbox"><input class="cl-edit-input" type="text" value="Пункт" oninput="syncClText(this)"><button class="del-cl-btn" onclick="delClItem(event,this)">×</button></div><span>Посчитал оборотные средства до оплаты заказчика</span></div>
+  <div class="cl-item" onclick="check(this)"><div class="checkbox"><input class="cl-edit-input" type="text" value="Пункт" oninput="syncClText(this)"><button class="del-cl-btn" onclick="delClItem(event,this)">×</button></div><span>Красных флагов нет</span></div>
+  <div class="cl-item" onclick="check(this)"><div class="checkbox"><input class="cl-edit-input" type="text" value="Пункт" oninput="syncClText(this)"><button class="del-cl-btn" onclick="delClItem(event,this)">×</button></div><span>Принял решение — УЧАСТВУЕМ</span></div>
+
+  <button class="add-cl-btn" onclick="addClItem()">+ Добавить пункт</button>
 </div>
 
 <script>
@@ -671,6 +691,32 @@ function toggle(el) {
 function check(el) {
   el.classList.toggle('checked');
 }
+
+function toggleEditMode() {
+  document.body.classList.toggle('edit-mode');
+  const btn = document.getElementById('editToggle');
+  btn.classList.toggle('active');
+  btn.textContent = document.body.classList.contains('edit-mode') ? '✅ Готово' : '✏️ Редактировать чеклист';
+}
+function syncClText(input) {
+  input.closest('.cl-item').querySelector('span').textContent = input.value;
+}
+function delClItem(e, btn) {
+  e.stopPropagation();
+  btn.closest('.cl-item').remove();
+}
+function addClItem() {
+  const checklist = document.querySelector('.checklist');
+  const addBtn = checklist.querySelector('.add-cl-btn');
+  const item = document.createElement('div');
+  item.className = 'cl-item';
+  item.setAttribute('onclick', 'check(this)');
+  item.innerHTML = '<div class="checkbox"></div><span>Новый пункт чеклиста</span><input class="cl-edit-input" type="text" value="Новый пункт чеклиста" oninput="syncClText(this)"><button class="del-cl-btn" onclick="delClItem(event,this)">×</button>';
+  checklist.insertBefore(item, addBtn);
+  item.querySelector('.cl-edit-input').focus();
+  item.querySelector('.cl-edit-input').select();
+}
+
 </script>
 
 </body>

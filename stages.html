@@ -245,6 +245,21 @@
     line-height: 1.6;
   }
   .tip-box strong { color: var(--s1); }
+
+  /* EDIT MODE */
+  .edit-toggle-row { display: flex; justify-content: flex-end; margin-bottom: 16px; }
+  .edit-toggle-btn { background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 10px; padding: 8px 16px; color: var(--muted); font-family: 'Golos Text', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .edit-toggle-btn.active { background: rgba(245,166,35,0.15); border-color: var(--s3); color: var(--s3); }
+  .del-task-btn { display: none; width: 24px; height: 24px; border-radius: 6px; background: rgba(231,76,60,0.12); border: 1px solid rgba(231,76,60,0.3); color: var(--lose); font-size: 14px; cursor: pointer; flex-shrink: 0; align-items: center; justify-content: center; line-height: 1; }
+  body.edit-mode .del-task-btn { display: flex; }
+  .task-edit-input { display: none; flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 7px; padding: 5px 9px; color: var(--text); font-family: 'Golos Text', sans-serif; font-size: 13px; outline: none; }
+  body.edit-mode .task-edit-input { display: block; }
+  body.edit-mode .task-item > *:not(.task-edit-input):not(.del-task-btn):not(.task-dot) { display: none; }
+  .task-edit-input:focus { border-color: var(--s3); }
+  .add-task-btn { display: none; width: 100%; padding: 8px; background: rgba(245,166,35,0.08); border: 1px dashed rgba(245,166,35,0.3); border-radius: 9px; color: var(--s3); font-size: 12px; font-family: 'Golos Text', sans-serif; font-weight: 600; cursor: pointer; text-align: center; margin-top: 8px; }
+  body.edit-mode .add-task-btn { display: block; }
+  body.edit-mode .task-item { cursor: default; }
+
 </style>
 </head>
 <body>
@@ -278,6 +293,7 @@
   <div class="flow-badge" style="background:rgba(39,174,96,0.2);color:#27ae60;">Победа</div>
 </div>
 
+<div class="edit-toggle-row"><button class="edit-toggle-btn" id="editToggle" onclick="toggleEditMode()">✏️ Редактировать</button></div>
 <div class="stages">
 
   <div class="stage" onclick="toggle(this)">
@@ -289,17 +305,16 @@
       </div>
       <div class="stage-sla">до 2 ч</div>
     </div>
-    <div class="stage-body">
+    <div class="stage-body" id="stage-body-1">
       <div class="stage-divider"></div>
       <div class="tasks-title">Что делаем</div>
-      <div class="task-item"><div class="task-dot" style="background:#4d9fff;"></div>Ежедневно проверяем ЕИС — фильтр: строительство + малый бизнес + до 10 млн ₽ + Пермский край / Удмуртия</div>
-      <div class="task-item"><div class="task-dot" style="background:#4d9fff;"></div>Создаём карточку сделки в нужной воронке (Капремонт / Муниципальные / Благоустройство)</div>
-      <div class="task-item"><div class="task-dot" style="background:#4d9fff;"></div>Заполняем: название, сумма, дедлайн подачи, ссылка на ЕИС</div>
+      <div class="task-item"><div class="task-dot" style="background:#4d9fff;"></div><span class="task-text-span"></span><input class="task-edit-input" type="text" value="" oninput="syncTaskText(this)"><button class="del-task-btn" onclick="delTaskItem(this)">×</button></div>Ежедневно проверяем ЕИС — фильтр: строительство + малый бизнес + до 10 млн ₽ + Пермский край / Удмуртия</div>
+      <div class="task-item"><div class="task-dot" style="background:#4d9fff;"></div><span class="task-text-span"></span><input class="task-edit-input" type="text" value="" oninput="syncTaskText(this)"><button class="del-task-btn" onclick="delTaskItem(this)">×</button></div>Создаём карточку сделки в нужной воронке (Капремонт / Муниципальные / Благоустройство)</div>
+      <div class="task-item"><div class="task-dot" style="background:#4d9fff;"></div><span class="task-text-span"></span><input class="task-edit-input" type="text" value="" oninput="syncTaskText(this)"><button class="del-task-btn" onclick="delTaskItem(this)">×</button></div>Заполняем: название, сумма, дедлайн подачи, ссылка на ЕИС</div>
       <div class="owner-row">
         <span class="owner-badge" style="background:rgba(77,159,255,0.15);color:#4d9fff;">Антон</span>
       </div>
-      <div class="result-row"><strong>Результат:</strong> карточка тендера в стадии «Мониторинг»</div>
-    </div>
+      <button class="add-task-btn" onclick="addTaskItem('stage-body-1', '#4d9fff')">+ Добавить задачу</button></div></div>
   </div>
 
   <div class="stage" onclick="toggle(this)">
@@ -311,18 +326,17 @@
       </div>
       <div class="stage-sla">4 часа</div>
     </div>
-    <div class="stage-body">
+    <div class="stage-body" id="stage-body-2">
       <div class="stage-divider"></div>
       <div class="tasks-title">Что делаем</div>
-      <div class="task-item"><div class="task-dot" style="background:#00d4aa;"></div>Скачиваем техзадание и читаем требования</div>
-      <div class="task-item"><div class="task-dot" style="background:#00d4aa;"></div>Оцениваем: можем выполнить? есть материалы? укладываемся в срок?</div>
-      <div class="task-item"><div class="task-dot" style="background:#00d4aa;"></div>Считаем примерную маржу — выгодно ли участвовать</div>
-      <div class="task-item"><div class="task-dot" style="background:#00d4aa;"></div>Решение: идём → переводим в «Подготовка пакета» / не идём → «Проигрыш» с комментарием</div>
+      <div class="task-item"><div class="task-dot" style="background:#00d4aa;"></div><span class="task-text-span"></span><input class="task-edit-input" type="text" value="" oninput="syncTaskText(this)"><button class="del-task-btn" onclick="delTaskItem(this)">×</button></div>Скачиваем техзадание и читаем требования</div>
+      <div class="task-item"><div class="task-dot" style="background:#00d4aa;"></div><span class="task-text-span"></span><input class="task-edit-input" type="text" value="" oninput="syncTaskText(this)"><button class="del-task-btn" onclick="delTaskItem(this)">×</button></div>Оцениваем: можем выполнить? есть материалы? укладываемся в срок?</div>
+      <div class="task-item"><div class="task-dot" style="background:#00d4aa;"></div><span class="task-text-span"></span><input class="task-edit-input" type="text" value="" oninput="syncTaskText(this)"><button class="del-task-btn" onclick="delTaskItem(this)">×</button></div>Считаем примерную маржу — выгодно ли участвовать</div>
+      <div class="task-item"><div class="task-dot" style="background:#00d4aa;"></div><span class="task-text-span"></span><input class="task-edit-input" type="text" value="" oninput="syncTaskText(this)"><button class="del-task-btn" onclick="delTaskItem(this)">×</button></div>Решение: идём → переводим в «Подготовка пакета» / не идём → «Проигрыш» с комментарием</div>
       <div class="owner-row">
         <span class="owner-badge" style="background:rgba(0,212,170,0.15);color:#00d4aa;">Антон</span>
       </div>
-      <div class="result-row"><strong>Результат:</strong> решение зафиксировано в карточке</div>
-    </div>
+      <button class="add-task-btn" onclick="addTaskItem('stage-body-2', '#00d4aa')">+ Добавить задачу</button></div></div>
   </div>
 
   <div class="stage" onclick="toggle(this)">
@@ -334,20 +348,19 @@
       </div>
       <div class="stage-sla">до 5 дней</div>
     </div>
-    <div class="stage-body">
+    <div class="stage-body" id="stage-body-3">
       <div class="stage-divider"></div>
       <div class="tasks-title">Что делаем</div>
-      <div class="task-item"><div class="task-dot" style="background:#f5a623;"></div>Заявка на участие по форме заказчика</div>
-      <div class="task-item"><div class="task-dot" style="background:#f5a623;"></div>Выписка ЕГРЮЛ (не старше 3 мес), справка об отсутствии задолженностей</div>
-      <div class="task-item"><div class="task-dot" style="background:#f5a623;"></div>Свидетельство НОСТРОЙ, устав, решение о назначении директора</div>
-      <div class="task-item"><div class="task-dot" style="background:#f5a623;"></div>Техническое предложение — описание как будем выполнять работы</div>
-      <div class="task-item"><div class="task-dot" style="background:#f5a623;"></div>Ценовое предложение — смета с расчётом стоимости</div>
+      <div class="task-item"><div class="task-dot" style="background:#f5a623;"></div><span class="task-text-span"></span><input class="task-edit-input" type="text" value="" oninput="syncTaskText(this)"><button class="del-task-btn" onclick="delTaskItem(this)">×</button></div>Заявка на участие по форме заказчика</div>
+      <div class="task-item"><div class="task-dot" style="background:#f5a623;"></div><span class="task-text-span"></span><input class="task-edit-input" type="text" value="" oninput="syncTaskText(this)"><button class="del-task-btn" onclick="delTaskItem(this)">×</button></div>Выписка ЕГРЮЛ (не старше 3 мес), справка об отсутствии задолженностей</div>
+      <div class="task-item"><div class="task-dot" style="background:#f5a623;"></div><span class="task-text-span"></span><input class="task-edit-input" type="text" value="" oninput="syncTaskText(this)"><button class="del-task-btn" onclick="delTaskItem(this)">×</button></div>Свидетельство НОСТРОЙ, устав, решение о назначении директора</div>
+      <div class="task-item"><div class="task-dot" style="background:#f5a623;"></div><span class="task-text-span"></span><input class="task-edit-input" type="text" value="" oninput="syncTaskText(this)"><button class="del-task-btn" onclick="delTaskItem(this)">×</button></div>Техническое предложение — описание как будем выполнять работы</div>
+      <div class="task-item"><div class="task-dot" style="background:#f5a623;"></div><span class="task-text-span"></span><input class="task-edit-input" type="text" value="" oninput="syncTaskText(this)"><button class="del-task-btn" onclick="delTaskItem(this)">×</button></div>Ценовое предложение — смета с расчётом стоимости</div>
       <div class="owner-row">
         <span class="owner-badge" style="background:rgba(245,166,35,0.15);color:#f5a623;">Катя</span>
         <span class="owner-badge" style="background:rgba(245,166,35,0.1);color:#f5a623;">Антон (смета)</span>
       </div>
-      <div class="result-row"><strong>Результат:</strong> полный пакет документов готов, проверен вместе</div>
-    </div>
+      <button class="add-task-btn" onclick="addTaskItem('stage-body-3', '#f5a623')">+ Добавить задачу</button></div></div>
   </div>
 
   <div class="stage" onclick="toggle(this)">
@@ -359,18 +372,17 @@
       </div>
       <div class="stage-sla">за 24 ч до дедлайна</div>
     </div>
-    <div class="stage-body">
+    <div class="stage-body" id="stage-body-4">
       <div class="stage-divider"></div>
       <div class="tasks-title">Что делаем</div>
-      <div class="task-item"><div class="task-dot" style="background:#ff6b35;"></div>Заходим на торговую площадку (Сбербанк-АСТ / РТС-тендер)</div>
-      <div class="task-item"><div class="task-dot" style="background:#ff6b35;"></div>Загружаем пакет документов, подписываем ЭЦП</div>
-      <div class="task-item"><div class="task-dot" style="background:#ff6b35;"></div>Проверяем что заявка принята — берём скриншот подтверждения</div>
-      <div class="task-item"><div class="task-dot" style="background:#ff6b35;"></div>Фиксируем в карточке: дата подачи, номер заявки</div>
+      <div class="task-item"><div class="task-dot" style="background:#ff6b35;"></div><span class="task-text-span"></span><input class="task-edit-input" type="text" value="" oninput="syncTaskText(this)"><button class="del-task-btn" onclick="delTaskItem(this)">×</button></div>Заходим на торговую площадку (Сбербанк-АСТ / РТС-тендер)</div>
+      <div class="task-item"><div class="task-dot" style="background:#ff6b35;"></div><span class="task-text-span"></span><input class="task-edit-input" type="text" value="" oninput="syncTaskText(this)"><button class="del-task-btn" onclick="delTaskItem(this)">×</button></div>Загружаем пакет документов, подписываем ЭЦП</div>
+      <div class="task-item"><div class="task-dot" style="background:#ff6b35;"></div><span class="task-text-span"></span><input class="task-edit-input" type="text" value="" oninput="syncTaskText(this)"><button class="del-task-btn" onclick="delTaskItem(this)">×</button></div>Проверяем что заявка принята — берём скриншот подтверждения</div>
+      <div class="task-item"><div class="task-dot" style="background:#ff6b35;"></div><span class="task-text-span"></span><input class="task-edit-input" type="text" value="" oninput="syncTaskText(this)"><button class="del-task-btn" onclick="delTaskItem(this)">×</button></div>Фиксируем в карточке: дата подачи, номер заявки</div>
       <div class="owner-row">
         <span class="owner-badge" style="background:rgba(255,107,53,0.15);color:#ff6b35;">Антон</span>
       </div>
-      <div class="result-row"><strong>Результат:</strong> заявка принята площадкой, скриншот в карточке</div>
-    </div>
+      <button class="add-task-btn" onclick="addTaskItem('stage-body-4', '#ff6b35')">+ Добавить задачу</button></div></div>
   </div>
 
   <div class="stage" onclick="toggle(this)">
@@ -382,18 +394,17 @@
       </div>
       <div class="stage-sla">ответ ≤ 24 ч</div>
     </div>
-    <div class="stage-body">
+    <div class="stage-body" id="stage-body-5">
       <div class="stage-divider"></div>
       <div class="tasks-title">Что делаем</div>
-      <div class="task-item"><div class="task-dot" style="background:#9b59b6;"></div>Следим за запросами разъяснений от заказчика</div>
-      <div class="task-item"><div class="task-dot" style="background:#9b59b6;"></div>Отвечаем на вопросы в течение 24 часов</div>
-      <div class="task-item"><div class="task-dot" style="background:#9b59b6;"></div>Следим за датой подведения итогов</div>
-      <div class="task-item"><div class="task-dot" style="background:#9b59b6;"></div>После итогов — переводим в «Победа» или «Проигрыш»</div>
+      <div class="task-item"><div class="task-dot" style="background:#9b59b6;"></div><span class="task-text-span"></span><input class="task-edit-input" type="text" value="" oninput="syncTaskText(this)"><button class="del-task-btn" onclick="delTaskItem(this)">×</button></div>Следим за запросами разъяснений от заказчика</div>
+      <div class="task-item"><div class="task-dot" style="background:#9b59b6;"></div><span class="task-text-span"></span><input class="task-edit-input" type="text" value="" oninput="syncTaskText(this)"><button class="del-task-btn" onclick="delTaskItem(this)">×</button></div>Отвечаем на вопросы в течение 24 часов</div>
+      <div class="task-item"><div class="task-dot" style="background:#9b59b6;"></div><span class="task-text-span"></span><input class="task-edit-input" type="text" value="" oninput="syncTaskText(this)"><button class="del-task-btn" onclick="delTaskItem(this)">×</button></div>Следим за датой подведения итогов</div>
+      <div class="task-item"><div class="task-dot" style="background:#9b59b6;"></div><span class="task-text-span"></span><input class="task-edit-input" type="text" value="" oninput="syncTaskText(this)"><button class="del-task-btn" onclick="delTaskItem(this)">×</button></div>После итогов — переводим в «Победа» или «Проигрыш»</div>
       <div class="owner-row">
         <span class="owner-badge" style="background:rgba(155,89,182,0.15);color:#9b59b6;">Катя</span>
       </div>
-      <div class="result-row"><strong>Результат:</strong> знаем итог тендера, карточка переведена в финальную стадию</div>
-    </div>
+      <button class="add-task-btn" onclick="addTaskItem('stage-body-5', '#9b59b6')">+ Добавить задачу</button></div></div>
   </div>
 
 </div>
@@ -426,6 +437,45 @@ function toggle(el) {
   const body = el.querySelector('.stage-body');
   body.classList.toggle('open');
 }
+
+function toggleEditMode() {
+  document.body.classList.toggle('edit-mode');
+  const btn = document.getElementById('editToggle');
+  btn.classList.toggle('active');
+  btn.textContent = document.body.classList.contains('edit-mode') ? '✅ Готово' : '✏️ Редактировать';
+  // Open all stages in edit mode
+  if (document.body.classList.contains('edit-mode')) {
+    document.querySelectorAll('.stage-body').forEach(b => b.classList.add('open'));
+  }
+}
+function syncTaskText(input) {
+  // find the text node (not the input)
+  const item = input.closest('.task-item');
+  // Update the text content (the text after the dot div)
+  const textNodes = [...item.childNodes].filter(n => n.nodeType === 3);
+  // Actually update via a span
+  let span = item.querySelector('.task-text-span');
+  if (!span) {
+    span = document.createElement('span');
+    span.className = 'task-text-span';
+    item.insertBefore(span, input);
+  }
+  span.textContent = input.value;
+}
+function delTaskItem(btn) {
+  btn.closest('.task-item').remove();
+}
+function addTaskItem(stageId, dotColor) {
+  const body = document.getElementById(stageId);
+  const addBtn = body.querySelector('.add-task-btn');
+  const item = document.createElement('div');
+  item.className = 'task-item';
+  item.innerHTML = '<div class="task-dot" style="background:' + dotColor + '"></div><span class="task-text-span">Новая задача</span><input class="task-edit-input" type="text" value="Новая задача" oninput="syncTaskText(this)"><button class="del-task-btn" onclick="delTaskItem(this)">×</button>';
+  body.insertBefore(item, addBtn);
+  item.querySelector('.task-edit-input').focus();
+  item.querySelector('.task-edit-input').select();
+}
+
 </script>
 
 </body>
