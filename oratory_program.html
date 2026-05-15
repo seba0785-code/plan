@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мастерство оратора — 12-недельная программа</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F7F5F0;
+  --card: #FFFFFF;
+  --text: #1C1917;
+  --text-secondary: #57534E;
+  --text-muted: #A8A29E;
+  --border: #E7E5E4;
+  --accent-1: #1B4332;
+  --accent-2: #7F1D1D;
+  --accent-3: #C2410C;
+  --accent-4: #1E3A5F;
+  --accent-5: #5B21B6;
+  --accent-6: #0F4C75;
+  --highlight: #FEF3C7;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hero {
+  background: linear-gradient(160deg, #0F2027 0%, #203A43 40%, #2C5364 100%);
+  color: #fff;
+  padding: 60px 24px 50px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.05) 0%, transparent 50%);
+}
+.hero-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+}
+.hero-label {
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+}
+.hero p {
+  font-size: 16px;
+  opacity: 0.6;
+  max-width: 500px;
+  line-height: 1.6;
+}
+.hero-sources {
+  margin-top: 24px;
+  font-size: 12px;
+  opacity: 0.4;
+  line-height: 1.8;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Daily routine toggle */
+.routine-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 12px 22px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.routine-toggle:hover { background: rgba(255,255,255,0.18); }
+
+.routine-panel {
+  display: none;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+  margin: -20px 0 0;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+}
+.routine-panel.open { display: block; }
+.routine-panel h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--accent-4);
+}
+.routine-panel .subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+.routine-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-bottom: 1px solid #f5f3f0;
+}
+.routine-item:last-child { border-bottom: none; }
+.routine-time {
+  background: var(--accent-4);
+  color: #fff;
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+.routine-text { font-size: 15px; }
+.routine-text strong { font-weight: 500; }
+.routine-text span { color: var(--text-secondary); font-size: 13px; display: block; margin-top: 2px; }
+
+/* Phases */
+.phases { padding: 32px 0 60px; }
+
+.phase-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+}
+.phase-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+
+.phase-header {
+  padding: 22px 26px;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  user-select: none;
+  position: relative;
+}
+.phase-icon {
+  font-size: 32px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.phase-meta { flex: 1; }
+.phase-tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.phase-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+.phase-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.phase-arrow {
+  font-size: 18px;
+  color: var(--text-muted);
+  transition: transform 0.3s;
+  margin-top: 8px;
+}
+.phase-card.open .phase-arrow { transform: rotate(180deg); }
+
+.phase-body {
+  display: none;
+  padding: 0 26px 28px;
+}
+.phase-card.open .phase-body { display: block; }
+
+.phase-intro {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  padding: 0 0 20px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+.phase-intro strong { font-weight: 500; color: var(--text); }
+
+/* Section headings inside phase */
+.section-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 28px 0 16px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.section-heading:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+
+/* Exercise blocks */
+.exercise {
+  margin-bottom: 20px;
+  padding: 18px 20px;
+  background: #FAFAF8;
+  border-radius: 10px;
+  border-left: 3px solid var(--border);
+}
+.exercise-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.exercise-name {
+  font-size: 15px;
+  font-weight: 500;
+}
+.exercise-time {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.exercise-detail {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+.exercise-detail em {
+  font-style: normal;
+  background: var(--highlight);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+.exercise-steps {
+  margin-top: 10px;
+  padding-left: 0;
+  list-style: none;
+  counter-reset: step;
+}
+.exercise-steps li {
+  counter-increment: step;
+  padding: 6px 0 6px 28px;
+  position: relative;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.exercise-steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--border);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tip blocks */
+.tip-block {
+  margin-top: 24px;
+  padding: 18px 20px;
+  border-radius: 10px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.tip-block .icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.tip-block p { font-size: 14px; line-height: 1.7; }
+
+/* Warning blocks */
+.warn-block {
+  margin-top: 16px;
+  padding: 14px 18px;
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  border-radius: 10px;
+  font-size: 13px;
+  color: #991B1B;
+  line-height: 1.6;
+}
+
+/* Checklist */
+.checklist { margin-top: 16px; }
+.checklist label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.checklist input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  accent-color: var(--accent-1);
+  flex-shrink: 0;
+}
+
+.footer {
+  text-align: center;
+  padding: 32px 20px 48px;
+}
+.footer-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-style: italic;
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto 12px;
+  line-height: 1.4;
+}
+.footer-attr {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+@media (max-width: 600px) {
+  .hero h1 { font-size: 32px; }
+  .hero { padding: 40px 20px 36px; }
+  .phase-header { padding: 18px 18px; gap: 14px; }
+  .phase-body { padding: 0 18px 22px; }
+  .phase-title { font-size: 20px; }
+  .phase-icon { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">12-недельная программа тренировок</div>
+    <h1>Мастерство оратора</h1>
+    <p>От диафрагмального дыхания до управления аудиторией — пошаговый путь к сильному голосу и убедительной речи</p>
+    <button class="routine-toggle" onclick="toggleRoutine()">
+      <span id="routine-btn-text">⏱ Ежедневная голосовая разминка · 20 мин</span>
+    </button>
+    <div class="hero-sources">
+      По материалам: Е. Шестакова «Говори красиво и уверенно» · А. Яныхбаш «Ты же оратор»
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="routine-panel" id="routine-panel">
+    <h3>Ежедневная голосовая разминка</h3>
+    <div class="subtitle">Делайте каждое утро или перед важным выступлением. Результат — через 1–2 месяца.</div>
+    <div class="routine-item">
+      <div class="routine-time">5 мин</div>
+      <div class="routine-text"><strong>Дыхательная гимнастика</strong><span>Стрельниковская гимнастика (4–5 упражнений) или классическая: вдох–выдох, квадрат, двойной вдох</span></div>
+    </div>
+    <div class="routine-item">
+      <div class="routine-time">3 мин</div>
+      <div class="routine-text"><strong>Звучание на «м» + пробивка резонаторов</strong><span>Мычание на сомкнутых губах + простукивание кончиками пальцев: макушка → нос → грудь → спина</span></div>
+    </div>
+    <div class="routine-item">
+      <div class="routine-time">5 мин</div>
+      <div class="routine-text"><strong>Артикуляционная разминка</strong><span>Челюсть: 20 опусканий с проверкой впадины. Язык: «лошадка», «кисточка», круговые. Губы: трубочка ↔ улыбка</span></div>
+    </div>
+    <div class="routine-item">
+      <div class="routine-time">5 мин</div>
+      <div class="routine-text"><strong>Скороговорки с нарастанием</strong><span>«Маланья-болтунья молоко болтала…» — сначала медленно, затем быстро; тихо → громко; низко → высоко</span></div>
+    </div>
+    <div class="routine-item">
+      <div class="routine-time">2 мин</div>
+      <div class="routine-text"><strong>Чтение вслух с интонацией</strong><span>Любой прозаический текст. Следите за паузами, ударными словами и «точками» в конце фраз</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="container phases">
+
+<!-- ═══════════════════════════════════════ -->
+<!-- ЭТАП 1: ДЫХАНИЕ -->
+<!-- ═══════════════════════════════════════ -->
+<div class="phase-card" id="phase-1">
+  <div class="phase-header" onclick="togglePhase(1)">
+    <div class="phase-icon">🌬️</div>
+    <div class="phase-meta">
+      <div class="phase-tag" style="color:var(--accent-1)">Этап 1 · Недели 1–2</div>
+      <div class="phase-title">Управление дыханием</div>
+      <div class="phase-subtitle">Фундамент голоса и спокойствия</div>
+    </div>
+    <div class="phase-arrow">▾</div>
+  </div>
+  <div class="phase-body">
+    <div class="phase-intro">
+      Дыхание — самая важная основа голоса. Без правильного (нижнего, диафрагмального) дыхания звук будет тусклым и плоским, а голосовой аппарат будет быстро уставать. <strong>80% женщин и часть мужчин дышат верхним, грудным дыханием</strong> — оно лишает голос силы и делает волнение неконтролируемым. Рождаясь, все дышат животом. Задача — вернуть это естественное дыхание и укрепить диафрагму.
+    </div>
+
+    <div class="section-heading" style="color:var(--accent-1)">Диагностика дыхания</div>
+
+    <div class="exercise" style="border-left-color:var(--accent-1)">
+      <div class="exercise-head">
+        <div class="exercise-name">Тест с листом бумаги</div>
+        <div class="exercise-time" style="color:var(--accent-1); background:#1B433210;">5 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Возьмите лист А4 в вертикальном положении. Приложите его серединой к разомкнутым губам и постарайтесь удерживать на вдохе — лист держится за счёт силы всасываемого воздуха. Сколько секунд удержали: 2, 5, 10? При тренированном дыхании можно держать минуту и больше.
+      </div>
+    </div>
+
+    <div class="exercise" style="border-left-color:var(--accent-1)">
+      <div class="exercise-head">
+        <div class="exercise-name">Тест «рука на животе»</div>
+        <div class="exercise-time" style="color:var(--accent-1); background:#1B433210;">3 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Положите одну руку на живот, вторую на грудь. Глубокий вдох носом. <em>Грудь и плечи поднимаются, живот втягивается</em> — верхнее дыхание. <em>Плечи неподвижны, живот расправляется на вдохе, на выдохе «прилипает к позвоночнику»</em> — нижнее, правильное дыхание. Повторите лёжа — в этом положении все дышат животом. Запомните это ощущение и перенесите в вертикальное положение.
+      </div>
+    </div>
+
+    <div class="section-heading" style="color:var(--accent-1)">Гимнастика Стрельниковой (основной комплекс)</div>
+
+    <div class="exercise" style="border-left-color:var(--accent-1)">
+      <div class="exercise-head">
+        <div class="exercise-name">Правила выполнения</div>
+      </div>
+      <div class="exercise-detail">
+        <ol class="exercise-steps">
+          <li>Думайте только о вдохе носом. Вдох — шумный, резкий, короткий (как хлопок). Выдох — пассивный, через рот, его не должно быть слышно.</li>
+          <li>Вдох делается одновременно с движением. Нет вдоха без движения.</li>
+          <li>Темпоритм строевого шага. Счёт мысленно только по 8.</li>
+          <li>Каждое упражнение — 8, 16, 32 вдохов-движений. Между подходами — пауза 3–5 секунд.</li>
+          <li>Заниматься 10–15 минут, два раза в день. Через месяц — ощутимый результат.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="exercise" style="border-left-color:var(--accent-1)">
+      <div class="exercise-head">
+        <div class="exercise-name">«Ладошки»</div>
+        <div class="exercise-time" style="color:var(--accent-1); background:#1B433210;">2 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Встаньте прямо, согните руки в локтях, покажите ладони «зрителю». Делайте шумные короткие вдохи носом, одновременно сжимая ладони в кулаки. 4 вдоха подряд → пауза 3–4 сек → ещё 4 вдоха. <em>Норма: 16 раз.</em> Плечи неподвижны!
+      </div>
+    </div>
+
+    <div class="exercise" style="border-left-color:var(--accent-1)">
+      <div class="exercise-head">
+        <div class="exercise-name">«Погончики»</div>
+        <div class="exercise-time" style="color:var(--accent-1); background:#1B433210;">2 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Кисти сжаты в кулаки и прижаты к поясу. На вдохе резко толкайте кулаки вниз к полу (руки выпрямляются, плечи напряжены). На выдохе руки возвращаются на пояс. <em>Норма: 12 × 8 вдохов-движений.</em>
+      </div>
+    </div>
+
+    <div class="exercise" style="border-left-color:var(--accent-1)">
+      <div class="exercise-head">
+        <div class="exercise-name">«Насос»</div>
+        <div class="exercise-time" style="color:var(--accent-1); background:#1B433210;">2 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Лёгкий наклон вперёд (руки тянутся к полу, не касаясь его) + шумный вдох носом во второй половине наклона. Спина круглая, голова опущена, шея расслаблена. Представьте, что накачиваете шину. <em>Норма: 12 × 8.</em>
+      </div>
+    </div>
+
+    <div class="exercise" style="border-left-color:var(--accent-1)">
+      <div class="exercise-head">
+        <div class="exercise-name">«Кошка»</div>
+        <div class="exercise-time" style="color:var(--accent-1); background:#1B433210;">2 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Танцевальное приседание с поворотом туловища вправо — вдох. Такое же влево — вдох. Коленки пружинят, руки делают хватательные движения на уровне пояса. Спина прямая, поворот только в талии. <em>Норма: 12 × 8.</em>
+      </div>
+    </div>
+
+    <div class="exercise" style="border-left-color:var(--accent-1)">
+      <div class="exercise-head">
+        <div class="exercise-name">«Обними плечи»</div>
+        <div class="exercise-time" style="color:var(--accent-1); background:#1B433210;">2 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Руки согнуты в локтях на уровне плеч. Бросайте руки навстречу, как бы обнимая себя за плечи. С каждым «объятием» — резкий вдох. Руки идут параллельно, не крест-накрест. <em>Норма: 12 × 8.</em>
+      </div>
+    </div>
+
+    <div class="exercise" style="border-left-color:var(--accent-1)">
+      <div class="exercise-head">
+        <div class="exercise-name">«Большой маятник», «Повороты головы», «Ушки», «Маятник головой», «Перекаты», «Шаги»</div>
+      </div>
+      <div class="exercise-detail">
+        Остальные упражнения комплекса добавляйте постепенно: по 1–2 в неделю. Принцип тот же: каждое движение сопровождается резким вдохом через нос, выдох — пассивный. Через месяц делайте весь комплекс от начала до конца.
+      </div>
+    </div>
+
+    <div class="section-heading" style="color:var(--accent-1)">Классическая дыхательная гимнастика</div>
+
+    <div class="exercise" style="border-left-color:var(--accent-1)">
+      <div class="exercise-head">
+        <div class="exercise-name">5 базовых упражнений (можно в пробке/за столом)</div>
+        <div class="exercise-time" style="color:var(--accent-1); background:#1B433210;">5–10 мин</div>
+      </div>
+      <div class="exercise-detail">
+        <ol class="exercise-steps">
+          <li><strong>Глубокий вдох носом — резкий выдох через рот.</strong> 4–8 раз.</li>
+          <li><strong>Резкий вдох носом — глубокий тёплый выдох через рот.</strong> 4–8 раз.</li>
+          <li><strong>Двойной вдох — двойной выдох.</strong> 4–8 раз.</li>
+          <li><strong>Ступенчатое дыхание:</strong> вдох → пауза → ещё вдох → пауза → медленный выдох → пауза → ещё выдох → пауза. 4–8 раз.</li>
+          <li><strong>Дыхание «по квадрату»:</strong> вдох 3 сек → пауза 3 сек → выдох 3 сек → пауза 3 сек. Можно закрыть глаза. Минимум 4 круга, постепенно увеличивайте стороны до 5 секунд.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="section-heading" style="color:var(--accent-1)">Динамические упражнения для диафрагмы</div>
+
+    <div class="exercise" style="border-left-color:var(--accent-1)">
+      <div class="exercise-head">
+        <div class="exercise-name">Приседания с чистоговоркой</div>
+        <div class="exercise-time" style="color:var(--accent-1); background:#1B433210;">5 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Приседайте, произнося на выдохе (у колен): <em>«Наш шахматист вашего шахматиста перешахматит, перевышахматит»</em>. Каждому слову — одно приседание. 4–6 повторов.
+      </div>
+    </div>
+
+    <div class="exercise" style="border-left-color:var(--accent-1)">
+      <div class="exercise-head">
+        <div class="exercise-name">Поза «Сфинкс»</div>
+        <div class="exercise-time" style="color:var(--accent-1); background:#1B433210;">5 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Перегнитесь через спинку стула областью диафрагмы. Голова и шея расслаблены. В этом положении произносите чистоговорку на одном выдохе, без доборов воздуха. <em>Цель: 5 повторов подряд на одном выдохе.</em>
+      </div>
+    </div>
+
+    <div class="exercise" style="border-left-color:var(--accent-1)">
+      <div class="exercise-head">
+        <div class="exercise-name">«Любимый цветок»</div>
+        <div class="exercise-time" style="color:var(--accent-1); background:#1B433210;">3 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Представьте цветок с неповторимым ароматом. Медленно, спокойно, глубоко вдыхайте его запах. Плечи неподвижны. Почувствуйте работу диафрагмы, затем перенесите внимание на ровный, длительный выдох.
+      </div>
+    </div>
+
+    <div class="tip-block" style="background:#1B433208; border: 1px solid #1B433215;">
+      <div class="icon">💡</div>
+      <p>Правильное дыхание не избавит от волнения полностью (для этого пришлось бы удалить кору надпочечников), но сделает его <strong>контролируемым</strong>. Занимайтесь минимум 15 минут в день. Через месяц ежедневных занятий — ощутимый лечебный и голосовой эффект.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- ЭТАП 2: ЗВУК И РЕЗОНАНС -->
+<!-- ═══════════════════════════════════════ -->
+<div class="phase-card" id="phase-2">
+  <div class="phase-header" onclick="togglePhase(2)">
+    <div class="phase-icon">🔔</div>
+    <div class="phase-meta">
+      <div class="phase-tag" style="color:var(--accent-2)">Этап 2 · Недели 3–4</div>
+      <div class="phase-title">Управление звуком и резонанс</div>
+      <div class="phase-subtitle">Сила, окраска и «вкус» голоса</div>
+    </div>
+    <div class="phase-arrow">▾</div>
+  </div>
+  <div class="phase-body">
+    <div class="phase-intro">
+      Голос — это музыкальный инструмент. Тело — его корпус. Чем крепче и здоровее тело, тем лучше звучание. Голосовые связки — струны. В теле есть полости-резонаторы: <strong>головной</strong> (макушка), <strong>гайморовы пазухи</strong> (нос), <strong>ротовой</strong> и <strong>грудной</strong> — самый мощный. Задача — «включить» все резонаторы, чтобы голос стал объёмным, бархатистым и наполненным обертонами.
+    </div>
+
+    <div class="section-heading" style="color:var(--accent-2)">Осанка и подготовка</div>
+
+    <div class="exercise" style="border-left-color:var(--accent-2)">
+      <div class="exercise-head">
+        <div class="exercise-name">Постановка осанки (3 способа)</div>
+        <div class="exercise-time" style="color:var(--accent-2); background:#7F1D1D10;">3 мин</div>
+      </div>
+      <div class="exercise-detail">
+        <ol class="exercise-steps">
+          <li>Обхватите локти ладонями за спиной. Пружиньте ногами, плечи расправлены.</li>
+          <li>Соедините ладони за спиной и протяните их вверх по позвоночнику — насколько возможно.</li>
+          <li><strong>Любимый способ:</strong> Поднимите плечи до ушей → отведите максимально назад → сбросьте. Минимум 4 раза.</li>
+        </ol>
+        У людей со сгорбленной спиной и пережатой диафрагмой не может быть красивого голоса. Осознавайте свою позу весь день.
+      </div>
+    </div>
+
+    <div class="section-heading" style="color:var(--accent-2)">Медитация звука</div>
+
+    <div class="exercise" style="border-left-color:var(--accent-2)">
+      <div class="exercise-head">
+        <div class="exercise-name">«Центр звука»</div>
+        <div class="exercise-time" style="color:var(--accent-2); background:#7F1D1D10;">5 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Сядьте тихо. Послушайте своё сердцебиение. Затем — звуки комнаты: гул в трубах, шаги, дыхание. Мысленно выйдите на улицу — автомобили, речь, шум. Вернитесь обратно к себе. <strong>Вы — центр всех звуков.</strong> Звук кругообразен, он приходит со всех сторон. Это ощущение центра даст глубокое спокойствие перед любой аудиторией.
+      </div>
+    </div>
+
+    <div class="section-heading" style="color:var(--accent-2)">Резонаторы и вибрация</div>
+
+    <div class="exercise" style="border-left-color:var(--accent-2)">
+      <div class="exercise-head">
+        <div class="exercise-name">Пробивка резонаторов на звуке «м»</div>
+        <div class="exercise-time" style="color:var(--accent-2); background:#7F1D1D10;">3 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Сомкните губы, зубы разомкнуты. Тёплый выдох → добор воздуха → тёплый выдох + гласный + сонорный «м» (сомкнуть губы, мягко подтянуть челюсть) → тянем «м» около минуты. Слегка наклоняйтесь вперёд для добора воздуха. Звук «м» — лучшая основа для фонационного дыхания: незначительная напряжённость, активизация вибрации.
+      </div>
+    </div>
+
+    <div class="exercise" style="border-left-color:var(--accent-2)">
+      <div class="exercise-head">
+        <div class="exercise-name">Вибрационный массаж</div>
+        <div class="exercise-time" style="color:var(--accent-2); background:#7F1D1D10;">3 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Мычите на «м» и постукивайте кончиками пальцев: <em>макушка → гайморовы пазухи → крылья носа → область вокруг губ → грудная клетка (более плотные удары кистью) → рёбрами ладоней по спине и бокам</em>. При правильном выполнении на губах появится ощущение щекотки. Звук должен идти «проточно» — от диафрагмы через голову к зубам.
+      </div>
+    </div>
+
+    <div class="exercise" style="border-left-color:var(--accent-2)">
+      <div class="exercise-head">
+        <div class="exercise-name">Упражнение «Лифт»</div>
+        <div class="exercise-time" style="color:var(--accent-2); background:#7F1D1D10;">3 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Представьте тело как дом, голос — лифт. «Поднимайте лифт» по резонаторам, останавливаясь на каждом этаже: грудь → горло → рот → нос → макушка. Затем опуститесь. Не сдерживайте себя — но голос должен звучать свободно и расслабленно.
+      </div>
+    </div>
+
+    <div class="exercise" style="border-left-color:var(--accent-2)">
+      <div class="exercise-head">
+        <div class="exercise-name">Упражнение «Стон»</div>
+        <div class="exercise-time" style="color:var(--accent-2); background:#7F1D1D10;">5 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Сомкните губы, разомкните зубы. Постоните. Затем произнесите на «стоне» слоги с сонорными: <em>ллла-мм, ллло-мм, ллу-мм, ллэ-мм, лли-мм, ллы-мм</em>. То же с «нн» и «рр». Гласные — мягко. Рот свободно открывается на гласных и сразу закрывается на сонорных.
+      </div>
+    </div>
+
+    <div class="exercise" style="border-left-color:var(--accent-2)">
+      <div class="exercise-head">
+        <div class="exercise-name">Штробас</div>
+        <div class="exercise-time" style="color:var(--accent-2); background:#7F1D1D10;">3 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Штробас — самый низкий регистр голоса, похожий на скрип двери или мурчание кошки. Это лечебное упражнение для расслабления гортани и снятия спазмов. Говорите 3–5 минут полностью «на скрипе» — как мы неосознанно делаем утром после сна. Добавляйте немного штробаса в обычную речь — это делает голос бархатистее.
+      </div>
+    </div>
+
+    <div class="section-heading" style="color:var(--accent-2)">Тренировка параметров звука</div>
+
+    <div class="exercise" style="border-left-color:var(--accent-2)">
+      <div class="exercise-head">
+        <div class="exercise-name">Высота · Громкость · Скорость</div>
+        <div class="exercise-time" style="color:var(--accent-2); background:#7F1D1D10;">10 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Возьмите чистоговорку <em>«Маланья-болтунья молоко болтала, выбалтывала, да так и не выболтала»</em> и проработайте все три параметра:
+        <ol class="exercise-steps">
+          <li><strong>Высота:</strong> произнесите на самом низком тоне → повышайте на одну ступень с каждым кругом → до самого высокого → обратно.</li>
+          <li><strong>Громкость:</strong> от тихого звука (не шёпота!) → с каждым кругом громче → до мощного → обратно. Шёпот вреден для связок.</li>
+          <li><strong>Скорость:</strong> от очень медленного → с каждым кругом быстрее → обратно.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="exercise" style="border-left-color:var(--accent-2)">
+      <div class="exercise-head">
+        <div class="exercise-name">«Голосовой мячик»</div>
+        <div class="exercise-time" style="color:var(--accent-2); background:#7F1D1D10;">5 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Бросайте мяч в пол, произнося: «мам-мом-мум-мэм-мим-мым», затем «пап-поп-пуп-пэп-пип-пып». С каждым броском — ударение на новый слог. Звук-мяч должен достигать цели, наполняя всё тело, не только грудные резонаторы.
+      </div>
+    </div>
+
+    <div class="exercise" style="border-left-color:var(--accent-2)">
+      <div class="exercise-head">
+        <div class="exercise-name">«Колокола»</div>
+        <div class="exercise-time" style="color:var(--accent-2); background:#7F1D1D10;">3 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Изменяйте регистры: от низкого «бом» → через средний «бам» → до высокого «бим». Устройте хор колоколов с разной громкостью и скоростью.
+      </div>
+    </div>
+
+    <div class="tip-block" style="background:#7F1D1D08; border: 1px solid #7F1D1D15;">
+      <div class="icon">💡</div>
+      <p><strong>Голосовая диета:</strong> нельзя газировку, пиво, шампанское (разрыхляют слизистую). Нельзя кофе/чай без молока (иссушают гортань). Перед выступлением — никаких орехов, семечек, шоколада. Утром не начинайте сразу говорить — голосу нужна разминка. Не кричите — говорите тише, включая грудной резонатор.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- ЭТАП 3: АРТИКУЛЯЦИЯ -->
+<!-- ═══════════════════════════════════════ -->
+<div class="phase-card" id="phase-3">
+  <div class="phase-header" onclick="togglePhase(3)">
+    <div class="phase-icon">👄</div>
+    <div class="phase-meta">
+      <div class="phase-tag" style="color:var(--accent-3)">Этап 3 · Недели 5–6</div>
+      <div class="phase-title">Артикуляция и дикция</div>
+      <div class="phase-subtitle">Чёткость, которая вселяет уверенность</div>
+    </div>
+    <div class="phase-arrow">▾</div>
+  </div>
+  <div class="phase-body">
+    <div class="phase-intro">
+      Правильная артикуляция поддерживает речевой процесс, успокаивает и передаёт уверенность аудитории. <strong>Аудиалов в мире не более 5%</strong> — большинство визуалы и кинестетики, которые дополнительно «считывают» информацию с губ. Если зубы сжаты, артикуляция вялая — слушателям приходится догадываться, что вы говорите. Берегите их!
+    </div>
+
+    <div class="section-heading" style="color:var(--accent-3)">Челюсть</div>
+
+    <div class="exercise" style="border-left-color:var(--accent-3)">
+      <div class="exercise-head">
+        <div class="exercise-name">Комплекс для челюсти</div>
+        <div class="exercise-time" style="color:var(--accent-3); background:#C2410C10;">5 мин</div>
+      </div>
+      <div class="exercise-detail">
+        <ol class="exercise-steps">
+          <li><strong>Опускание челюсти:</strong> мягко опустите челюсть до отказа. Проверьте пальцем околоушную впадину (ямку возле уха). Мягко закройте рот, сохраняя ощущение. <em>20 раз, как можно чаще в течение дня.</em></li>
+          <li><strong>Усиленный вариант:</strong> откройте рот (проверяя впадину), слегка откиньте голову назад, произносите слова с ударным «а»: арка, барка, варка, марка.</li>
+          <li><strong>Выдвижение:</strong> мягко выдвиньте челюсть вперёд → задвиньте → влево → вправо. 8 раз в каждую сторону.</li>
+          <li><strong>«Га-га-га»:</strong> откройте рот, опустите челюсть до максимума. Корнем языка: «га-га-га» — 8 раз медленно, затем несколько раз энергично.</li>
+          <li><strong>«Пароход»:</strong> растяните губы в улыбке, откройте рот, челюсть вниз и чуть вперёд, произнесите долгое «ы-ы-ы…».</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="section-heading" style="color:var(--accent-3)">Язык</div>
+
+    <div class="exercise" style="border-left-color:var(--accent-3)">
+      <div class="exercise-head">
+        <div class="exercise-name">Комплекс для языка (перед зеркалом)</div>
+        <div class="exercise-time" style="color:var(--accent-3); background:#C2410C10;">7 мин</div>
+      </div>
+      <div class="exercise-detail">
+        <ol class="exercise-steps">
+          <li>Три позиции: <strong>«острый»</strong> (заточенный карандаш, выдвинуть далеко) → <strong>«плоский»</strong> (блинчик на нижней губе) → <strong>«толстый»</strong> (расслабленный, вывалить вперёд). Чередуйте быстро.</li>
+          <li><strong>«Кисточка»:</strong> напишите кончиком языка в воздухе своё имя печатными буквами. Язык работает без помощи губ и шеи.</li>
+          <li><strong>Круговые:</strong> проведите языком по наружной стороне дёсен за сомкнутыми губами — 8 раз в каждую сторону.</li>
+          <li><strong>Растягивание щёк:</strong> языком как можно сильнее растяните щёку слева → справа. 8 раз.</li>
+          <li><strong>«Лошадка»:</strong> поцокайте кончиком языка. <strong>«Белочка»:</strong> поцокайте боковыми поверхностями.</li>
+          <li><strong>«Чашечка»:</strong> широкий язык, приподнимите кончик, выдвиньте далеко.</li>
+          <li><strong>«Маляр»:</strong> кончиком языка «покрасьте» верхнее нёбо, затем губы.</li>
+          <li><strong>«Грибочек»:</strong> присосите широкий язык к верхнему нёбу. Задержите дыхание → выдох. 6–8 раз.</li>
+          <li><strong>«Часики»:</strong> кончик языка переводите из одного уголка рта в другой.</li>
+          <li><strong>«Вкусное варенье»:</strong> широким языком-чашечкой оближите верхнюю и нижнюю губу.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="section-heading" style="color:var(--accent-3)">Губы и щёки</div>
+
+    <div class="exercise" style="border-left-color:var(--accent-3)">
+      <div class="exercise-head">
+        <div class="exercise-name">Гимнастика для губ</div>
+        <div class="exercise-time" style="color:var(--accent-3); background:#C2410C10;">4 мин</div>
+      </div>
+      <div class="exercise-detail">
+        <ol class="exercise-steps">
+          <li>Трубочка → улыбка. 8 раз.</li>
+          <li>Трубочка вправо → центр → влево → центр. 8 раз.</li>
+          <li>Трубочка вверх → центр → вниз → центр. 8 раз.</li>
+          <li>Трубочка по кругу — по часовой и против. По 8 раз.</li>
+          <li>Надуть верхнюю губу → нижнюю. Попеременно, 8 раз.</li>
+          <li><strong>«Дудочка»:</strong> вытянуть губы с напряжением, зубы сомкнуты: «у-у-у-у».</li>
+          <li><strong>«Заборчик»:</strong> улыбнуться с напряжением, обнажив зубы. 8 раз.</li>
+          <li><strong>Щёки:</strong> надувайте по очереди левую и правую щёку. Языком «перекатывайте орешки».</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="section-heading" style="color:var(--accent-3)">Дикция</div>
+
+    <div class="exercise" style="border-left-color:var(--accent-3)">
+      <div class="exercise-head">
+        <div class="exercise-name">Работа через сопротивление (с пробкой/сушкой)</div>
+        <div class="exercise-time" style="color:var(--accent-3); background:#C2410C10;">5 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Зажмите пробку, сушку или карандаш в зубах. Произносите слова, скороговорки, тексты. На фоне пережатой челюсти губы, щёки и язык вынуждены работать активнее. Следите, чтобы звуки были чистыми. Затем уберите предмет — почувствуйте разницу в чёткости.
+      </div>
+    </div>
+
+    <div class="exercise" style="border-left-color:var(--accent-3)">
+      <div class="exercise-head">
+        <div class="exercise-name">Слоговые дорожки</div>
+        <div class="exercise-time" style="color:var(--accent-3); background:#C2410C10;">5 мин</div>
+      </div>
+      <div class="exercise-detail">
+        На одном выдохе — сначала беззвучно (артикулируя), потом шёпотом, потом громко:
+        ба-бо-бу-бэ-би-бы, ва-во-ву-вэ-ви-вы, га-го-гу-гэ-ги-гы, да-до-ду-дэ-ди-ды, ка-ко-ку-кэ-ки-кы, па-по-пу-пэ-пи-пы.
+      </div>
+    </div>
+
+    <div class="exercise" style="border-left-color:var(--accent-3)">
+      <div class="exercise-head">
+        <div class="exercise-name">Скороговорки</div>
+        <div class="exercise-time" style="color:var(--accent-3); background:#C2410C10;">10 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Начните медленно, доведите до максимальной скорости с сохранением чистоты. Коллекция:
+        «Наш шахматист вашего шахматиста перешахматит, перевышахматит» ·
+        «Маланья-болтунья молоко болтала, выбалтывала, да так и не выболтала» ·
+        «Карл у Клары украл кораллы, а Клара у Карла украла кларнет» ·
+        «Шла Саша по шоссе и сосала сушку» · «Мама мылом Милу мыла».
+      </div>
+    </div>
+
+    <div class="tip-block" style="background:#C2410C08; border: 1px solid #C2410C15;">
+      <div class="icon">💡</div>
+      <p>Если пересохло горло — чуть-чуть прикусите кончик языка. Усилится слюноотделение, неприятные ощущения пройдут. Это незаметно для окружающих. Артикуляционную гимнастику делайте перед зеркалом, медленно и плавно, каждое упражнение 4–8 раз.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- ЭТАП 4: ИНТОНАЦИЯ И ЛОГИКА РЕЧИ -->
+<!-- ═══════════════════════════════════════ -->
+<div class="phase-card" id="phase-4">
+  <div class="phase-header" onclick="togglePhase(4)">
+    <div class="phase-icon">🎵</div>
+    <div class="phase-meta">
+      <div class="phase-tag" style="color:var(--accent-4)">Этап 4 · Недели 7–8</div>
+      <div class="phase-title">Мелодика, интонация и логика речи</div>
+      <div class="phase-subtitle">Выразительность, паузы, ударные слова</div>
+    </div>
+    <div class="phase-arrow">▾</div>
+  </div>
+  <div class="phase-body">
+    <div class="phase-intro">
+      Монотонная «плоская» речь — одна из главных причин, по которой аудитория теряет внимание. Существует четыре интонационных конструкции: <strong>прямая</strong> (невыразительно), <strong>восходящая</strong> (звучит как вопрос — неуверенно), <strong>нисходящая</strong> (фразы затухают — слабо), <strong>восходяще-нисходящая</strong> (правильная для повествования — убедительно). Задача — освоить последнюю и управлять всеми остальными.
+    </div>
+
+    <div class="section-heading" style="color:var(--accent-4)">Интонационная гибкость</div>
+
+    <div class="exercise" style="border-left-color:var(--accent-4)">
+      <div class="exercise-head">
+        <div class="exercise-name">Восходяще-нисходящая конструкция</div>
+        <div class="exercise-time" style="color:var(--accent-4); background:#1E3A5F10;">10 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Начинайте фразу на среднем тоне → на самом важном слове поднимите голос → плавно опустите «хвост» фразы на точку. Тогда фраза имеет начало, вершину и конец. <em>Фраза с «задранными» концами звучит как полувопрос — неуверенно и с интонацией сомнения.</em> Главное слово выделяется понижением тона — до него нужно сформировать повышение.
+      </div>
+    </div>
+
+    <div class="exercise" style="border-left-color:var(--accent-4)">
+      <div class="exercise-head">
+        <div class="exercise-name">7 эмоций на одной фразе</div>
+        <div class="exercise-time" style="color:var(--accent-4); background:#1E3A5F10;">5 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Произнесите «Добрый день» (или любую фразу) с 7 разными эмоциями: радость, удивление, строгость, нежность, ирония, восторг, уверенность. Затем усложните — разыграйте внутренний диалог одним словом (например, «цветы»), передавая все оттенки: просьбу, отказ, убеждение, радость.
+      </div>
+    </div>
+
+    <div class="section-heading" style="color:var(--accent-4)">Логические паузы и ударные слова</div>
+
+    <div class="exercise" style="border-left-color:var(--accent-4)">
+      <div class="exercise-head">
+        <div class="exercise-name">Разметка текста</div>
+        <div class="exercise-time" style="color:var(--accent-4); background:#1E3A5F10;">10 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Возьмите любой прозаический текст. Расставьте карандашом: паузы (|) перед ключевыми словами, подчеркните ударные слова. Читайте вслух, делая осознанные остановки. <em>Пауза — ваш главный инструмент акцента.</em> Она привлекает внимание, даёт аудитории время осмыслить сказанное.
+      </div>
+    </div>
+
+    <div class="exercise" style="border-left-color:var(--accent-4)">
+      <div class="exercise-head">
+        <div class="exercise-name">Чтение знаков препинания</div>
+        <div class="exercise-time" style="color:var(--accent-4); background:#1E3A5F10;">10 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Читайте прозу вслух, точно соблюдая все знаки: точка — голос вниз, завершение мысли; запятая — лёгкое повышение, «мысль не окончена»; многоточие — задержка, интрига; восклицание — подъём энергии; тире — резкая пауза.
+      </div>
+    </div>
+
+    <div class="section-heading" style="color:var(--accent-4)">Темповые переключения</div>
+
+    <div class="exercise" style="border-left-color:var(--accent-4)">
+      <div class="exercise-head">
+        <div class="exercise-name">Гекзаметр Прянишникова</div>
+        <div class="exercise-time" style="color:var(--accent-4); background:#1E3A5F10;">10 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Читайте стихотворение-инструкцию, тренируя по очереди:
+        <ol class="exercise-steps">
+          <li><strong>Устойчивость:</strong> все строки монотонно, на одной ноте, ровно.</li>
+          <li><strong>Высота:</strong> первую строку на самом низком тоне → каждую следующую выше → обратно.</li>
+          <li><strong>Сила:</strong> первую строку шёпотом → каждую следующую громче → обратно.</li>
+          <li><strong>Темп:</strong> первую строку медленно → каждую быстрее → обратно.</li>
+        </ol>
+        <em>«Твёрдо запомни, что прежде, чем слово начать в упражнении, / Следует клетку грудную расширить слегка…»</em>
+      </div>
+    </div>
+
+    <div class="tip-block" style="background:#1E3A5F08; border: 1px solid #1E3A5F15;">
+      <div class="icon">💡</div>
+      <p>Если вы напряжены или волнуетесь — спросите себя: «Как я дышу? Что происходит со скоростью, громкостью и высотой моего голоса?» Осознание и контроль — слагаемые успеха. Наслаждайтесь звуком!</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- ЭТАП 5: СТРУКТУРА И СТОРИТЕЛЛИНГ -->
+<!-- ═══════════════════════════════════════ -->
+<div class="phase-card" id="phase-5">
+  <div class="phase-header" onclick="togglePhase(5)">
+    <div class="phase-icon">🏗️</div>
+    <div class="phase-meta">
+      <div class="phase-tag" style="color:var(--accent-5)">Этап 5 · Недели 9–10</div>
+      <div class="phase-title">Структура выступления и сторителлинг</div>
+      <div class="phase-subtitle">Композиция, истории, месседж</div>
+    </div>
+    <div class="phase-arrow">▾</div>
+  </div>
+  <div class="phase-body">
+    <div class="phase-intro">
+      Даже блестящий голос не спасёт бессвязную речь. Любое выступление — три части: вступление (контакт + интерес), основная часть (аргументы + эмоции), заключение (резюме + призыв). <strong>Сторителлинг — инструмент «3-в-1»</strong>: через историю вы доносите информацию, вызываете эмоции и создаёте повод для коммуникации. Люди с детства воспитаны на историях — глубоко в нас заложена программа «Слушай рассказчика!».
+    </div>
+
+    <div class="section-heading" style="color:var(--accent-5)">Вступление: 7 приёмов «захвата»</div>
+
+    <div class="exercise" style="border-left-color:var(--accent-5)">
+      <div class="exercise-head">
+        <div class="exercise-name">Напишите 5 вариантов своего вступления</div>
+        <div class="exercise-time" style="color:var(--accent-5); background:#5B21B610;">20 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Откажитесь от скучного «Здравствуйте, меня зовут…, сегодня я расскажу о…». 90% выступлений начинаются так — и теряют зал. Используйте:
+        <ol class="exercise-steps">
+          <li><strong>Вопрос или серия вопросов к залу</strong> — вовлекает мгновенно. «У кого из присутствующих есть дети? Поднимите руки!»</li>
+          <li><strong>Удивительный факт</strong> — «Знаете ли вы, что…»</li>
+          <li><strong>Миф или стереотип</strong> — разрушение ожиданий.</li>
+          <li><strong>Интрига / секрет</strong> — «Я расскажу вам то, что обычно не рассказывают…»</li>
+          <li><strong>История</strong> — личная или чужая, с конфликтом и развязкой.</li>
+          <li><strong>Цитата</strong> — яркая, неожиданная.</li>
+          <li><strong>Новость или событие</strong> — актуальное для аудитории.</li>
+        </ol>
+        Напишите своё вступление каждым из 5 подходящих способов. Выберите лучший.
+      </div>
+    </div>
+
+    <div class="section-heading" style="color:var(--accent-5)">Сторителлинг: конструируем историю</div>
+
+    <div class="exercise" style="border-left-color:var(--accent-5)">
+      <div class="exercise-head">
+        <div class="exercise-name">Структура истории</div>
+        <div class="exercise-time" style="color:var(--accent-5); background:#5B21B610;">20 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Постройте свою историю по каркасу:
+        <ol class="exercise-steps">
+          <li><strong>Экспозиция</strong> — кто, где, когда. Познакомьте слушателя с героем.</li>
+          <li><strong>Конфликт</strong> — проблема, которая меняет жизнь героя. Без конфликта нет истории, только констатация фактов.</li>
+          <li><strong>Развитие действия</strong> — попытки решить проблему, неудачи, перипетии.</li>
+          <li><strong>Кульминация / сложный выбор</strong> — момент, когда герой почти сдался, но нашёл в себе силы.</li>
+          <li><strong>Развязка</strong> — результат, трансформация героя.</li>
+          <li><strong>Вывод / мораль</strong> — что должна понять аудитория.</li>
+        </ol>
+        Проговорите историю вслух за 2 минуты. Она должна вызывать эмпатию — слушатель мысленно встаёт на место героя.
+      </div>
+    </div>
+
+    <div class="exercise" style="border-left-color:var(--accent-5)">
+      <div class="exercise-head">
+        <div class="exercise-name">5 вопросов для поиска историй</div>
+        <div class="exercise-time" style="color:var(--accent-5); background:#5B21B610;">15 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Задайте себе и запишите ответы:
+        <ol class="exercise-steps">
+          <li>Почему я решил рассказать об этом? Какое событие натолкнуло?</li>
+          <li>Где я столкнулся с этой проблемой впервые?</li>
+          <li>В какой ситуации я это отчётливо понял?</li>
+          <li>При каких обстоятельствах у меня сформировалось это убеждение?</li>
+          <li>В какой ситуации я бы никогда не хотел оказаться?</li>
+        </ol>
+        Соберите «аптечку историй» — 3–5 историй на разные случаи. Одни лечат, другие мотивируют, третьи придают сил.
+      </div>
+    </div>
+
+    <div class="section-heading" style="color:var(--accent-5)">Месседж и заключение</div>
+
+    <div class="exercise" style="border-left-color:var(--accent-5)">
+      <div class="exercise-head">
+        <div class="exercise-name">Главная мысль (месседж)</div>
+        <div class="exercise-time" style="color:var(--accent-5); background:#5B21B610;">10 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Сформулируйте ключевую идею выступления в одном предложении. Повторите её во вступлении и заключении. Стив Джобс несколько раз повторял: «Мы заново изобрели телефон» — и это осталось в памяти у всех. Если ведущий внезапно прервёт вас — месседж останется у зрителей.
+      </div>
+    </div>
+
+    <div class="exercise" style="border-left-color:var(--accent-5)">
+      <div class="exercise-head">
+        <div class="exercise-name">Заключение с призывом</div>
+        <div class="exercise-time" style="color:var(--accent-5); background:#5B21B610;">10 мин</div>
+      </div>
+      <div class="exercise-detail">
+        Заключение должно содержать три элемента: <strong>резюме</strong> (краткое повторение ключевых идей), <strong>повтор месседжа</strong> и <strong>призыв к действию</strong> — конкретный следующий шаг для аудитории. Избегайте двух плохих концовок: внезапного «пока, расходимся» и банального «спасибо за внимание». <em>Заключение репетируйте не меньше, чем начало.</em>
+      </div>
+    </div>
+
+    <div class="tip-block" style="background:#5B21B608; border: 1px solid #5B21B615;">
+      <div class="icon">💡</div>
+      <p>Истории — это как рассказ с эффектом «мозговой синхронизации»: когда вы рассказываете об ударе — в мозге слушателя активизируются зоны моторики. Запах травы — обонятельные зоны. Рассказывая, вы заставляете людей реагировать на нейроуровне.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- ЭТАП 6: РАБОТА С АУДИТОРИЕЙ -->
+<!-- ═══════════════════════════════════════ -->
+<div class="phase-card" id="phase-6">
+  <div class="phase-header" onclick="togglePhase(6)">
+    <div class="phase-icon">🎯</div>
+    <div class="phase-meta">
+      <div class="phase-tag" style="color:var(--accent-6)">Этап 6 · Недели 11–12</div>
+      <div class="phase-title">Работа с аудиторией и импровизация</div>
+      <div class="phase-subtitle">Вовлечение, страх, репетиции</div>
+    </div>
+    <div class="phase-arrow">▾</div>
+  </div>
+  <div class="phase-body">
+    <div class="phase-intro">
+      Классическое ораторство умирает. Аудитория привыкла к клиповому восприятию: быстрая смена картинки, краткость, фразы, бьющие в цель. Если спикеру скучно слушать — у зрителя всегда есть смартфон. <strong>Три потребности аудитории: информация + эмоции + коммуникация.</strong> На их пересечении рождается живая, запоминающаяся презентация. Презентация — это не монолог, а работа с залом.
+    </div>
+
+    <div class="section-heading" style="color:var(--accent-6)">Вовлечение аудитории</div>
+
+    <div class="exercise" style="border-left-color:var(--accent-6)">
+      <div class="exercise-head">
+        <div class="exercise-name">3 типа вопросов к залу</div>
+        <div class="exercise-time" style="color:var(--accent-6); background:#0F4C7510;">10 мин</div>
+      </div>
+      <div class="exercise-detail">
+        <ol class="exercise-steps">
+          <li><strong>Риторический вопрос</strong> — для эффекта, ответ не требуется. «Разве мы не заслуживаем лучшего?»</li>
+          <li><strong>Опросный вопрос</strong> — просите поднять руки, встать, проголосовать. «У кого из вас есть дети?»</li>
+          <li><strong>Провокационный вопрос</strong> — вызывает реакцию, спор. «А что, если я скажу, что всё это не работает?»</li>
+        </ol>
+        Встройте все три типа в своё выступление. Вопросы переключают внимание и создают ощущение диалога.
+      </div>
+    </div>
+
+    <div class="exercise" style="border-left-color:var(--accent-6)">
+      <div class="exercise-head">
+        <div class="exercise-name">Невербальное вовлечение</div>
+        <div class="exercise-time" style="color:var(--accent-6); background:#0F4C7510;">15 мин</div>
+      </div>
+      <div class="exercise-detail">
+        <ol class="exercise-steps">
+          <li><strong>Зрительный контакт:</strong> 3–5 секунд на каждого человека. Не смотрите поверх голов или в одну точку.</li>
+          <li><strong>Жесты:</strong> открытые, от себя к аудитории. Не скрещивайте руки, не прячьте в карманы.</li>
+          <li><strong>Перемещение:</strong> двигайтесь по сцене, подходите к разным частям зала.</li>
+          <li><strong>Принцип «говори и показывай»:</strong> речь слегка опережает слайд. Слайды — декорации для зрителей, не шпаргалка для вас.</li>
+        </ol>
+        Снимите себя на видео и проанализируйте.
+      </div>
+    </div>
+
+    <div class="section-heading" style="color:var(--accent-6)">Управление волнением</div>
+
+    <div class="exercise" style="border-left-color:var(--accent-6)">
+      <div class="exercise-head">
+        <div class="exercise-name">Протокол перед выступлением</div>
+        <div class="exercise-time" style="color:var(--accent-6); background:#0F4C7510;">10 мин</div>
+      </div>
+      <div class="exercise-detail">
+        <ol class="exercise-steps">
+          <li><strong>Дыхание «по квадрату»:</strong> 5 кругов (вдох 4 сек → пауза → выдох → пауза). Переводит волнение в контролируемое.</li>
+          <li><strong>Физическая разрядка:</strong> 10 приседаний или энергичная ходьба — сбросьте адреналин телом.</li>
+          <li><strong>Голосовая разминка:</strong> мычание на «м» + скороговорка + 3 позиции языка.</li>
+          <li><strong>Позитивная визуализация:</strong> представьте, как успешно выступаете, как зал реагирует.</li>
+          <li><strong>Осанка:</strong> плечи вверх → назад → сбросить. 4 раза. Расправленные плечи = уверенный голос.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="section-heading" style="color:var(--accent-6)">Репетиции</div>
+
+    <div class="exercise" style="border-left-color:var(--accent-6)">
+      <div class="exercise-head">
+        <div class="exercise-name">Алгоритм подготовки (6 шагов по Яныхбашу)</div>
+        <div class="exercise-time" style="color:var(--accent-6); background:#0F4C7510;">—</div>
+      </div>
+      <div class="exercise-detail">
+        <ol class="exercise-steps">
+          <li><strong>Главная мысль</strong> — одно предложение, ради которого всё выступление.</li>
+          <li><strong>План</strong> — наглядная структура: вступление, 3–5 блоков основной части, заключение.</li>
+          <li><strong>Наполнение</strong> — факты, истории, примеры, визуализация в каждый блок.</li>
+          <li><strong>Проговаривание вслух</strong> — стоя, с жестами, с таймером. Записать на видео.</li>
+          <li><strong>Визуализация</strong> — слайды создаются после плана, а не до. «Слайды — не документ!»</li>
+          <li><strong>Репетиция</strong> — минимум 2–3 раза полностью. Проверить хронометраж. Отрепетировать вступление и заключение отдельно.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="section-heading" style="color:var(--accent-6)">Импровизация и спонтанная речь</div>
+
+    <div class="exercise" style="border-left-color:var(--accent-6)">
+      <div class="exercise-head">
+        <div class="exercise-name">Тренировка импровизации</div>
+        <div class="exercise-time" style="color:var(--accent-6); background:#0F4C7510;">10 мин</div>
+      </div>
+      <div class="exercise-detail">
+        <ol class="exercise-steps">
+          <li><strong>Случайная тема:</strong> попросите друга назвать тему — говорите 2 минуты без подготовки по схеме: тезис → аргумент → пример → вывод.</li>
+          <li><strong>«Новые действия»:</strong> каждый день делайте привычное дело новым способом — чистите зубы левой рукой, идите другим маршрутом. Это тренирует гибкость мышления.</li>
+          <li><strong>«Новые образы»:</strong> замечайте каждый день что-то новое и необычное. Записывайте наблюдения, превращая образы в слова.</li>
+          <li><strong>Метафоры:</strong> заполняйте пробелы в незаконченных фразах первым, что приходит на ум. «Жизнь — это…», «Страх — это…», «Свобода — это…»</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="tip-block" style="background:#0F4C7508; border: 1px solid #0F4C7515;">
+      <div class="icon">💡</div>
+      <p><strong>Баланс «3 в 1»:</strong> в каждом выступлении должны быть информация (чтобы люди узнали новое), эмоции (чтобы запомнили) и интерактив (чтобы чувствовали себя участниками). Перекос в любую сторону — «презентация со сколиозом». Смелость города берёт!</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /phases -->
+
+<div class="footer">
+  <div class="footer-quote">«Голос — это инструмент успеха. Мощный и уникальный. Можно быть серой мышкой, а можно — первой скрипкой в оркестре.»</div>
+  <div class="footer-attr">Евгения Шестакова</div>
+</div>
+
+<script>
+function togglePhase(n) {
+  const card = document.getElementById('phase-' + n);
+  card.classList.toggle('open');
+}
+
+function toggleRoutine() {
+  const panel = document.getElementById('routine-panel');
+  const btn = document.getElementById('routine-btn-text');
+  panel.classList.toggle('open');
+  btn.textContent = panel.classList.contains('open') 
+    ? '✕ Скрыть разминку' 
+    : '⏱ Ежедневная голосовая разминка · 20 мин';
+}
+</script>
+
+</body>
+</html>
